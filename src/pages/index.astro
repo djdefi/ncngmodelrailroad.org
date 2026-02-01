@@ -1,17 +1,197 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad">
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20 md:py-32">
+    <div class="container">
+      <div class="max-w-4xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+          What is the N.C.N.G. Historical Model Railroad?
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+          An On3 scale historical model railroad display dedicated to the memory of the 
+          <strong class="text-white">Nevada County Narrow Gauge Railroad</strong>.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#about" class="btn-primary">
+            Learn More
+          </a>
+          <a href="#visit" class="btn-outline border-white text-white hover:bg-white hover:text-gray-900">
+            Plan Your Visit
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none">
+          <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+            The NCNG Historical Model Railroad is a historically accurate and operating scale model 
+            of the famous Nevada County Narrow Gauge Railroad. Located permanently in its own building 
+            on the Nevada County fairgrounds, the historical model railroad exhibit and display is open 
+            during major fairground events, special open houses, as well as by special arrangement with 
+            schools or visitors.
+          </p>
+          
+          <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+            The fully operational Historical Model Railroad is built to <strong>'On3' scale</strong>, 
+            and has models of the three major towns served by the now gone NCNGRR – 
+            <strong>Nevada City</strong>, <strong>Grass Valley</strong> and <strong>Colfax</strong> 
+            as well as historic points in-between.
+          </p>
+
+          <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg my-8">
+            <p class="text-gray-800 text-lg">
+              The original railroad ran <strong>22 miles</strong> from Nevada City, California, 
+              to the Southern Pacific mainline at Colfax, California, between 
+              <strong>1875 and 1942</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Our History</h2>
+        
+        <div class="prose prose-lg max-w-none">
+          <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            The NCNG Historical Model Railroad was incorporated in <strong>1986</strong> as the 
+            "N.C.N.G. Project" and has steadily been improved since then. The locomotives and 
+            rolling stock are historically accurate and fully operational.
+          </p>
+          
+          <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            The DCC controlled trains now boast special features such as the 
+            <strong>'train cam television'</strong> where visitors get an 'on-the-train' view 
+            from the perspective of riding the railroad as it travels from town to town.
+          </p>
+          
+          <p class="text-lg text-gray-700 leading-relaxed">
+            The Historical Model Railroad is maintained and operated by the N.C.N.G. Historical 
+            Model Railroad (originally known as the "NCNG Project") – a <strong>501(c)(3) non-profit 
+            all volunteer organization</strong> dedicated to maintaining and improving this 
+            Historical Model Railroad.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">What You'll Experience</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="text-4xl mb-4">🚂</div>
+            <h3 class="text-xl font-bold mb-3 text-primary">On3 Scale Models</h3>
+            <p class="text-gray-600">
+              Historically accurate locomotives and rolling stock built to On3 scale 
+              (O scale, 3-foot gauge).
+            </p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="text-4xl mb-4">🏘️</div>
+            <h3 class="text-xl font-bold mb-3 text-primary">Historic Towns</h3>
+            <p class="text-gray-600">
+              Detailed recreations of Nevada City, Grass Valley, Colfax, and 
+              historic points along the route.
+            </p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="text-4xl mb-4">📹</div>
+            <h3 class="text-xl font-bold mb-3 text-primary">Train Cam TV</h3>
+            <p class="text-gray-600">
+              Experience an 'on-the-train' view as you ride along the railroad 
+              from town to town.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit Section -->
+  <section id="visit" class="section section-alt">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Plan Your Visit</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 text-left">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="text-xl font-bold mb-4 text-primary">📍 Location</h3>
+              <p class="text-gray-700">
+                Nevada County Fairgrounds<br />
+                Grass Valley, California
+              </p>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-body">
+              <h3 class="text-xl font-bold mb-4 text-primary">🕐 When We're Open</h3>
+              <ul class="text-gray-700 space-y-2">
+                <li>• Major fairground events</li>
+                <li>• Special open houses</li>
+                <li>• By special arrangement (schools, groups)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact/Support Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Get Involved</h2>
+        <p class="text-lg text-gray-700 mb-8">
+          Interested in becoming a volunteer or supporter? We'd love to hear from you!
+        </p>
+        
+        <div id="donate" class="bg-primary text-white rounded-2xl p-8 md:p-12">
+          <h3 class="text-2xl font-bold mb-4">Support Our Mission</h3>
+          <p class="text-gray-200 mb-6">
+            As a 501(c)(3) non-profit, your donations help us maintain and improve 
+            this piece of California railroad history.
+          </p>
+          <a href="mailto:info@ncngmodelrailroad.org" class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Note Section -->
+  <section class="py-8 bg-gray-100">
+    <div class="container">
+      <p class="text-center text-sm text-gray-600 italic">
+        <strong>Note:</strong> The NCNG Historical Model Railroad is a separate non-profit 
+        organization not affiliated with other museums or groups.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

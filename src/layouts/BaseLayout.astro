@@ -1,0 +1,119 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "An On3 scale historical model railroad display dedicated to the memory of the Nevada County Narrow Gauge Railroad." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Nevada County Narrow Gauge Historical Model Railroad" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NCNG Historical Model Railroad" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav class="container py-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center gap-3">
+            <span class="text-xl md:text-2xl font-bold text-primary" style="font-family: 'Archivo Black', serif;">
+              N.C.N.G.
+            </span>
+            <span class="hidden sm:inline text-sm text-gray-600">
+              Historical Model Railroad
+            </span>
+          </a>
+          
+          <div class="flex items-center gap-6">
+            <a href="/#about" class="text-gray-700 hover:text-primary transition-colors hidden md:inline">
+              About
+            </a>
+            <a href="/#visit" class="text-gray-700 hover:text-primary transition-colors hidden md:inline">
+              Visit
+            </a>
+            <a href="/#contact" class="text-gray-700 hover:text-primary transition-colors hidden md:inline">
+              Contact
+            </a>
+            <a href="/#donate" class="btn-primary text-sm py-2 px-4">
+              Support Us
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-white">N.C.N.G. Historical Model Railroad</h3>
+            <p class="text-gray-400 text-sm">
+              A 501(c)(3) non-profit all volunteer organization dedicated to preserving 
+              the memory of the Nevada County Narrow Gauge Railroad.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-white">Location</h3>
+            <p class="text-gray-400 text-sm">
+              Nevada County Fairgrounds<br />
+              Grass Valley, California
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-white">Open During</h3>
+            <p class="text-gray-400 text-sm">
+              Major fairground events<br />
+              Special open houses<br />
+              By special arrangement
+            </p>
+          </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+          <p>
+            © {new Date().getFullYear()} N.C.N.G. Historical Model Railroad. 
+            Incorporated 1986 as the "N.C.N.G. Project"
+          </p>
+          <p class="mt-2 text-xs">
+            Note: The NCNG Historical Model Railroad is a separate non-profit organization 
+            not affiliated with other museums or groups.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

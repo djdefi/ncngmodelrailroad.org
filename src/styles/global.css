@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System Variables */
+:root {
+  /* Primary Colors - Railroad Heritage Red */
+  --color-primary: #8B0000;
+  --color-primary-dark: #5C0000;
+  --color-primary-light: #B22222;
+  
+  /* Secondary Colors - Warm Earth Tones */
+  --color-secondary: #8B4513;
+  --color-secondary-dark: #5C2E0A;
+  --color-secondary-light: #A0522D;
+  
+  /* Neutral Colors */
+  --color-bg: #FDFBF7;
+  --color-bg-alt: #F5F0E8;
+  --color-text: #1A1A1A;
+  --color-text-muted: #666666;
+  --color-border: #D4C4B0;
+  
+  /* Accent Colors */
+  --color-accent: #2E5A3A;
+  --color-gold: #B8860B;
+}
+
+/* Base Styles */
+body {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Archivo Black', Georgia, serif;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+/* Utility Classes */
+.text-primary { color: var(--color-primary); }
+.bg-primary { background-color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.bg-secondary { background-color: var(--color-secondary); }
+
+/* Container */
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Button Styles */
+.btn {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+}
+
+.btn-primary {
+  @apply btn text-white;
+  background-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  @apply btn text-white;
+  background-color: var(--color-secondary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn-outline {
+  @apply btn border-2;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+  border: 1px solid var(--color-border);
+}
+
+.card-body {
+  @apply p-6;
+}
+
+/* Section Styles */
+.section {
+  @apply py-16;
+}
+
+.section-alt {
+  background-color: var(--color-bg-alt);
+}
+
+/* Blockquote */
+blockquote {
+  @apply border-l-4 pl-4 italic;
+  border-color: var(--color-primary);
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,75 @@
+backend:
+  name: github
+  repo: ncng/ncngmodelrailroad.org  # Update this to your actual repo
+  branch: main
+
+# For local development
+local_backend: true
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Homepage
+        file: src/content/pages/home.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: heroTitle, label: Hero Title, widget: string }
+          - { name: heroSubtitle, label: Hero Subtitle, widget: text }
+          - { name: aboutText, label: About Text, widget: markdown }
+          - { name: historyText, label: History Text, widget: markdown }
+          - { name: visitInfo, label: Visit Info, widget: markdown }
+
+  - name: events
+    label: Events
+    folder: src/content/events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Event Date, widget: datetime }
+      - { name: endDate, label: End Date (optional), widget: datetime, required: false }
+      - { name: location, label: Location, widget: string }
+      - { name: description, label: Description, widget: markdown }
+      - { name: featured, label: Featured on Homepage, widget: boolean, default: false }
+
+  - name: blog
+    label: Blog Posts
+    folder: src/content/blog
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Publish Date, widget: datetime }
+      - { name: author, label: Author, widget: string, required: false }
+      - { name: image, label: Featured Image, widget: image, required: false }
+      - { name: excerpt, label: Excerpt, widget: text }
+      - { name: body, label: Body, widget: markdown }
+      - { name: tags, label: Tags, widget: list, required: false }
+
+  - name: projects
+    label: Projects
+    folder: src/content/projects
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: status, label: Status, widget: select, options: ["In Progress", "Completed", "Planned"] }
+      - { name: startDate, label: Start Date, widget: datetime, required: false }
+      - { name: completedDate, label: Completed Date, widget: datetime, required: false }
+      - { name: description, label: Description, widget: markdown }
+      - { name: images, label: Images, widget: list, field: { name: image, widget: image }, required: false }
+
+  - name: gallery
+    label: Photo Gallery
+    folder: src/content/gallery
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: category, label: Category, widget: select, options: ["Locomotives", "Rolling Stock", "Scenery", "Events", "Historical"] }
+      - { name: date, label: Date, widget: datetime, required: false }
+      - { name: description, label: Description, widget: text, required: false }
+      - { name: image, label: Image, widget: image }

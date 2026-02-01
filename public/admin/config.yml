@@ -2,9 +2,11 @@ backend:
   name: github
   repo: ncng/ncngmodelrailroad.org  # Update this to your actual repo
   branch: main
-  # For GitHub Pages, we use the built-in pkce auth (no server needed)
   auth_type: pkce
-  app_id: # You'll add your GitHub OAuth App client ID here
+  # TODO: Add your GitHub OAuth App client ID here after creating the app at:
+  # https://github.com/settings/developers → New OAuth App
+  # Callback URL: https://ncngmodelrailroad.org/admin/
+  # app_id: YOUR_CLIENT_ID_HERE
 
 media_folder: public/images
 public_folder: /images

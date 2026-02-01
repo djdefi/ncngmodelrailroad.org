@@ -45,11 +45,11 @@ const interests = [
       <form 
         name="volunteer" 
         method="POST" 
-        data-netlify="true"
+        action="https://formspree.io/f/YOUR_FORM_ID"
         class="space-y-6 bg-white border border-gray-200 p-6 rounded-lg"
-        action="/volunteer-thanks"
       >
-        <input type="hidden" name="form-name" value="volunteer" />
+        <!-- Get free form endpoint at https://formspree.io (50 submissions/month free) -->
+        <!-- Or use: action="mailto:info@ncngmodelrailroad.org" for simple email -->
         
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700 mb-1">

@@ -1,0 +1,12 @@
+# Robots.txt for NCNG Historical Model Railroad
+# https://ncngmodelrailroad.org
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ncngmodelrailroad.org/sitemap-index.xml
+
+# Block admin area from indexing
+User-agent: *
+Disallow: /admin/

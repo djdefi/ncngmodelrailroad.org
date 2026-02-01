@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const photos = [
+  {
+    src: '/images/bear-river-bridge.jpg',
+    alt: 'Historic Bear River Bridge on the NCNG Railroad line',
+    caption: 'Bear River Bridge - One of the most iconic structures on the original NCNG line',
+    category: 'Historic'
+  },
+  {
+    src: '/images/ncng-layout-1.jpg',
+    alt: 'NCNG Model Railroad layout showing detailed town scenery',
+    caption: 'Nevada City station scene on our On3 scale layout',
+    category: 'Layout'
+  },
+  {
+    src: '/images/ncng-layout-2.jpg',
+    alt: 'NCNG Model Railroad town scene with buildings and track',
+    caption: 'Grass Valley depot and surrounding town buildings',
+    category: 'Layout'
+  },
+  {
+    src: '/images/historic-locomotive.jpg',
+    alt: 'Historic NCNG locomotive photograph from the early 1900s',
+    caption: 'Original NCNG locomotive, circa 1900',
+    category: 'Historic'
+  },
+];
+
+const categories = [...new Set(photos.map(p => p.category))];
+---
+
+<BaseLayout title="Photo Gallery - NCNG Historical Model Railroad">
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 bg-gray-900 text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <img 
+        src="/images/ncng-layout-1.jpg" 
+        alt="" 
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+    </div>
+    <div class="container relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Photo Gallery</h1>
+        <p class="text-xl text-gray-300">
+          Explore our collection of historic photographs and images from our meticulously 
+          crafted On3 scale model railroad layout.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="py-6 bg-white border-b sticky top-0 z-30">
+    <div class="container">
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button class="category-btn active" data-category="all">All Photos</button>
+        {categories.map(cat => (
+          <button class="category-btn" data-category={cat.toLowerCase()}>{cat}</button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Grid -->
+  <section class="py-12 bg-gray-50">
+    <div class="container">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="photo-grid">
+        {photos.map((photo, index) => (
+          <article 
+            class="photo-card group cursor-pointer" 
+            data-category={photo.category.toLowerCase()}
+            data-index={index}
+          >
+            <div class="relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg">
+              <img 
+                src={photo.src} 
+                alt={photo.alt}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                  <span class="inline-block bg-primary text-white text-xs font-semibold px-2 py-1 rounded mb-2">
+                    {photo.category}
+                  </span>
+                  <p class="text-white text-sm">{photo.caption}</p>
+                </div>
+              </div>
+              <button class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-label="View full size">
+                <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                </svg>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Add Photos CTA -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Have Photos to Share?</h2>
+        <p class="text-gray-600 mb-6">
+          If you have historic photos of the Nevada County Narrow Gauge Railroad or photos 
+          from your visits to our layout, we'd love to add them to our collection.
+        </p>
+        <a href="mailto:info@ncngmodelrailroad.org" class="btn-primary">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/95 items-center justify-center" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+    <button id="lightbox-close" class="absolute top-4 right-4 text-white p-2 hover:bg-white/10 rounded-lg z-10" aria-label="Close lightbox">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-lg z-10" aria-label="Previous photo">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-lg z-10" aria-label="Next photo">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+    <div class="flex flex-col items-center max-w-5xl w-full px-4">
+      <img id="lightbox-img" src="" alt="" class="max-h-[80vh] max-w-full object-contain" />
+      <p id="lightbox-caption" class="text-white text-center mt-4 max-w-2xl"></p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .category-btn {
+    @apply px-4 py-2 rounded-full border border-gray-300 text-gray-600 font-medium text-sm transition-all hover:border-primary hover:text-primary;
+  }
+  .category-btn.active {
+    @apply bg-primary border-primary text-white;
+  }
+  .photo-card.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  // Category filtering
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const photoCards = document.querySelectorAll('.photo-card');
+
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      
+      categoryBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      photoCards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  
+  let currentIndex = 0;
+  const photos = Array.from(photoCards);
+
+  function openLightbox(index: number) {
+    currentIndex = index;
+    const card = photos[index];
+    const img = card.querySelector('img') as HTMLImageElement;
+    const caption = card.querySelector('p')?.textContent || '';
+    
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    if (lightboxCaption) lightboxCaption.textContent = caption;
+    
+    lightbox?.classList.remove('hidden');
+    lightbox?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function nextPhoto() {
+    const visiblePhotos = photos.filter(p => !p.classList.contains('hidden'));
+    const currentVisible = visiblePhotos.indexOf(photos[currentIndex]);
+    const nextVisible = (currentVisible + 1) % visiblePhotos.length;
+    currentIndex = photos.indexOf(visiblePhotos[nextVisible]);
+    openLightbox(currentIndex);
+  }
+
+  function prevPhoto() {
+    const visiblePhotos = photos.filter(p => !p.classList.contains('hidden'));
+    const currentVisible = visiblePhotos.indexOf(photos[currentIndex]);
+    const prevVisible = (currentVisible - 1 + visiblePhotos.length) % visiblePhotos.length;
+    currentIndex = photos.indexOf(visiblePhotos[prevVisible]);
+    openLightbox(currentIndex);
+  }
+
+  photoCards.forEach((card, index) => {
+    card.addEventListener('click', () => openLightbox(index));
+  });
+
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightboxNext?.addEventListener('click', nextPhoto);
+  lightboxPrev?.addEventListener('click', prevPhoto);
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+    }
+  });
+</script>

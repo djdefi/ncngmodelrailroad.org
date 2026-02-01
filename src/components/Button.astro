@@ -1,0 +1,46 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'outline' | 'white';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  type?: 'button' | 'submit';
+  external?: boolean;
+}
+
+const { 
+  href, 
+  variant = 'primary', 
+  size = 'md',
+  class: className = '',
+  type = 'button',
+  external = false
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center gap-2 font-bold rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2';
+
+const variants = {
+  primary: 'bg-primary text-white hover:bg-primary-dark focus:ring-primary',
+  outline: 'border-2 border-current hover:bg-current hover:text-white focus:ring-current',
+  white: 'bg-white text-primary hover:bg-gray-100 focus:ring-white'
+};
+
+const sizes = {
+  sm: 'text-sm py-2 px-4',
+  md: 'py-3 px-6',
+  lg: 'text-lg py-4 px-8'
+};
+
+const classes = [baseStyles, variants[variant], sizes[size], className].join(' ');
+const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+{href ? (
+  <a href={href} class={classes} {...externalAttrs}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes}>
+    <slot />
+  </button>
+)}

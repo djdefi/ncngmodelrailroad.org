@@ -1,5 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import PhotoCard from '../components/PhotoCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Icon from '../components/Icon.astro';
+
+const features = [
+  { icon: '✓', text: 'DCC digital control system' },
+  { icon: '✓', text: 'Historically accurate locomotives & rolling stock' },
+  { icon: '✓', text: "'Train Cam TV' on-board camera views" },
+];
+
+const visitInfo = [
+  { emoji: '📍', title: 'Location', lines: ['Nevada County Fairgrounds', 'Grass Valley, CA'] },
+  { emoji: '🎟️', title: 'Admission', lines: ['Free during events', 'Donations appreciated'] },
+  { emoji: '👥', title: 'Group Tours', lines: ['Schools & groups welcome', 'By arrangement'] },
+];
 ---
 
 <BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad">
@@ -37,12 +53,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Experience the Nevada County Narrow Gauge Railroad through our meticulously crafted On3 scale model—where history comes alive.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="#gallery" class="btn-primary text-lg px-8 py-4">
-            Explore the Layout
-          </a>
-          <a href="/events" class="btn-outline border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4">
+          <Button href="#gallery" size="lg">Explore the Layout</Button>
+          <Button href="/events" variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-gray-900">
             Upcoming Events
-          </a>
+          </Button>
         </div>
       </div>
     </div>
@@ -109,60 +123,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
         <div class="order-2 lg:order-1">
-          <span class="text-primary font-semibold uppercase tracking-wider text-sm">The Experience</span>
-          <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6">On3 Scale Precision</h2>
+          <SectionHeader eyebrow="The Experience" title="On3 Scale Precision" />
           <p class="text-lg text-gray-600 mb-6">
             Our fully operational model railroad is built to <strong>'On3' scale</strong>—O scale with 
             3-foot gauge track, matching the narrow gauge of the original railroad. Every locomotive 
             and piece of rolling stock is historically accurate.
           </p>
           <ul class="space-y-3">
-            <li class="flex items-center gap-3">
-              <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary">✓</span>
-              <span class="text-gray-700">DCC digital control system</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary">✓</span>
-              <span class="text-gray-700">Historically accurate locomotives & rolling stock</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary">✓</span>
-              <span class="text-gray-700">'Train Cam TV' on-board camera views</span>
-            </li>
+            {features.map(f => (
+              <li class="flex items-center gap-3">
+                <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary">{f.icon}</span>
+                <span class="text-gray-700">{f.text}</span>
+              </li>
+            ))}
           </ul>
         </div>
         <div class="order-1 lg:order-2">
-          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img 
-              src="/images/ncng-layout-1.jpg" 
-              alt="Detailed view of the NCNG model railroad layout" 
-              class="w-full"
-              loading="lazy"
-            />
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-              <p class="text-white text-sm">Model of Nevada City station</p>
-            </div>
-          </div>
+          <PhotoCard 
+            src="/images/ncng-layout-1.jpg" 
+            alt="Detailed view of the NCNG model railroad layout"
+            caption="Model of Nevada City station"
+            class="shadow-2xl"
+          />
         </div>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img 
-              src="/images/historic-locomotive.jpg" 
-              alt="Historic photograph of NCNG locomotive" 
-              class="w-full"
-              loading="lazy"
-            />
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-              <p class="text-white text-sm">Original NCNG locomotive, circa 1900</p>
-            </div>
-          </div>
+          <PhotoCard 
+            src="/images/historic-locomotive.jpg" 
+            alt="Historic photograph of NCNG locomotive"
+            caption="Original NCNG locomotive, circa 1900"
+            class="shadow-2xl"
+          />
         </div>
         <div>
-          <span class="text-primary font-semibold uppercase tracking-wider text-sm">Our Story</span>
-          <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6">40 Years of Preservation</h2>
+          <SectionHeader eyebrow="Our Story" title="40 Years of Preservation" />
           <p class="text-lg text-gray-600 mb-6">
             Incorporated in <strong>1986</strong> as the "N.C.N.G. Project," our all-volunteer 
             organization has spent nearly four decades building and improving this tribute to 
@@ -197,29 +193,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Open during major fairground events, special open houses, and by arrangement.
         </p>
         <div class="flex flex-wrap justify-center gap-4 mb-12">
-          <a href="/events" class="btn-primary text-lg px-8 py-4">
-            View Events
-          </a>
-          <a href="#contact" class="btn-outline border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4">
+          <Button href="/events" size="lg">View Events</Button>
+          <Button href="#contact" variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-gray-900">
             Contact Us
-          </a>
+          </Button>
         </div>
         <div class="grid md:grid-cols-3 gap-8 text-center">
-          <div>
-            <div class="text-4xl mb-2">📍</div>
-            <h3 class="font-bold mb-1">Location</h3>
-            <p class="text-gray-300 text-sm">Nevada County Fairgrounds<br/>Grass Valley, CA</p>
-          </div>
-          <div>
-            <div class="text-4xl mb-2">🎟️</div>
-            <h3 class="font-bold mb-1">Admission</h3>
-            <p class="text-gray-300 text-sm">Free during events<br/>Donations appreciated</p>
-          </div>
-          <div>
-            <div class="text-4xl mb-2">👥</div>
-            <h3 class="font-bold mb-1">Group Tours</h3>
-            <p class="text-gray-300 text-sm">Schools & groups welcome<br/>By arrangement</p>
-          </div>
+          {visitInfo.map(info => (
+            <div>
+              <div class="text-4xl mb-2">{info.emoji}</div>
+              <h3 class="font-bold mb-1">{info.title}</h3>
+              <p class="text-gray-300 text-sm" set:html={info.lines.join('<br/>')} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -236,12 +222,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               As a 501(c)(3) non-profit, your tax-deductible donations help us maintain 
               and improve this piece of California railroad history for future generations.
             </p>
-            <a href="mailto:info@ncngmodelrailroad.org" class="inline-flex items-center gap-2 bg-white text-primary font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors" id="donate">
-              <span>Donate Now</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
-            </a>
+            <Button href="mailto:info@ncngmodelrailroad.org" variant="white" id="donate">
+              Donate Now <Icon name="arrow-right" />
+            </Button>
           </div>
           <div class="bg-gray-50 rounded-2xl p-8 md:p-10">
             <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Become a Volunteer</h2>
@@ -249,12 +232,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               Join our dedicated team of volunteers. Whether you're a model railroad enthusiast 
               or just love history, there's a place for you.
             </p>
-            <a href="/volunteer" class="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary-dark transition-colors">
-              <span>Get Involved</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
-            </a>
+            <Button href="/volunteer">
+              Get Involved <Icon name="arrow-right" />
+            </Button>
           </div>
         </div>
       </div>

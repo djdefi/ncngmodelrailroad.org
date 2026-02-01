@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
 import { getCollection } from 'astro:content';
 
 const events = await getCollection('events');
@@ -50,10 +52,7 @@ function formatDate(date: Date, endDate?: Date) {
                   )}
                 </div>
                 <p class="text-gray-600 mb-2">
-                  <svg class="inline-block w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
+                  <Icon name="location" size="sm" class="inline-block mr-1" />
                   {event.data.location}
                 </p>
                 <div class="prose prose-sm mt-4">
@@ -89,9 +88,7 @@ function formatDate(date: Date, endDate?: Date) {
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-display mb-4">Want to Get Involved?</h2>
       <p class="text-xl mb-8 opacity-90">We're always looking for volunteers to help with events and operations.</p>
-      <a href="/volunteer" class="btn bg-white text-primary hover:bg-gray-100">
-        Become a Volunteer
-      </a>
+      <Button href="/volunteer" variant="white">Become a Volunteer</Button>
     </div>
   </section>
 </BaseLayout>

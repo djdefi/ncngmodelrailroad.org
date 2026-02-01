@@ -1,5 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+
+const opportunities = [
+  { emoji: '🚂', title: 'Train Operations', desc: 'Run trains during events and open houses' },
+  { emoji: '🔧', title: 'Maintenance & Construction', desc: 'Help build and maintain the layout' },
+  { emoji: '🎨', title: 'Scenery & Detailing', desc: 'Create realistic landscapes and structures' },
+  { emoji: '📸', title: 'Photography & Documentation', desc: 'Document our work and history' },
+  { emoji: '👋', title: 'Visitor Engagement', desc: 'Welcome guests and share railroad history' },
+];
+
+const interests = [
+  { value: 'operations', label: 'Train Operations' },
+  { value: 'maintenance', label: 'Maintenance & Construction' },
+  { value: 'scenery', label: 'Scenery & Detailing' },
+  { value: 'photography', label: 'Photography' },
+  { value: 'visitors', label: 'Visitor Engagement' },
+];
 ---
 
 <BaseLayout title="Volunteer | NCNG Model Railroad" description="Join our volunteer team and help preserve Nevada County railroad history">
@@ -13,41 +30,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="bg-cream p-6 rounded-lg mb-8">
         <h2 class="text-xl font-semibold mb-4">Volunteer Opportunities</h2>
         <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-primary text-xl">🚂</span>
-            <div>
-              <strong>Train Operations</strong>
-              <p class="text-gray-600 text-sm">Run trains during events and open houses</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-primary text-xl">🔧</span>
-            <div>
-              <strong>Maintenance & Construction</strong>
-              <p class="text-gray-600 text-sm">Help build and maintain the layout</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-primary text-xl">🎨</span>
-            <div>
-              <strong>Scenery & Detailing</strong>
-              <p class="text-gray-600 text-sm">Create realistic landscapes and structures</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-primary text-xl">📸</span>
-            <div>
-              <strong>Photography & Documentation</strong>
-              <p class="text-gray-600 text-sm">Document our work and history</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-primary text-xl">👋</span>
-            <div>
-              <strong>Visitor Engagement</strong>
-              <p class="text-gray-600 text-sm">Welcome guests and share railroad history</p>
-            </div>
-          </li>
+          {opportunities.map(opp => (
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-xl">{opp.emoji}</span>
+              <div>
+                <strong>{opp.title}</strong>
+                <p class="text-gray-600 text-sm">{opp.desc}</p>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -103,26 +94,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             Areas of Interest
           </label>
           <div class="space-y-2">
-            <label class="flex items-center gap-2">
-              <input type="checkbox" name="interests" value="operations" class="rounded text-primary" />
-              <span>Train Operations</span>
-            </label>
-            <label class="flex items-center gap-2">
-              <input type="checkbox" name="interests" value="maintenance" class="rounded text-primary" />
-              <span>Maintenance & Construction</span>
-            </label>
-            <label class="flex items-center gap-2">
-              <input type="checkbox" name="interests" value="scenery" class="rounded text-primary" />
-              <span>Scenery & Detailing</span>
-            </label>
-            <label class="flex items-center gap-2">
-              <input type="checkbox" name="interests" value="photography" class="rounded text-primary" />
-              <span>Photography</span>
-            </label>
-            <label class="flex items-center gap-2">
-              <input type="checkbox" name="interests" value="visitors" class="rounded text-primary" />
-              <span>Visitor Engagement</span>
-            </label>
+            {interests.map(int => (
+              <label class="flex items-center gap-2">
+                <input type="checkbox" name="interests" value={int.value} class="rounded text-primary" />
+                <span>{int.label}</span>
+              </label>
+            ))}
           </div>
         </div>
 
@@ -139,9 +116,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           ></textarea>
         </div>
 
-        <button type="submit" class="btn-primary w-full py-3">
-          Submit Volunteer Application
-        </button>
+        <Button type="submit" class="w-full py-3">Submit Volunteer Application</Button>
         
         <p class="text-sm text-gray-500 text-center">
           We'll reach out within a week to discuss opportunities.

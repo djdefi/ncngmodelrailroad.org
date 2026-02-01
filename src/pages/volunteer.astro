@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Volunteer | NCNG Model Railroad" description="Join our volunteer team and help preserve Nevada County railroad history">
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-2xl">
+      <h1 class="text-4xl font-display text-primary mb-4">Become a Volunteer</h1>
+      <p class="text-xl text-gray-600 mb-8">
+        Join our dedicated team of volunteers who keep the memory of the Nevada County Narrow Gauge Railroad alive.
+      </p>
+
+      <div class="bg-cream p-6 rounded-lg mb-8">
+        <h2 class="text-xl font-semibold mb-4">Volunteer Opportunities</h2>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-primary text-xl">🚂</span>
+            <div>
+              <strong>Train Operations</strong>
+              <p class="text-gray-600 text-sm">Run trains during events and open houses</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary text-xl">🔧</span>
+            <div>
+              <strong>Maintenance & Construction</strong>
+              <p class="text-gray-600 text-sm">Help build and maintain the layout</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary text-xl">🎨</span>
+            <div>
+              <strong>Scenery & Detailing</strong>
+              <p class="text-gray-600 text-sm">Create realistic landscapes and structures</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary text-xl">📸</span>
+            <div>
+              <strong>Photography & Documentation</strong>
+              <p class="text-gray-600 text-sm">Document our work and history</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary text-xl">👋</span>
+            <div>
+              <strong>Visitor Engagement</strong>
+              <p class="text-gray-600 text-sm">Welcome guests and share railroad history</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <form 
+        name="volunteer" 
+        method="POST" 
+        data-netlify="true"
+        class="space-y-6 bg-white border border-gray-200 p-6 rounded-lg"
+        action="/volunteer-thanks"
+      >
+        <input type="hidden" name="form-name" value="volunteer" />
+        
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+            Full Name *
+          </label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+            Email Address *
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
+          />
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+            Phone (optional)
+          </label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone"
+            class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Areas of Interest
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="interests" value="operations" class="rounded text-primary" />
+              <span>Train Operations</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="interests" value="maintenance" class="rounded text-primary" />
+              <span>Maintenance & Construction</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="interests" value="scenery" class="rounded text-primary" />
+              <span>Scenery & Detailing</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="interests" value="photography" class="rounded text-primary" />
+              <span>Photography</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" name="interests" value="visitors" class="rounded text-primary" />
+              <span>Visitor Engagement</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="experience" class="block text-sm font-medium text-gray-700 mb-1">
+            Tell us about yourself
+          </label>
+          <textarea 
+            id="experience" 
+            name="experience" 
+            rows="4"
+            placeholder="Any model railroad experience? What interests you about NCNG history?"
+            class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary w-full py-3">
+          Submit Volunteer Application
+        </button>
+        
+        <p class="text-sm text-gray-500 text-center">
+          We'll reach out within a week to discuss opportunities.
+        </p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

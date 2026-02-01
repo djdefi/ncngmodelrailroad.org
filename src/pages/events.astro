@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const events = await getCollection('events');
+const sortedEvents = events.sort((a, b) => 
+  new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
+);
+const upcomingEvents = sortedEvents.filter(e => new Date(e.data.date) >= new Date());
+const pastEvents = sortedEvents.filter(e => new Date(e.data.date) < new Date()).reverse();
+
+function formatDate(date: Date, endDate?: Date) {
+  const options: Intl.DateTimeFormatOptions = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+  const start = date.toLocaleDateString('en-US', options);
+  if (endDate) {
+    const end = endDate.toLocaleDateString('en-US', options);
+    return `${start} - ${end}`;
+  }
+  return start;
+}
+---
+
+<BaseLayout title="Events | NCNG Model Railroad" description="Upcoming events and operating sessions at the Nevada County Narrow Gauge Historical Model Railroad">
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h1 class="text-4xl font-display text-primary mb-8">Upcoming Events</h1>
+      
+      {upcomingEvents.length > 0 ? (
+        <div class="space-y-8">
+          {upcomingEvents.map(async (event) => {
+            const { Content } = await event.render();
+            return (
+              <article class="card p-6 border-l-4 border-primary">
+                <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                  <div>
+                    <h2 class="text-2xl font-display text-gray-900">{event.data.title}</h2>
+                    <p class="text-primary font-medium mt-1">
+                      {formatDate(event.data.date, event.data.endDate)}
+                    </p>
+                  </div>
+                  {event.data.featured && (
+                    <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm font-medium">
+                      Featured
+                    </span>
+                  )}
+                </div>
+                <p class="text-gray-600 mb-2">
+                  <svg class="inline-block w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  {event.data.location}
+                </p>
+                <div class="prose prose-sm mt-4">
+                  <Content />
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <p class="text-gray-600">No upcoming events scheduled. Check back soon!</p>
+      )}
+    </div>
+  </section>
+
+  {pastEvents.length > 0 && (
+    <section class="py-16 bg-cream">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-3xl font-display text-gray-900 mb-8">Past Events</h2>
+        <div class="space-y-4">
+          {pastEvents.slice(0, 5).map((event) => (
+            <div class="bg-white p-4 rounded shadow-sm">
+              <h3 class="font-semibold text-gray-900">{event.data.title}</h3>
+              <p class="text-sm text-gray-600">{formatDate(event.data.date, event.data.endDate)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="py-16 bg-primary text-white text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-display mb-4">Want to Get Involved?</h2>
+      <p class="text-xl mb-8 opacity-90">We're always looking for volunteers to help with events and operations.</p>
+      <a href="/volunteer" class="btn bg-white text-primary hover:bg-gray-100">
+        Become a Volunteer
+      </a>
+    </div>
+  </section>
+</BaseLayout>

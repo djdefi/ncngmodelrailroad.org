@@ -98,25 +98,64 @@ const organizationSchema = {
             </span>
           </a>
           
-          <div class="flex items-center gap-6">
-            <a href="/gallery" class="text-gray-700 hover:text-primary transition-colors hidden md:inline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+          <!-- Desktop Nav -->
+          <div class="hidden md:flex items-center gap-6">
+            <a href="/about" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+              About
+            </a>
+            <a href="/gallery" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Gallery
             </a>
-            <a href="/events" class="text-gray-700 hover:text-primary transition-colors hidden md:inline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href="/events" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Events
             </a>
-            <a href="/volunteer" class="text-gray-700 hover:text-primary transition-colors hidden md:inline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href="/volunteer" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Volunteer
             </a>
-            <a href="/#visit" class="text-gray-700 hover:text-primary transition-colors hidden md:inline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
-              Visit
-            </a>
-            <a href="/#donate" class="btn-primary text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+            <a href="/donate" class="btn-primary text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
               Donate
             </a>
           </div>
+          
+          <!-- Mobile Menu Button -->
+          <button 
+            id="mobile-menu-btn"
+            class="md:hidden p-2 text-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
       </nav>
+      
+      <!-- Mobile Menu -->
+      <div 
+        id="mobile-menu" 
+        class="md:hidden hidden bg-white border-t border-gray-200 shadow-lg"
+        role="menu"
+      >
+        <div class="container py-4 flex flex-col gap-2">
+          <a href="/about" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+            About
+          </a>
+          <a href="/gallery" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+            Gallery
+          </a>
+          <a href="/events" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+            Events
+          </a>
+          <a href="/volunteer" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+            Volunteer
+          </a>
+          <a href="/donate" class="block py-3 px-4 btn-primary text-center rounded-lg" role="menuitem">
+            Donate
+          </a>
+        </div>
+      </div>
     </header>
 
     <!-- Main Content -->
@@ -172,3 +211,34 @@ const organizationSchema = {
 <style is:global>
   @import '../styles/global.css';
 </style>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.focus();
+      }
+    });
+  }
+</script>

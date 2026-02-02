@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout title="Page Not Found | NCNG Model Railroad">
+  <section class="min-h-[60vh] flex items-center justify-center py-20">
+    <div class="container text-center">
+      <div class="max-w-lg mx-auto">
+        <div class="text-8xl mb-6">🚂</div>
+        <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">
+          End of the Line
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">
+          This page has derailed! The content you're looking for may have been moved or doesn't exist.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <Button href="/">Back to Home</Button>
+          <Button href="/gallery" variant="outline">View Gallery</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

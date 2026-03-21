@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 const events = await getCollection('events');
 const sortedEvents = events.sort((a, b) => 
@@ -35,7 +35,7 @@ function formatDate(date: Date, endDate?: Date) {
       {upcomingEvents.length > 0 ? (
         <div class="space-y-8">
           {upcomingEvents.map(async (event) => {
-            const { Content } = await event.render();
+            const { Content } = await render(event);
             return (
               <article class="card p-6 border-l-4 border-primary">
                 <div class="flex flex-wrap items-start justify-between gap-4 mb-4">

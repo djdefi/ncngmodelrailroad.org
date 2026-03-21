@@ -1,7 +1,8 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const pages = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
   schema: z.object({
     title: z.string(),
     heroTitle: z.string().optional(),
@@ -13,7 +14,7 @@ const pages = defineCollection({
 });
 
 const events = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/events' }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
@@ -25,7 +26,7 @@ const events = defineCollection({
 });
 
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
@@ -37,7 +38,7 @@ const blog = defineCollection({
 });
 
 const projects = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     status: z.enum(['In Progress', 'Completed', 'Planned']),
@@ -49,7 +50,7 @@ const projects = defineCollection({
 });
 
 const gallery = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/gallery' }),
   schema: z.object({
     title: z.string(),
     category: z.enum(['Locomotives', 'Rolling Stock', 'Scenery', 'Events', 'Historical']),

@@ -1,6 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Primary Colors - Railroad Heritage Red */
+  --color-primary: #8B0000;
+  --color-primary-dark: #5C0000;
+  --color-primary-light: #B22222;
+
+  /* Secondary Colors - Warm Earth Tones */
+  --color-secondary: #8B4513;
+  --color-secondary-dark: #5C2E0A;
+  --color-secondary-light: #A0522D;
+
+  /* Custom fonts */
+  --font-display: 'Archivo Black', Georgia, serif;
+  --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+}
 
 /* Design System Variables */
 :root {
@@ -110,16 +124,33 @@ select:focus-visible {
 
 /* Container */
 .container {
-  @apply max-w-6xl mx-auto px-4;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 /* Button Styles */
 .btn {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .btn-primary {
-  @apply btn text-white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  color: white;
   background-color: var(--color-primary);
 }
 
@@ -132,7 +163,14 @@ select:focus-visible {
 }
 
 .btn-secondary {
-  @apply btn text-white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  color: white;
   background-color: var(--color-secondary);
 }
 
@@ -141,8 +179,14 @@ select:focus-visible {
 }
 
 .btn-outline {
-  @apply btn border-2;
-  border-color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 2px solid var(--color-primary);
   color: var(--color-primary);
 }
 
@@ -153,17 +197,21 @@ select:focus-visible {
 
 /* Card Styles */
 .card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  overflow: hidden;
   border: 1px solid var(--color-border);
 }
 
 .card-body {
-  @apply p-6;
+  padding: 1.5rem;
 }
 
 /* Section Styles */
 .section {
-  @apply py-16;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .section-alt {
@@ -172,8 +220,9 @@ select:focus-visible {
 
 /* Blockquote */
 blockquote {
-  @apply border-l-4 pl-4 italic;
-  border-color: var(--color-primary);
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1rem;
+  font-style: italic;
   color: var(--color-text-muted);
 }
 

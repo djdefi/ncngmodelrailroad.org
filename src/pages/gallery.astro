@@ -224,10 +224,23 @@ const categories = [...new Set(photos.map(p => p.category))];
 
 <style>
   .category-btn {
-    @apply px-4 py-2 rounded-full border border-gray-300 text-gray-600 font-medium text-sm transition-all hover:border-primary hover:text-primary;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+  }
+  .category-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
   }
   .category-btn.active {
-    @apply bg-primary border-primary text-white;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
   }
   .photo-card.hidden {
     display: none;

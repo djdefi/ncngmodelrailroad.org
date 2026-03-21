@@ -16,6 +16,8 @@ const {
 } = Astro.props;
 
 import { Icon } from 'astro-icon/components';
+import { organization } from '../config/organization';
+import { navItems } from '../config/navigation';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = `${Astro.site?.origin || 'https://djdefi.github.io'}${base}`;
@@ -25,45 +27,45 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://djdefi.g
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "NonprofitOrganization",
-  "name": "Nevada County Narrow Gauge Historical Model Railroad",
-  "alternateName": "N.C.N.G. Historical Model Railroad",
+  "name": organization.fullName,
+  "alternateName": organization.name,
   "url": siteUrl,
   "logo": `${siteUrl}/images/hero-logo.png`,
   "description": description,
-  "foundingDate": "1986",
+  "foundingDate": String(organization.founded),
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Grass Valley",
-    "addressRegion": "CA",
+    "addressLocality": organization.location.city,
+    "addressRegion": organization.location.state,
     "addressCountry": "US"
   },
   "areaServed": "Nevada County, California",
-  "nonprofitStatus": "501(c)(3)",
-  "telephone": "(916) 871-6341",
-  "email": "info@ncngmodelrailroad.org",
+  "nonprofitStatus": organization.nonprofit,
+  "telephone": organization.contact.phone,
+  "email": organization.contact.email,
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "(916) 871-6341",
+    "telephone": organization.contact.phone,
     "contactType": "customer service",
     "areaServed": "Nevada County, CA"
   },
-  "sameAs": ["https://www.facebook.com/NCNGHistoricalModelRailroad/"]
+  "sameAs": [organization.social.facebook]
 };
 
 // Structured data for local business / museum (Schema.org)
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "Museum",
-  "name": "N.C.N.G. Historical Model Railroad",
-  "description": "A historically accurate On3 scale model of the Nevada County Narrow Gauge Railroad, operated by volunteers since 1986.",
+  "name": organization.name,
+  "description": `A historically accurate On3 scale model of the Nevada County Narrow Gauge Railroad, operated by volunteers since ${organization.founded}.`,
   "url": siteUrl,
-  "telephone": "(916) 871-6341",
-  "email": "info@ncngmodelrailroad.org",
+  "telephone": organization.contact.phone,
+  "email": organization.contact.email,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Nevada County Fairgrounds",
-    "addressLocality": "Grass Valley",
-    "addressRegion": "CA",
+    "streetAddress": organization.location.venue,
+    "addressLocality": organization.location.city,
+    "addressRegion": organization.location.state,
     "postalCode": "95949",
     "addressCountry": "US"
   },
@@ -77,7 +79,7 @@ const localBusinessSchema = {
     "description": "Open during Nevada County Fair events, special operating sessions, and by arrangement"
   },
   "priceRange": "Free",
-  "sameAs": ["https://www.facebook.com/NCNGHistoricalModelRailroad/"]
+  "sameAs": [organization.social.facebook]
 };
 
 // Breadcrumb structured data
@@ -108,7 +110,7 @@ const breadcrumbSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="author" content="Nevada County Narrow Gauge Historical Model Railroad" />
+    <meta name="author" content={organization.fullName} />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#8B0000" />
     
@@ -124,7 +126,7 @@ const breadcrumbSchema = {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:site_name" content="N.C.N.G. Historical Model Railroad" />
+    <meta property="og:site_name" content={organization.name} />
     <meta property="og:locale" content="en_US" />
     
     <!-- Twitter Card -->
@@ -162,9 +164,9 @@ const breadcrumbSchema = {
     <header class="bg-white shadow-sm sticky top-0 z-50" role="banner">
       <nav class="container py-4" aria-label="Main navigation">
         <div class="flex items-center justify-between">
-          <a href={`${base}/`} class="flex items-center gap-3" aria-label="N.C.N.G. Historical Model Railroad - Home">
+          <a href={`${base}/`} class="flex items-center gap-3" aria-label={`${organization.name} - Home`}>
             <span class="text-xl md:text-2xl font-bold text-primary" style="font-family: 'Archivo Black', serif;">
-              N.C.N.G.
+              {organization.abbreviation}
             </span>
             <span class="hidden sm:inline text-sm text-gray-600">
               Historical Model Railroad
@@ -173,36 +175,22 @@ const breadcrumbSchema = {
           
           <!-- Desktop Nav -->
           <div class="hidden md:flex items-center gap-6">
-            <a href={`${base}/about`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
-              About
-            </a>
-            <a href={`${base}/gallery`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-flex items-center gap-1.5">
-              <Icon name="solar:camera-bold" class="w-4 h-4" />
-              Gallery
-            </a>
-            <a href={`${base}/events`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-flex items-center gap-1.5">
-              <Icon name="solar:calendar-bold" class="w-4 h-4" />
-              Events
-            </a>
-            <a href={`${base}/trains`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-flex items-center gap-1.5">
-              <Icon name="solar:tram-bold" class="w-4 h-4" />
-              Trains
-            </a>
-            <a href={`${base}/board-members`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
-              Board
-            </a>
-            <a href={`${base}/links`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
-              Links
-            </a>
-            <a href={`${base}/contact`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
-              Contact
-            </a>
-            <a href={`${base}/volunteer`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
-              Volunteer
-            </a>
-            <a href={`${base}/donate`} class="btn-primary text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-              Donate
-            </a>
+            {navItems.map((item) =>
+              item.label === 'Donate' ? (
+                <a href={`${base}${item.href}`} class="btn-primary text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                  {item.label}
+                </a>
+              ) : item.icon ? (
+                <a href={`${base}${item.href}`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-flex items-center gap-1.5">
+                  <Icon name={item.icon} class="w-4 h-4" />
+                  {item.label}
+                </a>
+              ) : (
+                <a href={`${base}${item.href}`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+                  {item.label}
+                </a>
+              )
+            )}
           </div>
           
           <!-- Mobile Menu Button -->
@@ -225,36 +213,22 @@ const breadcrumbSchema = {
         role="menu"
       >
         <div class="container py-4 flex flex-col gap-2">
-          <a href={`${base}/about`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            About
-          </a>
-          <a href={`${base}/gallery`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            <Icon name="solar:camera-bold" class="w-4 h-4" />
-            Gallery
-          </a>
-          <a href={`${base}/events`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            <Icon name="solar:calendar-bold" class="w-4 h-4" />
-            Events
-          </a>
-          <a href={`${base}/trains`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            <Icon name="solar:tram-bold" class="w-4 h-4" />
-            Trains
-          </a>
-          <a href={`${base}/board-members`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            Board
-          </a>
-          <a href={`${base}/links`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            Links
-          </a>
-          <a href={`${base}/contact`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            Contact
-          </a>
-          <a href={`${base}/volunteer`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
-            Volunteer
-          </a>
-          <a href={`${base}/donate`} class="block py-3 px-4 btn-primary text-center rounded-lg" role="menuitem">
-            Donate
-          </a>
+          {navItems.map((item) =>
+            item.label === 'Donate' ? (
+              <a href={`${base}${item.href}`} class="block py-3 px-4 btn-primary text-center rounded-lg" role="menuitem">
+                {item.label}
+              </a>
+            ) : item.icon ? (
+              <a href={`${base}${item.href}`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+                <Icon name={item.icon} class="w-4 h-4" />
+                {item.label}
+              </a>
+            ) : (
+              <a href={`${base}${item.href}`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+                {item.label}
+              </a>
+            )
+          )}
         </div>
       </div>
     </header>
@@ -270,9 +244,9 @@ const breadcrumbSchema = {
         <div class="track-divider mb-10"></div>
         <div class="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 class="text-lg font-bold mb-4 text-white">N.C.N.G. Historical Model Railroad</h3>
+            <h3 class="text-lg font-bold mb-4 text-white">{organization.name}</h3>
             <p class="text-gray-300 text-sm">
-              A 501(c)(3) nonprofit all volunteer organization dedicated to preserving 
+              A {organization.nonprofit} nonprofit all volunteer organization dedicated to preserving 
               the memory of the Nevada County Narrow Gauge Railroad.
             </p>
           </div>
@@ -282,15 +256,15 @@ const breadcrumbSchema = {
             <address class="text-gray-300 text-sm not-italic space-y-3">
               <div class="flex items-start gap-2">
                 <Icon name="solar:map-point-bold" class="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" />
-                <span>Nevada County Fairgrounds<br />Grass Valley, California<br /><br />P.O. Box 2258<br />Nevada City, CA 95959</span>
+                <span>{organization.location.venue}<br />{organization.location.city}, California<br /><br />{organization.location.poBox}<br />{organization.location.poCity}, {organization.location.poState} {organization.location.poZip}</span>
               </div>
               <div class="flex items-center gap-2">
                 <Icon name="solar:phone-bold" class="w-5 h-5 text-gray-500 flex-shrink-0" />
-                <a href="tel:9168716341" class="hover:text-white transition-colors">(916) 871-6341</a>
+                <a href={organization.contact.phoneHref} class="hover:text-white transition-colors">{organization.contact.phone}</a>
               </div>
               <div class="flex items-center gap-2">
                 <Icon name="solar:letter-bold" class="w-5 h-5 text-gray-500 flex-shrink-0" />
-                <a href="mailto:info@ncngmodelrailroad.org" class="hover:text-white transition-colors">info@ncngmodelrailroad.org</a>
+                <a href={`mailto:${organization.contact.email}`} class="hover:text-white transition-colors">{organization.contact.email}</a>
               </div>
             </address>
           </div>
@@ -312,7 +286,7 @@ const breadcrumbSchema = {
               </li>
             </ul>
             <div class="mt-4">
-              <a href="https://www.facebook.com/NCNGHistoricalModelRailroad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm">
+              <a href={organization.social.facebook} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 Follow us on Facebook
               </a>
@@ -322,11 +296,11 @@ const breadcrumbSchema = {
         
         <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
           <p>
-            © {new Date().getFullYear()} N.C.N.G. Historical Model Railroad. 
-            Incorporated 1986 as the "N.C.N.G. Project"
+            © {new Date().getFullYear()} {organization.name}. 
+            Incorporated {organization.founded} as the "{organization.abbreviation} Project"
           </p>
           <p class="mt-2 text-xs">
-            Note: The N.C.N.G. Historical Model Railroad is a separate nonprofit organization 
+            Note: The {organization.name} is a separate nonprofit organization 
             not affiliated with other museums or groups.
           </p>
         </div>

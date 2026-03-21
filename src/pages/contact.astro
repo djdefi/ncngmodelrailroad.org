@@ -6,13 +6,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout title="Contact Us | NCNG Model Railroad" description="Get in touch with the Nevada County Narrow Gauge Historical Model Railroad. Send us a message or visit us in person.">
-  <!-- Hero -->
-  <section class="py-20 bg-gray-900 text-white">
-    <div class="container">
+  <!-- Hero with building exterior -->
+  <section class="relative py-20 text-white overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src={`${base}/images/building-exterior.jpg`} 
+        alt="NCNG Historical Model Railroad building at Nevada County Fairgrounds" 
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gray-900/65"></div>
+    </div>
+    <div class="container relative z-10">
       <div class="max-w-3xl">
-        <span class="text-sm uppercase tracking-widest text-gray-400 font-medium">Get In Touch</span>
+        <span class="text-sm uppercase tracking-widest text-gray-300 font-medium">Get In Touch</span>
         <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Contact Us</h1>
-        <p class="text-xl text-gray-300">Drop us a line!</p>
+        <p class="text-xl text-gray-200">Drop us a line!</p>
       </div>
     </div>
   </section>

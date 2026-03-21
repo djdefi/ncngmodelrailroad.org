@@ -30,9 +30,18 @@ function formatDate(date: Date, endDate?: Date) {
 ---
 
 <BaseLayout title="Events | NCNG Model Railroad" description="Upcoming events and operating sessions at the Nevada County Narrow Gauge Historical Model Railroad">
+  <!-- Hero -->
+  <section class="bg-gray-900 text-white py-20">
+    <div class="container text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Upcoming Events</h1>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        Operating sessions, open houses, and community events at the Nevada County Fairgrounds.
+      </p>
+    </div>
+  </section>
+
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4 max-w-4xl">
-      <h1 class="text-4xl font-display text-primary mb-8">Upcoming Events</h1>
       
       {upcomingEvents.length > 0 ? (
         <div class="space-y-8">
@@ -89,7 +98,7 @@ function formatDate(date: Date, endDate?: Date) {
   <section class="py-16 bg-primary text-white text-center">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-display mb-4">Want to Get Involved?</h2>
-      <p class="text-xl mb-8 opacity-90">We're always looking for volunteers to help with events and operations.</p>
+      <p class="text-xl mb-8 text-gray-200">We're always looking for volunteers to help with events and operations.</p>
       <Button href={`${base}/volunteer`} variant="white">Become a Volunteer</Button>
     </div>
   </section>

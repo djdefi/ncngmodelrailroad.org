@@ -3,7 +3,7 @@ title: Roaming Angels Car Show
 date: 2026-10-01
 location: Nevada County Fairgrounds, Grass Valley
 description: |
-  Visit the NCNG Historical Model Railroad during the Roaming Angels Car Show at the Nevada County Fairgrounds.
+  Visit the N.C.N.G. Historical Model Railroad during the Roaming Angels Car Show at the Nevada County Fairgrounds.
 featured: false
 ---
 

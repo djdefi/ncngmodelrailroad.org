@@ -7,26 +7,26 @@ const photos = [
   // Original images from existing site
   {
     src: `${base}/images/bear-river-bridge.jpg`,
-    alt: 'Historic Bear River Bridge on the NCNG Railroad line',
-    caption: 'Bear River Bridge - One of the most iconic structures on the original NCNG line',
+    alt: 'Historic Bear River Bridge on the N.C.N.G. Railroad line',
+    caption: 'Bear River Bridge - One of the most iconic structures on the original N.C.N.G. line',
     category: 'Historic'
   },
   {
     src: `${base}/images/ncng-layout-1.jpg`,
-    alt: 'NCNG Model Railroad layout showing detailed town scenery',
+    alt: 'N.C.N.G. Model Railroad layout showing detailed town scenery',
     caption: 'Nevada City station scene on our On3 scale layout',
     category: 'Layout'
   },
   {
     src: `${base}/images/ncng-layout-2.jpg`,
-    alt: 'NCNG Model Railroad town scene with buildings and track',
+    alt: 'N.C.N.G. Model Railroad town scene with buildings and track',
     caption: 'Grass Valley depot and surrounding town buildings',
     category: 'Layout'
   },
   {
     src: `${base}/images/historic-locomotive.jpg`,
-    alt: 'Historic NCNG locomotive photograph from the early 1900s',
-    caption: 'Original NCNG locomotive, circa 1900',
+    alt: 'Historic N.C.N.G. locomotive photograph from the early 1900s',
+    caption: 'Original N.C.N.G. locomotive, circa 1900',
     category: 'Historic'
   },
   // New gallery photos - accurately captioned
@@ -50,8 +50,8 @@ const photos = [
   },
   {
     src: `${base}/images/gallery-img_7239.jpg`,
-    alt: 'NCNGRR building exterior at the Nevada County Fairgrounds',
-    caption: 'NCNGRR building at the Nevada County Fairgrounds',
+    alt: 'N.C.N.G. building exterior at the Nevada County Fairgrounds',
+    caption: 'N.C.N.G. building at the Nevada County Fairgrounds',
     category: 'Historic'
   },
   {
@@ -117,7 +117,7 @@ const photos = [
   {
     src: `${base}/images/gallery-DSC07756.jpg`,
     alt: 'Close-up of model railroad rolling stock',
-    caption: 'Rolling stock detail on the NCNG layout',
+    caption: 'Rolling stock detail on the N.C.N.G. layout',
     category: 'Layout'
   },
   {
@@ -129,7 +129,7 @@ const photos = [
   {
     src: `${base}/images/gallery-DSC07865.jpg`,
     alt: 'Wide view of the model railroad layout',
-    caption: 'Wide view of the NCNG model railroad',
+    caption: 'Wide view of the N.C.N.G. model railroad',
     category: 'Layout'
   },
   // Trestle bridge video stills
@@ -154,7 +154,7 @@ const photos = [
   // Building exterior
   {
     src: `${base}/images/building-exterior.jpg`,
-    alt: 'NCNG Historical Model Railroad building at Nevada County Fairgrounds with Railroad Crossing sign',
+    alt: 'N.C.N.G. Historical Model Railroad building at Nevada County Fairgrounds with Railroad Crossing sign',
     caption: 'Our home at the Nevada County Fairgrounds — Historical Exhibit Open!',
     category: 'Events'
   },
@@ -176,13 +176,13 @@ const photos = [
 const categories = [...new Set(photos.map(p => p.category))];
 ---
 
-<BaseLayout title="Photo Gallery - NCNG Historical Model Railroad">
+<BaseLayout title="Photo Gallery - N.C.N.G. Historical Model Railroad">
   <!-- Hero Section -->
   <section class="relative py-20 md:py-28 bg-gray-900 text-white overflow-hidden">
     <div class="absolute inset-0 opacity-30">
       <img 
         src={`${base}/images/ncng-layout-1.jpg`} 
-        alt="NCNG Model Railroad layout" 
+        alt="N.C.N.G. Model Railroad layout" 
         class="w-full h-full object-cover"
         loading="eager"
       />

@@ -4,7 +4,7 @@ date: 2026-09-18
 endDate: 2026-09-20
 location: Nevada County Fairgrounds, Grass Valley
 description: |
-  Visit the NCNG Historical Model Railroad during the Draft Horse Classic at the Nevada County Fairgrounds.
+  Visit the N.C.N.G. Historical Model Railroad during the Draft Horse Classic at the Nevada County Fairgrounds.
 featured: false
 ---
 

@@ -4,7 +4,7 @@ date: 2026-11-27
 endDate: 2026-11-29
 location: Nevada County Fairgrounds, Grass Valley
 description: |
-  Visit the NCNG Historical Model Railroad during the annual Christmas Fair at the Nevada County Fairgrounds.
+  Visit the N.C.N.G. Historical Model Railroad during the annual Christmas Fair at the Nevada County Fairgrounds.
 featured: false
 ---
 

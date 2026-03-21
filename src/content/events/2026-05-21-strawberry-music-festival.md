@@ -4,7 +4,7 @@ date: 2026-05-21
 endDate: 2026-05-23
 location: Nevada County Fairgrounds, Grass Valley
 description: |
-  Come see the NCNG Historical Model Railroad during the Strawberry Music Festival at the Nevada County Fairgrounds.
+  Come see the N.C.N.G. Historical Model Railroad during the Strawberry Music Festival at the Nevada County Fairgrounds.
 featured: false
 ---
 

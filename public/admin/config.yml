@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: ncng/ncngmodelrailroad.org  # Update this to your actual repo
+  repo: djdefi/ncngmodelrailroad.org
   branch: main
   auth_type: pkce
   # TODO: Add your GitHub OAuth App client ID here after creating the app at:

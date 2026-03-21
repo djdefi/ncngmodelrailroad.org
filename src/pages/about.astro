@@ -15,7 +15,7 @@ const timeline = [
 ];
 ---
 
-<BaseLayout title="About Us | N.C.N.G. Model Railroad" description="Learn about the Nevada County Narrow Gauge Historical Model Railroad, our mission, history, and the volunteers who preserve this piece of California railroad history.">
+<BaseLayout title="About Us | N.C.N.G. Model Railroad" description="Learn about the Nevada County Narrow Gauge Historical Model Railroad, our mission, history, and the volunteers who preserve this piece of California railroad history." heroImage={`${base}/images/about-layout.jpeg`}>
   <!-- Hero with real photo -->
   <section class="relative py-28 md:py-36 text-white overflow-hidden">
     <div class="absolute inset-0 z-0">
@@ -25,6 +25,8 @@ const timeline = [
         class="w-full h-full object-cover"
         loading="eager"
         fetchpriority="high"
+        width={1336}
+        height={764}
       />
       <div class="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-900/50 to-transparent"></div>
     </div>
@@ -67,6 +69,8 @@ const timeline = [
             alt="Grass Valley model scene on the layout"
             class="rounded-xl shadow-2xl w-full"
             loading="lazy"
+            width={640}
+            height={389}
           />
         </div>
       </div>
@@ -141,6 +145,8 @@ const timeline = [
             alt="Detailed train model on the N.C.N.G. layout"
             class="rounded-xl shadow-lg w-full"
             loading="lazy"
+            width={550}
+            height={320}
           />
           <div class="grid grid-cols-2 gap-4">
             <img 
@@ -148,12 +154,16 @@ const timeline = [
               alt="Train model detail"
               class="rounded-lg shadow-md w-full aspect-square object-cover"
               loading="lazy"
+              width={550}
+              height={358}
             />
             <img 
               src={`${base}/images/engine8-yard.jpg`}
               alt="Engine #8 in the yard"
               class="rounded-lg shadow-md w-full aspect-square object-cover"
               loading="lazy"
+              width={1920}
+              height={1080}
             />
           </div>
         </div>
@@ -193,6 +203,8 @@ const timeline = [
         alt="Engine #8 with freight cars"
         class="w-full h-full object-cover"
         loading="lazy"
+        width={1920}
+        height={1080}
       />
       <div class="absolute inset-0 bg-primary/85"></div>
     </div>

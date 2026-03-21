@@ -13,6 +13,42 @@ const sortedEvents = events.sort((a, b) =>
 const upcomingEvents = sortedEvents.filter(e => new Date(e.data.date) >= new Date());
 const pastEvents = sortedEvents.filter(e => new Date(e.data.date) < new Date()).reverse();
 
+const siteUrl = `https://djdefi.github.io${import.meta.env.BASE_URL}`;
+
+const eventSchemaItems = upcomingEvents.map((event) => ({
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": event.data.title,
+  "description": event.data.description || event.data.title,
+  "startDate": event.data.date.toISOString().split('T')[0],
+  "endDate": (event.data.endDate || event.data.date).toISOString().split('T')[0],
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": event.data.location,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Grass Valley",
+      "addressRegion": "CA",
+      "addressCountry": "US",
+    },
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "N.C.N.G. Historical Model Railroad",
+    "url": siteUrl,
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+  },
+}));
+
+const eventSchemaJson = JSON.stringify(eventSchemaItems);
+
 function formatDate(date: Date, endDate?: Date) {
   const options: Intl.DateTimeFormatOptions = { 
     weekday: 'long', 
@@ -30,6 +66,9 @@ function formatDate(date: Date, endDate?: Date) {
 ---
 
 <BaseLayout title="Events | N.C.N.G. Model Railroad" description="Upcoming events and operating sessions at the Nevada County Narrow Gauge Historical Model Railroad">
+  {eventSchemaItems.length > 0 && (
+    <script type="application/ld+json" set:html={eventSchemaJson} />
+  )}
   <!-- Hero -->
   <section class="bg-gray-900 text-white py-20">
     <div class="container text-center">

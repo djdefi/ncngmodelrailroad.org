@@ -8,7 +8,7 @@ import { Icon } from 'astro-icon/components';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad">
+<BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad" heroImage={`${base}/images/engine8-hero.jpg`}>
   <!-- Hero Section - Full-bleed with Engine #8 -->
   <section class="relative min-h-[90vh] flex items-end text-white overflow-hidden" aria-labelledby="hero-title">
     <div class="absolute inset-0 z-0">
@@ -19,6 +19,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         loading="eager"
         decoding="async"
         fetchpriority="high"
+        width={1920}
+        height={1080}
       />
       <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/30 to-transparent"></div>
     </div>
@@ -81,6 +83,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               alt="Overview of the N.C.N.G. model railroad layout"
               class="rounded-xl shadow-2xl w-full"
               loading="lazy"
+              width={1336}
+              height={764}
             />
             <div class="absolute -bottom-4 -left-4 bg-primary text-white px-5 py-3 rounded-lg shadow-lg text-sm font-bold">
               22 miles of history · 1875–1942
@@ -199,6 +203,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         alt="N.C.N.G. Historical Model Railroad building at the Nevada County Fairgrounds with Railroad Crossing sign and Historical Exhibit Open sandwich board" 
         class="w-full h-full object-cover"
         loading="lazy"
+        width={1440}
+        height={1920}
       />
       <div class="absolute inset-0 bg-gray-900/60"></div>
     </div>

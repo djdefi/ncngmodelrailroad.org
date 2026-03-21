@@ -176,7 +176,7 @@ const photos = [
 const categories = [...new Set(photos.map(p => p.category))];
 ---
 
-<BaseLayout title="Photo Gallery - N.C.N.G. Historical Model Railroad">
+<BaseLayout title="Photo Gallery - N.C.N.G. Historical Model Railroad" description="Browse our collection of historic photographs and detailed On3 scale model railroad images from the Nevada County Narrow Gauge Historical Model Railroad at the Nevada County Fairgrounds.">
   <!-- Hero Section -->
   <section class="relative py-20 md:py-28 bg-gray-900 text-white overflow-hidden">
     <div class="absolute inset-0 opacity-30">
@@ -185,6 +185,8 @@ const categories = [...new Set(photos.map(p => p.category))];
         alt="N.C.N.G. Model Railroad layout" 
         class="w-full h-full object-cover"
         loading="eager"
+        width={550}
+        height={320}
       />
     </div>
     <div class="container relative z-10">

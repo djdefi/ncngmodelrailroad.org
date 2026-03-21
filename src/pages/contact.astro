@@ -5,7 +5,7 @@ import SectionHeader from '../components/SectionHeader.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<BaseLayout title="Contact Us | N.C.N.G. Model Railroad" description="Get in touch with the Nevada County Narrow Gauge Historical Model Railroad. Send us a message or visit us in person.">
+<BaseLayout title="Contact Us | N.C.N.G. Model Railroad" description="Get in touch with the Nevada County Narrow Gauge Historical Model Railroad. Send us a message or visit us in person." heroImage={`${base}/images/building-exterior.jpg`}>
   <!-- Hero with building exterior -->
   <section class="relative py-20 text-white overflow-hidden">
     <div class="absolute inset-0 z-0">
@@ -14,6 +14,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         alt="N.C.N.G. Historical Model Railroad building at Nevada County Fairgrounds" 
         class="w-full h-full object-cover"
         loading="lazy"
+        width={1440}
+        height={1920}
       />
       <div class="absolute inset-0 bg-gray-900/65"></div>
     </div>

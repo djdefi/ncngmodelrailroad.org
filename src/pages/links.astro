@@ -24,12 +24,32 @@ const links = [
     url: 'https://westcoasttrains.net',
     description: 'Model railroad supplies and equipment.',
   },
+  {
+    name: 'National Model Railroad Association (NMRA)',
+    url: 'https://www.nmra.org',
+    description: 'The world\'s largest organization devoted to the development, promotion, and enjoyment of the hobby of model railroading.',
+  },
+  {
+    name: 'Nevada County Historical Society',
+    url: 'https://www.nevadacountyhistory.org',
+    description: 'Preserving and sharing the rich history of Nevada County, California.',
+  },
+  {
+    name: 'California State Railroad Museum',
+    url: 'https://www.californiarailroad.museum',
+    description: 'Sacramento\'s world-class museum celebrating California\'s railroad heritage.',
+  },
+  {
+    name: 'Narrow Gauge Preservation Society',
+    url: 'https://www.ngps.org',
+    description: 'Dedicated to the preservation and history of narrow gauge railroads across the United States.',
+  },
 ];
 ---
 
 <BaseLayout
-  title="Useful Links"
-  description="Friends, partners, and resources related to the Nevada County Narrow Gauge Railroad"
+  title="Useful Links & Resources | N.C.N.G. Model Railroad"
+  description="Friends, partners, and resources related to the Nevada County Narrow Gauge Railroad. Model railroad suppliers, local organizations, and Nevada County history links."
 >
   <!-- Hero -->
   <section class="bg-gray-900 text-white py-16">
@@ -44,6 +64,9 @@ const links = [
   <!-- Links Grid -->
   <section class="py-16 bg-white">
     <div class="container max-w-4xl">
+      <p class="text-lg text-gray-600 mb-8 max-w-3xl">
+        Explore these organizations, suppliers, and resources connected to narrow gauge railroading and Nevada County heritage.
+      </p>
       <div class="grid md:grid-cols-2 gap-6">
         {links.map((link) => (
           <a

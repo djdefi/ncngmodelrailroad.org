@@ -4,13 +4,15 @@ interface Props {
   description?: string;
   image?: string;
   type?: string;
+  heroImage?: string;
 }
 
 const { 
   title, 
   description = "An On3 scale historical model railroad display dedicated to the memory of the Nevada County Narrow Gauge Railroad. Located at Nevada County Fairgrounds, Grass Valley, CA.",
   image = "/images/bear-river-bridge.jpg",
-  type = "website"
+  type = "website",
+  heroImage
 } = Astro.props;
 
 import { Icon } from 'astro-icon/components';
@@ -37,7 +39,66 @@ const organizationSchema = {
   },
   "areaServed": "Nevada County, California",
   "nonprofitStatus": "501(c)(3)",
+  "telephone": "(916) 871-6341",
+  "email": "info@ncngmodelrailroad.org",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "(916) 871-6341",
+    "contactType": "customer service",
+    "areaServed": "Nevada County, CA"
+  },
   "sameAs": ["https://www.facebook.com/NCNGHistoricalModelRailroad/"]
+};
+
+// Structured data for local business / museum (Schema.org)
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "Museum",
+  "name": "N.C.N.G. Historical Model Railroad",
+  "description": "A historically accurate On3 scale model of the Nevada County Narrow Gauge Railroad, operated by volunteers since 1986.",
+  "url": siteUrl,
+  "telephone": "(916) 871-6341",
+  "email": "info@ncngmodelrailroad.org",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Nevada County Fairgrounds",
+    "addressLocality": "Grass Valley",
+    "addressRegion": "CA",
+    "postalCode": "95949",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 39.2191,
+    "longitude": -121.0601
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "description": "Open during Nevada County Fair events, special operating sessions, and by arrangement"
+  },
+  "priceRange": "Free",
+  "sameAs": ["https://www.facebook.com/NCNGHistoricalModelRailroad/"]
+};
+
+// Breadcrumb structured data
+const pathSegments = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": siteUrl
+    },
+    ...pathSegments.filter(seg => seg !== 'ncngmodelrailroad.org').map((segment, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": segment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+      "item": `${siteUrl}/${segment}`
+    }))
+  ]
 };
 ---
 
@@ -60,6 +121,9 @@ const organizationSchema = {
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={`${siteUrl}${image}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:site_name" content="N.C.N.G. Historical Model Railroad" />
     <meta property="og:locale" content="en_US" />
     
@@ -68,6 +132,7 @@ const organizationSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}${image}`} />
+    <meta name="twitter:site" content="@NCNGRailroad" />
     
     <!-- Fonts - preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -77,9 +142,14 @@ const organizationSchema = {
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <link rel="apple-touch-icon" href={`${base}/images/hero-logo.png`} />
+    {heroImage && <link rel="preload" as="image" href={heroImage} />}
     
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    {pathSegments.filter(seg => seg !== 'ncngmodelrailroad.org').length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
     
     <title>{title}</title>
   </head>

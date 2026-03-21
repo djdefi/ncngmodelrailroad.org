@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -238,9 +239,7 @@ const categories = [...new Set(photos.map(p => p.category))];
                 </div>
               </div>
               <button class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-label="View full size">
-                <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                </svg>
+                <Icon name="solar:magnifer-bold" class="w-5 h-5 text-gray-700" />
               </button>
             </div>
           </article>
@@ -268,19 +267,13 @@ const categories = [...new Set(photos.map(p => p.category))];
   <!-- Lightbox Modal -->
   <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/95 items-center justify-center" role="dialog" aria-modal="true" aria-label="Photo lightbox">
     <button id="lightbox-close" class="absolute top-4 right-4 text-white p-2 hover:bg-white/10 rounded-lg z-10" aria-label="Close lightbox">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
+      <Icon name="solar:close-square-bold" class="w-8 h-8" />
     </button>
     <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-lg z-10" aria-label="Previous photo">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
+      <Icon name="solar:alt-arrow-left-bold" class="w-8 h-8" />
     </button>
     <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-lg z-10" aria-label="Next photo">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
+      <Icon name="solar:alt-arrow-right-bold" class="w-8 h-8" />
     </button>
     <div class="flex flex-col items-center max-w-5xl w-full px-4">
       <img id="lightbox-img" src="" alt="" class="max-h-[80vh] max-w-full object-contain" />

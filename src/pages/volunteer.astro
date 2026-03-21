@@ -1,15 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
+import { Icon } from 'astro-icon/components';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const opportunities = [
-  { emoji: '🚂', title: 'Train Operations', desc: 'Run trains during events and open houses' },
-  { emoji: '🔧', title: 'Maintenance & Construction', desc: 'Help build and maintain the layout' },
-  { emoji: '🎨', title: 'Scenery & Detailing', desc: 'Create realistic landscapes and structures' },
-  { emoji: '📸', title: 'Photography & Documentation', desc: 'Document our work and history' },
-  { emoji: '👋', title: 'Visitor Engagement', desc: 'Welcome guests and share railroad history' },
+  { icon: 'solar:tram-bold', title: 'Train Operations', desc: 'Run trains during events and open houses' },
+  { icon: 'solar:settings-bold', title: 'Maintenance & Construction', desc: 'Help build and maintain the layout' },
+  { icon: 'solar:pallete-2-bold', title: 'Scenery & Detailing', desc: 'Create realistic landscapes and structures' },
+  { icon: 'solar:camera-bold', title: 'Photography & Documentation', desc: 'Document our work and history' },
+  { icon: 'solar:users-group-rounded-bold', title: 'Visitor Engagement', desc: 'Welcome guests and share railroad history' },
 ];
 
 const interests = [
@@ -40,7 +41,7 @@ const interests = [
         <ul class="space-y-3">
           {opportunities.map(opp => (
             <li class="flex items-start gap-3">
-              <span class="text-primary text-xl">{opp.emoji}</span>
+              <Icon name={opp.icon} class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
               <div>
                 <strong>{opp.title}</strong>
                 <p class="text-gray-600 text-sm">{opp.desc}</p>
@@ -59,24 +60,24 @@ const interests = [
         </div>
 
         <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3">📅 Work Sessions</h3>
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:calendar-bold" class="w-5 h-5" /> Work Sessions</h3>
           <p class="text-gray-700 font-medium mb-2">First Saturday and Third Wednesday of the month — Noon to 1pm</p>
           <p class="text-gray-600 mb-3">Come see us at the layout! We meet on the First Saturday and Third Wednesday of the month, Noon to 1pm. Whether you're interested in model railroading or the railroad history of Nevada County, we have something for you!</p>
           <p class="text-sm text-gray-600 italic">Special note – these work sessions are generally canceled whenever there is a paid admission event at the fairgrounds. There may be a parking fee at some free events held at the fairgrounds. Otherwise, park at Gate 1 and enter – the Historical Model Railroad is to the left.</p>
         </div>
 
         <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3">🎙️ Docents Needed</h3>
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:microphone-bold" class="w-5 h-5" /> Docents Needed</h3>
           <p class="text-gray-600">Do you like to share with others the history of our county? Are you good at storytelling or talking with the public? During our open houses, docents are needed to help explain the history of the Nevada County Narrow Gauge Railroad. No need to bother with model building — just share the joy of knowing the county's railroad history! We have the information, even if you don't. If history is your passion, become a N.C.N.G. Historical Model Railroad docent.</p>
         </div>
 
         <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3">👦 Junior Members (Ages 12-18)</h3>
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:users-group-rounded-bold" class="w-5 h-5" /> Junior Members (Ages 12-18)</h3>
           <p class="text-gray-600">Junior Members Welcomed — A special category for Junior Members (ages 12–18, with an accompanying adult member) is available. Junior members are encouraged to learn the ins and outs of model railroading, as well as the history of the Nevada County Narrow Gauge Railroad. A family adult will need to participate with the junior member.</p>
         </div>
 
         <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3">🏫 School Teachers</h3>
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:book-bold" class="w-5 h-5" /> School Teachers</h3>
           <p class="text-gray-600">Attention School Teachers! Are you teaching Nevada County history or transportation history and would like to give your students a unique experience? Our museum-quality model of the Nevada County Narrow Gauge Railroad is bound to inspire the imagination of your students. Contact us to make arrangements for your class's own special tour. Tours are generally scheduled well in advance.</p>
         </div>
       </div>

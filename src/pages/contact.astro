@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import { Icon } from 'astro-icon/components';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -103,7 +104,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
             <div class="space-y-4 text-gray-700">
               <div class="flex items-start gap-3">
-                <span class="text-primary text-xl">📍</span>
+                <Icon name="solar:map-point-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <strong class="block">Address</strong>
                   <p>P.O. Box 2258<br />Nevada City, CA 95959</p>
@@ -111,7 +112,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
 
               <div class="flex items-start gap-3">
-                <span class="text-primary text-xl">📞</span>
+                <Icon name="solar:phone-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <strong class="block">Phone</strong>
                   <a href="tel:+19168716341" class="text-primary hover:underline">(916) 871-6341</a>
@@ -119,7 +120,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
 
               <div class="flex items-start gap-3">
-                <span class="text-primary text-xl">✉️</span>
+                <Icon name="solar:letter-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <strong class="block">Email</strong>
                   <a href="mailto:info@ncngmodelrailroad.org" class="text-primary hover:underline">info@ncngmodelrailroad.org</a>
@@ -127,7 +128,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
 
               <div class="flex items-start gap-3">
-                <span class="text-primary text-xl">🕐</span>
+                <Icon name="solar:clock-circle-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <strong class="block">Hours</strong>
                   <p>By Appointment</p>

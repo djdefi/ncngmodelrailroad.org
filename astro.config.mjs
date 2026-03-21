@@ -6,7 +6,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ncngmodelrailroad.org',
+  site: 'https://djdefi.github.io',
+  base: '/ncngmodelrailroad.org',
   integrations: [
     react(),
     sitemap(),

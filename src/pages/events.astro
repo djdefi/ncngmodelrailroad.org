@@ -4,6 +4,8 @@ import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import { getCollection, render } from 'astro:content';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const events = await getCollection('events');
 const sortedEvents = events.sort((a, b) => 
   new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
@@ -88,7 +90,7 @@ function formatDate(date: Date, endDate?: Date) {
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-display mb-4">Want to Get Involved?</h2>
       <p class="text-xl mb-8 opacity-90">We're always looking for volunteers to help with events and operations.</p>
-      <Button href="/volunteer" variant="white">Become a Volunteer</Button>
+      <Button href={`${base}/volunteer`} variant="white">Become a Volunteer</Button>
     </div>
   </section>
 </BaseLayout>

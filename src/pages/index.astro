@@ -5,6 +5,8 @@ import PhotoCard from '../components/PhotoCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Icon from '../components/Icon.astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const features = [
   { icon: '✓', text: 'DCC digital control system' },
   { icon: '✓', text: 'Historically accurate locomotives & rolling stock' },
@@ -23,7 +25,7 @@ const visitInfo = [
   <section class="relative min-h-[90vh] flex items-center text-white overflow-hidden" aria-labelledby="hero-title">
     <div class="absolute inset-0 z-0">
       <img 
-        src="/images/bear-river-bridge.jpg" 
+        src={`${base}/images/bear-river-bridge.jpg`} 
         alt="Historic Bear River Bridge on the Nevada County Narrow Gauge Railroad line" 
         class="w-full h-full object-cover"
         loading="eager"
@@ -36,7 +38,7 @@ const visitInfo = [
       <div class="max-w-3xl">
         <div class="flex items-center gap-4 mb-6">
           <img 
-            src="/images/hero-logo.png" 
+            src={`${base}/images/hero-logo.png`} 
             alt="NCNG Historical Model Railroad logo" 
             class="w-20 h-20 rounded-lg shadow-lg"
             width="80"
@@ -54,7 +56,7 @@ const visitInfo = [
         </p>
         <div class="flex flex-wrap gap-4">
           <Button href="#gallery" size="lg">Explore the Layout</Button>
-          <Button href="/events" variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-gray-900">
+          <Button href={`${base}/events`} variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-gray-900">
             Upcoming Events
           </Button>
         </div>
@@ -73,7 +75,7 @@ const visitInfo = [
     <div class="grid grid-cols-3 gap-1">
       <div class="aspect-video overflow-hidden">
         <img 
-          src="/images/ncng-layout-1.jpg" 
+          src={`${base}/images/ncng-layout-1.jpg`} 
           alt="NCNG Model Railroad layout showing detailed scenery" 
           class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           loading="lazy"
@@ -81,7 +83,7 @@ const visitInfo = [
       </div>
       <div class="aspect-video overflow-hidden">
         <img 
-          src="/images/historic-locomotive.jpg" 
+          src={`${base}/images/historic-locomotive.jpg`} 
           alt="Historic Nevada County Narrow Gauge locomotive" 
           class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           loading="lazy"
@@ -89,7 +91,7 @@ const visitInfo = [
       </div>
       <div class="aspect-video overflow-hidden">
         <img 
-          src="/images/ncng-layout-2.jpg" 
+          src={`${base}/images/ncng-layout-2.jpg`} 
           alt="NCNG Model Railroad detailed town scene" 
           class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           loading="lazy"
@@ -140,7 +142,7 @@ const visitInfo = [
         </div>
         <div class="order-1 lg:order-2">
           <PhotoCard 
-            src="/images/ncng-layout-1.jpg" 
+            src={`${base}/images/ncng-layout-1.jpg`} 
             alt="Detailed view of the NCNG model railroad layout"
             caption="Model of Nevada City station"
             class="shadow-2xl"
@@ -151,7 +153,7 @@ const visitInfo = [
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <PhotoCard 
-            src="/images/historic-locomotive.jpg" 
+            src={`${base}/images/historic-locomotive.jpg`} 
             alt="Historic photograph of NCNG locomotive"
             caption="Original NCNG locomotive, circa 1900"
             class="shadow-2xl"
@@ -178,7 +180,7 @@ const visitInfo = [
   <section id="visit" class="relative py-32 text-white overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img 
-        src="/images/ncng-layout-2.jpg" 
+        src={`${base}/images/ncng-layout-2.jpg`} 
         alt="NCNG Model Railroad scenic view" 
         class="w-full h-full object-cover"
         loading="lazy"
@@ -193,7 +195,7 @@ const visitInfo = [
           Open during major fairground events, special open houses, and by arrangement.
         </p>
         <div class="flex flex-wrap justify-center gap-4 mb-12">
-          <Button href="/events" size="lg">View Events</Button>
+          <Button href={`${base}/events`} size="lg">View Events</Button>
           <Button href="#contact" variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-gray-900">
             Contact Us
           </Button>
@@ -232,7 +234,7 @@ const visitInfo = [
               Join our dedicated team of volunteers. Whether you're a model railroad enthusiast 
               or just love history, there's a place for you.
             </p>
-            <Button href="/volunteer">
+            <Button href={`${base}/volunteer`}>
               Get Involved <Icon name="arrow-right" />
             </Button>
           </div>

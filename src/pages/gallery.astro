@@ -1,107 +1,109 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const photos = [
   // Original images from existing site
   {
-    src: '/images/bear-river-bridge.jpg',
+    src: `${base}/images/bear-river-bridge.jpg`,
     alt: 'Historic Bear River Bridge on the NCNG Railroad line',
     caption: 'Bear River Bridge - One of the most iconic structures on the original NCNG line',
     category: 'Historic'
   },
   {
-    src: '/images/ncng-layout-1.jpg',
+    src: `${base}/images/ncng-layout-1.jpg`,
     alt: 'NCNG Model Railroad layout showing detailed town scenery',
     caption: 'Nevada City station scene on our On3 scale layout',
     category: 'Layout'
   },
   {
-    src: '/images/ncng-layout-2.jpg',
+    src: `${base}/images/ncng-layout-2.jpg`,
     alt: 'NCNG Model Railroad town scene with buildings and track',
     caption: 'Grass Valley depot and surrounding town buildings',
     category: 'Layout'
   },
   {
-    src: '/images/historic-locomotive.jpg',
+    src: `${base}/images/historic-locomotive.jpg`,
     alt: 'Historic NCNG locomotive photograph from the early 1900s',
     caption: 'Original NCNG locomotive, circa 1900',
     category: 'Historic'
   },
   // New gallery photos - accurately captioned
   {
-    src: '/images/gallery-img_7040.jpg',
+    src: `${base}/images/gallery-img_7040.jpg`,
     alt: 'Volunteer crafting barn and mine headframe scenery on the layout',
     caption: 'Volunteer hand-crafting detailed barn and mine headframe scenery',
     category: 'Layout'
   },
   {
-    src: '/images/gallery-img_7041.jpg',
+    src: `${base}/images/gallery-img_7041.jpg`,
     alt: 'Vintage Shell gasoline station scene with period trucks',
     caption: 'Vintage Shell gasoline station scene with period delivery trucks',
     category: 'Layout'
   },
   {
-    src: '/images/gallery-img_7238.jpg',
+    src: `${base}/images/gallery-img_7238.jpg`,
     alt: 'Volunteers constructing layout at Nevada County Fairgrounds',
     caption: 'Volunteers constructing the layout at Nevada County Fairgrounds',
     category: 'Events'
   },
   {
-    src: '/images/gallery-img_7239.jpg',
+    src: `${base}/images/gallery-img_7239.jpg`,
     alt: 'NCNGRR building exterior at the Nevada County Fairgrounds',
     caption: 'NCNGRR building at the Nevada County Fairgrounds',
     category: 'Historic'
   },
   {
-    src: '/images/gallery-img_7760.jpg',
+    src: `${base}/images/gallery-img_7760.jpg`,
     alt: 'Steam locomotive with Christmas wreaths crossing wooden trestle',
     caption: 'Holiday steam train with Christmas wreaths crossing trestle',
     category: 'Layout'
   },
   {
-    src: '/images/gallery-img_7761.jpg',
+    src: `${base}/images/gallery-img_7761.jpg`,
     alt: 'Steam locomotive traversing mountain trestle with scenic backdrop',
     caption: 'Steam locomotive traversing mountain trestle bridge',
     category: 'Layout'
   },
   {
-    src: '/images/gallery-img_9138.jpg',
+    src: `${base}/images/gallery-img_9138.jpg`,
     alt: 'Young visitors enjoying the model railroad at public event',
     caption: 'Young visitors enjoying the model railroad at public event',
     category: 'Events'
   },
   {
-    src: '/images/gallery-img_9139.jpg',
+    src: `${base}/images/gallery-img_9139.jpg`,
     alt: 'Families viewing the detailed model railroad display',
     caption: 'Families viewing the detailed layout display',
     category: 'Events'
   },
   {
-    src: '/images/gallery-img_9141.jpg',
+    src: `${base}/images/gallery-img_9141.jpg`,
     alt: 'Visitors watching trains at fairgrounds open house event',
     caption: 'Visitors watching trains at fairgrounds open house',
     category: 'Events'
   },
   {
-    src: '/images/gallery-img_9711.jpg',
+    src: `${base}/images/gallery-img_9711.jpg`,
     alt: 'Miniature western town with detailed buildings and figures',
     caption: 'Miniature western town with detailed buildings and figures',
     category: 'Layout'
   },
   {
-    src: '/images/gallery-img_9712.jpg',
+    src: `${base}/images/gallery-img_9712.jpg`,
     alt: 'Mountain mining scene with ore cars and headframe',
     caption: 'Mountain mining scene with ore cars and headframe',
     category: 'Layout'
   },
   {
-    src: '/images/gallery-img_9713.jpg',
+    src: `${base}/images/gallery-img_9713.jpg`,
     alt: 'Sierra Nevada scenery with pine trees and period structures',
     caption: 'Sierra Nevada scenery with pines and period structures',
     category: 'Layout'
   },
   {
-    src: '/images/gallery-img_9714.jpg',
+    src: `${base}/images/gallery-img_9714.jpg`,
     alt: 'Steam train passing through western town scene',
     caption: 'Steam train passing through western town scene',
     category: 'Layout'
@@ -116,7 +118,7 @@ const categories = [...new Set(photos.map(p => p.category))];
   <section class="relative py-20 md:py-28 bg-gray-900 text-white overflow-hidden">
     <div class="absolute inset-0 opacity-30">
       <img 
-        src="/images/ncng-layout-1.jpg" 
+        src={`${base}/images/ncng-layout-1.jpg`} 
         alt="" 
         class="w-full h-full object-cover"
         loading="eager"

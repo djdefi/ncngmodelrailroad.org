@@ -13,8 +13,9 @@ const {
   type = "website"
 } = Astro.props;
 
-const siteUrl = "https://ncngmodelrailroad.org";
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = `${Astro.site?.origin || 'https://djdefi.github.io'}${base}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://djdefi.github.io');
 
 // Structured data for nonprofit organization (Schema.org)
 const organizationSchema = {
@@ -72,8 +73,8 @@ const organizationSchema = {
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/images/hero-logo.png" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}/images/hero-logo.png`} />
     
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
@@ -89,7 +90,7 @@ const organizationSchema = {
     <header class="bg-white shadow-sm sticky top-0 z-50" role="banner">
       <nav class="container py-4" aria-label="Main navigation">
         <div class="flex items-center justify-between">
-          <a href="/" class="flex items-center gap-3" aria-label="NCNG Historical Model Railroad - Home">
+          <a href={`${base}/`} class="flex items-center gap-3" aria-label="NCNG Historical Model Railroad - Home">
             <span class="text-xl md:text-2xl font-bold text-primary" style="font-family: 'Archivo Black', serif;">
               N.C.N.G.
             </span>
@@ -100,31 +101,31 @@ const organizationSchema = {
           
           <!-- Desktop Nav -->
           <div class="hidden md:flex items-center gap-6">
-            <a href="/about" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/about`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               About
             </a>
-            <a href="/gallery" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/gallery`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Gallery
             </a>
-            <a href="/events" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/events`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Events
             </a>
-            <a href="/trains" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/trains`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Trains
             </a>
-            <a href="/board-members" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/board-members`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Board
             </a>
-            <a href="/links" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/links`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Links
             </a>
-            <a href="/contact" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/contact`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Contact
             </a>
-            <a href="/volunteer" class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/volunteer`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               Volunteer
             </a>
-            <a href="/donate" class="btn-primary text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+            <a href={`${base}/donate`} class="btn-primary text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
               Donate
             </a>
           </div>
@@ -151,31 +152,31 @@ const organizationSchema = {
         role="menu"
       >
         <div class="container py-4 flex flex-col gap-2">
-          <a href="/about" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/about`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             About
           </a>
-          <a href="/gallery" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/gallery`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             Gallery
           </a>
-          <a href="/events" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/events`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             Events
           </a>
-          <a href="/trains" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/trains`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             Trains
           </a>
-          <a href="/board-members" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/board-members`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             Board
           </a>
-          <a href="/links" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/links`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             Links
           </a>
-          <a href="/contact" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/contact`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             Contact
           </a>
-          <a href="/volunteer" class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/volunteer`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             Volunteer
           </a>
-          <a href="/donate" class="block py-3 px-4 btn-primary text-center rounded-lg" role="menuitem">
+          <a href={`${base}/donate`} class="block py-3 px-4 btn-primary text-center rounded-lg" role="menuitem">
             Donate
           </a>
         </div>

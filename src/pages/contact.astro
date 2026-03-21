@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout title="Contact Us | NCNG Model Railroad" description="Get in touch with the Nevada County Narrow Gauge Historical Model Railroad. Send us a message or visit us in person.">
@@ -136,8 +138,8 @@ import SectionHeader from '../components/SectionHeader.astro';
         centered
       />
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/volunteer" class="btn-primary px-8 py-3">Become a Volunteer</a>
-        <a href="/events" class="btn-outline px-8 py-3">Upcoming Events</a>
+        <a href={`${base}/volunteer`} class="btn-primary px-8 py-3">Become a Volunteer</a>
+        <a href={`${base}/events`} class="btn-outline px-8 py-3">Upcoming Events</a>
       </div>
     </div>
   </section>

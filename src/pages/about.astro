@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const timeline = [
   { year: '1875', event: 'Nevada County Narrow Gauge Railroad begins operations, connecting Colfax to Nevada City and Grass Valley' },
   { year: '1942', event: 'Last train runs; railroad ceases operations after 67 years of service' },
@@ -131,8 +133,8 @@ const officers = [
         other museums or groups.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <Button href="/donate" variant="white">Support Our Mission</Button>
-        <Button href="/volunteer" variant="outline" class="border-white text-white hover:bg-white hover:text-primary">
+        <Button href={`${base}/donate`} variant="white">Support Our Mission</Button>
+        <Button href={`${base}/volunteer`} variant="outline" class="border-white text-white hover:bg-white hover:text-primary">
           Join Our Team
         </Button>
       </div>
@@ -152,7 +154,7 @@ const officers = [
           <p class="text-gray-600">
             Open during major fairground events, special open houses, and by special arrangement.
           </p>
-          <Button href="/events" class="mt-4">View Events</Button>
+          <Button href={`${base}/events`} class="mt-4">View Events</Button>
         </div>
         <div>
           <SectionHeader eyebrow="Contact" title="Get in Touch" />

@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const engines = [
+  { number: '#1', wheel: '4-4-0', name: 'Grass Valley', notes: 'Original wood burner built by Baldwin Locomotive Co.' },
+  { number: '#2', wheel: '2-6-0', name: 'Nevada', notes: 'Original wood burner built by Baldwin Locomotive Co.' },
+  { number: '#3', wheel: '4-4-0', name: '—', notes: 'Purchased in 1877, a twin of #1 but never named' },
+  { number: '#4', wheel: '0-6-0', name: '—', notes: 'Purchased in 1899 from Lake Tahoe Railroad' },
+  { number: '#5', wheel: '2-6-0', name: '—', notes: 'Purchased in 1889 from Lake Tahoe Railroad' },
+  { number: '#6', wheel: '2-6-0', name: '—', notes: 'Purchased in 1915' },
+  { number: '#7', wheel: '4-4-0', name: '—', notes: 'Purchased from Southern Pacific' },
+  { number: '#8', wheel: '2-8-0', name: '—', notes: 'Came from the Denver & Rio Grande in 1933' },
+];
+---
+
+<BaseLayout title="Trains | NCNG Model Railroad" description="History of the Nevada County Narrow Gauge Railroad from 1876 to 1942, including the engine roster of Baldwin locomotives and other motive power.">
+  <!-- Hero -->
+  <section class="py-20 bg-gray-900 text-white">
+    <div class="container">
+      <div class="max-w-3xl">
+        <span class="text-sm uppercase tracking-widest text-gray-400 font-medium">The Trains</span>
+        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
+          History of the Nevada County Narrow Gauge Railroad
+          <span class="text-amber-400">1876–1942</span>
+        </h1>
+        <p class="text-xl text-gray-300">
+          For 66 years the NCNG railroad connected Nevada County's gold mining communities
+          to the transcontinental railroad at Colfax.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section class="py-16 bg-white">
+    <div class="container max-w-4xl">
+      <SectionHeader eyebrow="Railroad History" title="The Never Come, Never Go" />
+      <div class="grid md:grid-cols-5 gap-8 items-start">
+        <div class="md:col-span-3 prose prose-lg max-w-none">
+          <blockquote class="border-l-4 border-primary pl-6 italic text-gray-700">
+            <p>
+              The Nevada County Narrow Gauge Railroad was built from the Central Pacific Railroad
+              depot in Colfax, C.A. to Grass Valley and Nevada City. Traveling the roads by
+              horseback or stagecoach could take the better part of a day and importing the heavy
+              timber and mining equipment for the local mines was hard enough when the weather was
+              good but the dirt roads were near impassable in the winter. Construction was begun on
+              February 11, 1875 and the last spike was driven on May 20, 1876.
+            </p>
+            <p>
+              For the next 66 years, the Nevada County Narrow Gauge railroad (affectionately called
+              the "Never Come, Never Go") was the prime method of shipping freight and passengers
+              between Nevada County and the Southern (ex Central) Pacific rail connection in Colfax.
+            </p>
+            <p>
+              The first three engines were wood burners, built for the NCNGRR by Baldwin Locomotive
+              Co. All the NCNGRR engines were converted to oil by 1916.
+            </p>
+          </blockquote>
+        </div>
+        <div class="md:col-span-2">
+          <img
+            src="/images/historic-locomotive.jpg"
+            alt="Historic Nevada County Narrow Gauge locomotive"
+            class="rounded-lg shadow-lg w-full"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engine Roster -->
+  <section class="py-16 bg-gray-50">
+    <div class="container max-w-4xl">
+      <SectionHeader eyebrow="Motive Power" title="Engine Roster" />
+
+      <!-- Desktop table -->
+      <div class="hidden md:block overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-primary">
+              <th class="py-3 px-4 text-primary font-bold">Engine</th>
+              <th class="py-3 px-4 text-primary font-bold">Wheel Arrangement</th>
+              <th class="py-3 px-4 text-primary font-bold">Name</th>
+              <th class="py-3 px-4 text-primary font-bold">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {engines.map((engine, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                <td class="py-3 px-4 font-bold">{engine.number}</td>
+                <td class="py-3 px-4 font-mono">{engine.wheel}</td>
+                <td class="py-3 px-4 italic">{engine.name}</td>
+                <td class="py-3 px-4 text-gray-600">{engine.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile cards -->
+      <div class="md:hidden grid gap-4">
+        {engines.map((engine) => (
+          <div class="card bg-white rounded-lg shadow p-4">
+            <div class="card-body">
+              <div class="flex items-baseline gap-3 mb-2">
+                <span class="text-lg font-bold text-primary">{engine.number}</span>
+                <span class="font-mono text-sm bg-gray-100 px-2 py-0.5 rounded">{engine.wheel}</span>
+                {engine.name !== '—' && (
+                  <span class="italic text-gray-700">"{engine.name}"</span>
+                )}
+              </div>
+              <p class="text-gray-600 text-sm">{engine.notes}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Motive Power -->
+  <section class="py-16 bg-white">
+    <div class="container max-w-4xl">
+      <SectionHeader eyebrow="Other Equipment" title="Gas & Standard Gauge Power" />
+      <div class="prose prose-lg max-w-none">
+        <p class="text-gray-700">
+          The NCNGRR had two gas mechanical switchers, #10, a 0-4-0 Plymouth which was acquired
+          and wrecked in 1936, and #11, a 0-4-0 Whitcomb. Two standard gauge engines, a two truck
+          Heisler and two truck Climax, operated around 1913 on dual gauge track from Colfax to a
+          gravel spur on the Bear River.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

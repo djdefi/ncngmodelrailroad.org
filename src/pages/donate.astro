@@ -46,14 +46,18 @@ const donationUses = [
             Make a secure donation online. Credit cards, debit cards, and bank transfers accepted.
           </p>
           <!-- Zeffy embed placeholder - free for nonprofits -->
-          <a 
-            href="mailto:info@ncngmodelrailroad.org?subject=Donation%20Inquiry"
-            class="btn-primary w-full py-3 text-center block"
-          >
-            Contact to Donate Online
-          </a>
+          <form action="https://www.paypal.com/donate" method="post" target="_blank">
+            <!-- Replace with actual PayPal hosted button ID when available -->
+            <input type="hidden" name="business" value="info@ncngmodelrailroad.org" />
+            <input type="hidden" name="item_name" value="NCNG Historical Model Railroad Donation" />
+            <input type="hidden" name="currency_code" value="USD" />
+            <button type="submit" class="btn-primary w-full py-3 text-center flex items-center justify-center gap-2">
+              <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="h-5" />
+              Donate with PayPal
+            </button>
+          </form>
           <p class="text-xs text-gray-500 mt-3 text-center">
-            We're setting up online donations. Email us for now!
+            Secure payment via PayPal. Credit and debit cards accepted.
           </p>
         </div>
 

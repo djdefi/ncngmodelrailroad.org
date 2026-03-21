@@ -1,6 +1,6 @@
 ---
 title: Nevada County Fair Open House
-date: 2026-08-12
+date: 2026-08-13
 endDate: 2026-08-16
 location: Nevada County Fairgrounds, Grass Valley
 description: |

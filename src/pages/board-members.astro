@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const boardMembers = [
+  { role: 'President', name: 'Steve Coffey' },
+  { role: 'Vice President', name: 'Barry Wright' },
+  { role: 'Board Member', name: 'Doug Doane' },
+  { role: 'Secretary', name: 'Andrew Langdon' },
+  { role: 'Treasurer', name: 'Tarry Nelson' },
+  { role: 'Past President', name: 'Mary Clark' },
+];
+---
+
+<BaseLayout
+  title="Board Members"
+  description="Meet the dedicated board members and volunteers who keep the North County N-Gaugers running."
+>
+  <!-- Hero -->
+  <section class="bg-gray-900 text-white py-20">
+    <div class="container text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Board Members &amp; Train Engineers</h1>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        Meet the dedicated volunteers who keep our club on track.
+      </p>
+    </div>
+  </section>
+
+  <!-- Board Members Grid -->
+  <section class="py-16 bg-cream">
+    <div class="container max-w-4xl">
+      <SectionHeader
+        eyebrow="Our Team"
+        title="Club Leadership"
+        description="These volunteers generously donate their time and expertise to keep the North County N-Gaugers running smoothly."
+        centered
+      />
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {boardMembers.map((member) => (
+          <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+              </svg>
+            </div>
+            <p class="text-primary font-semibold uppercase tracking-wider text-sm">{member.role}</p>
+            <p class="text-xl font-bold mt-1">{member.name}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-sm text-gray-500 mt-10">
+        Website maintained by Ryan T.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-white">
+    <div class="container max-w-2xl text-center">
+      <SectionHeader
+        eyebrow="Get Involved"
+        title="Interested in Joining?"
+        description="We're always looking for new members who share a passion for N-scale model railroading."
+        centered
+      />
+      <a href="/volunteer" class="btn btn-primary">Join Our Team</a>
+    </div>
+  </section>
+</BaseLayout>

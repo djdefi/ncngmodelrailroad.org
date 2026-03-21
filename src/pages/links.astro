@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const links = [
+  {
+    name: 'Nevada County Fairgrounds',
+    url: 'https://www.nevadacountyfair.com',
+    description: 'Home of the NCNG Historical Model Railroad. Check for upcoming events and activities.',
+  },
+  {
+    name: 'Nevada County Narrow Gauge Railroad Museum',
+    url: 'https://ncngrrmuseum.org',
+    description: 'Dedicated to preserving the history of the Nevada County Narrow Gauge Railroad.',
+  },
+  {
+    name: "Swasey's Hardware & Hobbies",
+    url: 'https://swaseys.com',
+    description: 'Local hobby shop in Grass Valley supporting model railroad enthusiasts.',
+  },
+  {
+    name: 'West Coast Trains',
+    url: 'https://westcoasttrains.net',
+    description: 'Model railroad supplies and equipment.',
+  },
+];
+---
+
+<BaseLayout
+  title="Useful Links"
+  description="Friends, partners, and resources related to the Nevada County Narrow Gauge Railroad"
+>
+  <!-- Hero -->
+  <section class="bg-gray-900 text-white py-16">
+    <div class="container text-center">
+      <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Useful Links</h1>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        Friends, partners, and resources related to the Nevada County Narrow Gauge Railroad
+      </p>
+    </div>
+  </section>
+
+  <!-- Links Grid -->
+  <section class="py-16 bg-white">
+    <div class="container max-w-4xl">
+      <div class="grid md:grid-cols-2 gap-6">
+        {links.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-white rounded-xl shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow group block"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <h2 class="text-xl font-bold text-primary group-hover:text-primary-light transition-colors">
+                {link.name}
+              </h2>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary group-hover:text-primary-light transition-colors flex-shrink-0 ml-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </div>
+            <p class="text-gray-600">{link.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

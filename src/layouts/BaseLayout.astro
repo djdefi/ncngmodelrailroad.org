@@ -13,6 +13,8 @@ const {
   type = "website"
 } = Astro.props;
 
+import { Icon } from 'astro-icon/components';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = `${Astro.site?.origin || 'https://djdefi.github.io'}${base}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://djdefi.github.io');
@@ -104,13 +106,16 @@ const organizationSchema = {
             <a href={`${base}/about`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
               About
             </a>
-            <a href={`${base}/gallery`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/gallery`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-flex items-center gap-1.5">
+              <Icon name="solar:camera-bold" class="w-4 h-4" />
               Gallery
             </a>
-            <a href={`${base}/events`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/events`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-flex items-center gap-1.5">
+              <Icon name="solar:calendar-bold" class="w-4 h-4" />
               Events
             </a>
-            <a href={`${base}/trains`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
+            <a href={`${base}/trains`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-flex items-center gap-1.5">
+              <Icon name="solar:tram-bold" class="w-4 h-4" />
               Trains
             </a>
             <a href={`${base}/board-members`} class="text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">
@@ -138,9 +143,7 @@ const organizationSchema = {
             aria-expanded="false"
             aria-controls="mobile-menu"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+            <Icon name="solar:hamburger-menu-linear" class="w-6 h-6" />
           </button>
         </div>
       </nav>
@@ -155,13 +158,16 @@ const organizationSchema = {
           <a href={`${base}/about`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
             About
           </a>
-          <a href={`${base}/gallery`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/gallery`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+            <Icon name="solar:camera-bold" class="w-4 h-4" />
             Gallery
           </a>
-          <a href={`${base}/events`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/events`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+            <Icon name="solar:calendar-bold" class="w-4 h-4" />
             Events
           </a>
-          <a href={`${base}/trains`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+          <a href={`${base}/trains`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
+            <Icon name="solar:tram-bold" class="w-4 h-4" />
             Trains
           </a>
           <a href={`${base}/board-members`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" role="menuitem">
@@ -191,6 +197,7 @@ const organizationSchema = {
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12" role="contentinfo">
       <div class="container">
+        <div class="track-divider mb-10"></div>
         <div class="grid md:grid-cols-3 gap-8">
           <div>
             <h3 class="text-lg font-bold mb-4 text-white">N.C.N.G. Historical Model Railroad</h3>
@@ -202,23 +209,37 @@ const organizationSchema = {
           
           <div>
             <h3 class="text-lg font-bold mb-4 text-white">Location</h3>
-            <address class="text-gray-400 text-sm not-italic">
-              Nevada County Fairgrounds<br />
-              Grass Valley, California<br /><br />
-              P.O. Box 2258<br />
-              Nevada City, CA 95959
+            <address class="text-gray-400 text-sm not-italic space-y-3">
+              <div class="flex items-start gap-2">
+                <Icon name="solar:map-point-bold" class="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" />
+                <span>Nevada County Fairgrounds<br />Grass Valley, California<br /><br />P.O. Box 2258<br />Nevada City, CA 95959</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="solar:phone-bold" class="w-5 h-5 text-gray-500 flex-shrink-0" />
+                <a href="tel:9168716341" class="hover:text-white transition-colors">(916) 871-6341</a>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="solar:letter-bold" class="w-5 h-5 text-gray-500 flex-shrink-0" />
+                <a href="mailto:info@ncngmodelrailroad.org" class="hover:text-white transition-colors">info@ncngmodelrailroad.org</a>
+              </div>
             </address>
-            <p class="text-gray-400 text-sm mt-3">
-              <a href="tel:9168716341" class="hover:text-white transition-colors">(916) 871-6341</a>
-            </p>
           </div>
           
           <div>
             <h3 class="text-lg font-bold mb-4 text-white">Open During</h3>
-            <ul class="text-gray-400 text-sm space-y-1">
-              <li>Major fairground events</li>
-              <li>Special open houses</li>
-              <li>By special arrangement</li>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li class="flex items-center gap-2">
+                <Icon name="solar:calendar-bold" class="w-4 h-4 text-gray-500 flex-shrink-0" />
+                Major fairground events
+              </li>
+              <li class="flex items-center gap-2">
+                <Icon name="solar:clock-circle-bold" class="w-4 h-4 text-gray-500 flex-shrink-0" />
+                Special open houses
+              </li>
+              <li class="flex items-center gap-2">
+                <Icon name="solar:phone-bold" class="w-4 h-4 text-gray-500 flex-shrink-0" />
+                By special arrangement
+              </li>
             </ul>
             <div class="mt-4">
               <a href="https://www.facebook.com/NCNGHistoricalModelRailroad/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm">

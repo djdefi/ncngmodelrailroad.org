@@ -9,6 +9,7 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://djdefi.github.io',
   base: '/ncngmodelrailroad.org',
+  compressHTML: true,
   integrations: [
     react(),
     sitemap(),
@@ -25,5 +26,9 @@ export default defineConfig({
     service: {
       entrypoint: 'astro/assets/services/sharp',
     },
+  },
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: 'hover',
   },
 });

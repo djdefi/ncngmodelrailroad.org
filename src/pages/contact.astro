@@ -15,7 +15,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         src={`${base}/images/building-exterior.jpg`} 
         alt="N.C.N.G. Historical Model Railroad building at Nevada County Fairgrounds" 
         class="w-full h-full object-cover"
-        loading="lazy"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
         width={1440}
         height={1920}
       />

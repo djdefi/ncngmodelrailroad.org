@@ -186,6 +186,8 @@ const categories = [...new Set(photos.map(p => p.category))];
         alt="N.C.N.G. Model Railroad layout" 
         class="w-full h-full object-cover"
         loading="eager"
+        decoding="async"
+        fetchpriority="high"
         width={550}
         height={320}
       />
@@ -232,6 +234,9 @@ const categories = [...new Set(photos.map(p => p.category))];
                 alt={photo.alt}
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
+                decoding="async"
+                width={600}
+                height={450}
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -307,6 +312,11 @@ const categories = [...new Set(photos.map(p => p.category))];
   }
   .photo-card.hidden {
     display: none;
+  }
+  /* Skip rendering off-screen gallery items until scrolled into view */
+  .photo-card:nth-child(n+7) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
   }
 </style>
 

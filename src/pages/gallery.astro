@@ -205,9 +205,9 @@ const categories = [...new Set(photos.map(p => p.category))];
   <section class="py-6 bg-white border-b sticky top-0 z-30">
     <div class="container">
       <div class="flex flex-wrap gap-3 justify-center">
-        <button class="category-btn active" data-category="all">All Photos</button>
+        <button class="category-btn active" data-category="all" aria-pressed="true">All Photos</button>
         {categories.map(cat => (
-          <button class="category-btn" data-category={cat.toLowerCase()}>{cat}</button>
+          <button class="category-btn" data-category={cat.toLowerCase()} aria-pressed="false">{cat}</button>
         ))}
       </div>
     </div>
@@ -222,6 +222,9 @@ const categories = [...new Set(photos.map(p => p.category))];
             class="photo-card group cursor-pointer" 
             data-category={photo.category.toLowerCase()}
             data-index={index}
+            tabindex="0"
+            role="button"
+            aria-label={`View photo: ${photo.alt}`}
           >
             <div class="relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg">
               <img 
@@ -316,8 +319,12 @@ const categories = [...new Set(photos.map(p => p.category))];
     btn.addEventListener('click', () => {
       const category = btn.getAttribute('data-category');
       
-      categoryBtns.forEach(b => b.classList.remove('active'));
+      categoryBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       
       photoCards.forEach(card => {
         if (category === 'all' || card.getAttribute('data-category') === category) {
@@ -340,12 +347,15 @@ const categories = [...new Set(photos.map(p => p.category))];
   let currentIndex = 0;
   const photos = Array.from(photoCards);
 
+  let triggerElement: HTMLElement | null = null;
+
   function openLightbox(index: number) {
     currentIndex = index;
     const card = photos[index];
     const img = card.querySelector('img') as HTMLImageElement;
     const caption = card.querySelector('p')?.textContent || '';
     
+    triggerElement = document.activeElement as HTMLElement;
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     if (lightboxCaption) lightboxCaption.textContent = caption;
@@ -353,12 +363,15 @@ const categories = [...new Set(photos.map(p => p.category))];
     lightbox?.classList.remove('hidden');
     lightbox?.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    lightboxClose?.focus();
   }
 
   function closeLightbox() {
     lightbox?.classList.add('hidden');
     lightbox?.classList.remove('flex');
     document.body.style.overflow = '';
+    triggerElement?.focus();
+    triggerElement = null;
   }
 
   function nextPhoto() {
@@ -379,6 +392,12 @@ const categories = [...new Set(photos.map(p => p.category))];
 
   photoCards.forEach((card, index) => {
     card.addEventListener('click', () => openLightbox(index));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(index);
+      }
+    });
   });
 
   lightboxClose?.addEventListener('click', closeLightbox);
@@ -394,6 +413,19 @@ const categories = [...new Set(photos.map(p => p.category))];
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') nextPhoto();
       if (e.key === 'ArrowLeft') prevPhoto();
+      // Trap focus within lightbox
+      if (e.key === 'Tab') {
+        const focusable = lightbox.querySelectorAll<HTMLElement>('button');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     }
   });
 </script>

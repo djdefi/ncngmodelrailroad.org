@@ -1,43 +1,68 @@
-# Astro Starter Kit: Minimal
+# N.C.N.G. Historical Model Railroad — Website
+
+The official website for the **Nevada County Narrow Gauge Historical Model Railroad**, a 501(c)(3) nonprofit preserving the legacy of the N.C.N.G. Railroad (1876–1942) through a detailed On3 scale model railroad display at the Nevada County Fairgrounds in Grass Valley, California.
+
+**Live site:** [djdefi.github.io/ncngmodelrailroad.org](https://djdefi.github.io/ncngmodelrailroad.org/)
+
+---
+
+## Quick Start
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install        # install dependencies (first time only)
+npm run dev        # start local dev server at localhost:4321
+npm run build      # build for production
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── config/           # Centralized org data & navigation
+│   ├── organization.ts   # Name, address, contact, social links
+│   └── navigation.ts     # Shared nav items for header/mobile
+├── content/
+│   └── events/       # Event pages (Markdown files, one per event)
+├── layouts/
+│   └── BaseLayout.astro  # Shared header, footer, SEO, schema.org
+├── components/       # Reusable UI pieces (Button, SectionHeader, etc.)
+├── pages/            # Each .astro file = one page on the site
+│   ├── index.astro       # Homepage
+│   ├── about.astro       # History & mission
+│   ├── trains.astro      # Engine roster & railroad history
+│   ├── gallery.astro     # Photo gallery with lightbox
+│   ├── events.astro      # Upcoming events (auto-generated from content/)
+│   ├── board-members.astro # Board of directors
+│   ├── donate.astro      # Donations (PayPal)
+│   ├── volunteer.astro   # Volunteer signup
+│   ├── contact.astro     # Contact form
+│   ├── links.astro       # External resources
+│   └── 404.astro         # Not found page
+├── styles/
+│   └── global.css    # Tailwind + custom theme (colors, buttons, etc.)
+public/
+├── images/           # All photos (gallery, board, heroes, etc.)
+└── favicon.svg       # Site icon
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Documentation
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+New here? Start with the guide that matches your comfort level:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Guide | Who it's for |
+| :---- | :----------- |
+| [Getting Started](docs/getting-started.md) | Board members & anyone who just wants to understand the site |
+| [Editing Content](docs/editing-content.md) | Anyone who needs to update events, photos, or board info |
+| [Development Guide](docs/development.md) | Developers who want to run the site locally and make changes |
+| [Contributing](CONTRIBUTING.md) | Anyone submitting changes via GitHub |
 
-## 🧞 Commands
+## Tech Stack
 
-All commands are run from the root of the project, from a terminal:
+- **[Astro](https://astro.build/)** — Static site generator (zero JS shipped by default)
+- **[Tailwind CSS](https://tailwindcss.com/)** — Utility-first styling
+- **[Iconify Solar](https://icon-sets.iconify.design/solar/)** — Icon set via `astro-icon`
+- **Deployed to** GitHub Pages (auto-deploys on push to `main`)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## License
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Content and images are property of the N.C.N.G. Historical Model Railroad organization.

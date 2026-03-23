@@ -8,12 +8,19 @@ export const organization = {
   nonprofit: "501(c)(3)",
   location: {
     venue: "Nevada County Fairgrounds",
+    streetAddress: "11228 McCourtney Rd",
     city: "Grass Valley",
     state: "CA",
+    zip: "95949",
     poBox: "P.O. Box 2258",
     poCity: "Nevada City",
     poState: "CA",
     poZip: "95959",
+    geo: {
+      latitude: 39.2191,
+      longitude: -121.0601,
+    },
+    mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Nevada+County+Fairgrounds,+11228+McCourtney+Rd,+Grass+Valley,+CA+95949",
   },
   contact: {
     phone: "(916) 871-6341",

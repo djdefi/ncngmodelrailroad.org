@@ -43,6 +43,143 @@
   --focus-ring: 0 0 0 3px rgba(139, 0, 0, 0.5);
 }
 
+/* Dark mode - automatic, respects OS preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #EF4444;
+    --color-primary-dark: #DC2626;
+    --color-primary-light: #F87171;
+
+    --color-secondary: #C8855F;
+    --color-secondary-dark: #A0694A;
+    --color-secondary-light: #D4976E;
+
+    --color-bg: #1a1a2e;
+    --color-bg-alt: #16213e;
+    --color-text: #E8E8E8;
+    --color-text-muted: #A0A0A0;
+    --color-border: #3A3A4A;
+
+    --color-accent: #4ADE80;
+    --color-gold: #F59E0B;
+
+    --focus-ring: 0 0 0 3px rgba(239, 68, 68, 0.5);
+  }
+
+  /* Card backgrounds */
+  .card {
+    background-color: var(--color-bg-alt);
+  }
+
+  /* Override Tailwind hardcoded color utilities */
+  .bg-white {
+    background-color: var(--color-bg) !important;
+  }
+
+  .bg-gray-50 {
+    background-color: var(--color-bg-alt) !important;
+  }
+
+  .bg-gray-100 {
+    background-color: var(--color-bg-alt) !important;
+  }
+
+  .bg-amber-50 {
+    background-color: #3B2A1A !important;
+  }
+
+  .text-gray-600 {
+    color: var(--color-text-muted) !important;
+  }
+
+  .text-gray-700 {
+    color: #C0C0C0 !important;
+  }
+
+  .text-gray-900 {
+    color: var(--color-text) !important;
+  }
+
+  .border-gray-200 {
+    border-color: var(--color-border) !important;
+  }
+
+  .border-gray-300 {
+    border-color: var(--color-border) !important;
+  }
+
+  .border-amber-100 {
+    border-color: #5C4033 !important;
+  }
+
+  .border-amber-200 {
+    border-color: #6B4D30 !important;
+  }
+
+  /* Header */
+  header.bg-white {
+    background-color: var(--color-bg) !important;
+    border-bottom-color: var(--color-border);
+  }
+
+  /* Footer - keep dark but ensure distinction from page bg */
+  .bg-gray-900 {
+    background-color: #0f0f1e !important;
+  }
+
+  .border-gray-800 {
+    border-color: #2A2A3A !important;
+  }
+
+  /* Form inputs */
+  input,
+  textarea,
+  select {
+    background-color: var(--color-bg-alt);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--color-primary);
+  }
+
+  /* Shadows - soften for dark mode */
+  .shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .shadow-md,
+  .hover\:shadow-md:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Button white variant */
+  .bg-white.text-primary {
+    background-color: var(--color-bg-alt) !important;
+  }
+
+  .hover\:bg-gray-100:hover {
+    background-color: var(--color-bg-alt) !important;
+  }
+
+  .hover\:bg-gray-50:hover {
+    background-color: var(--color-bg-alt) !important;
+  }
+
+  /* Image overlays - slightly deeper for dark mode contrast */
+  img + .bg-gradient-to-t.from-gray-900 {
+    opacity: 0.95;
+  }
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *,

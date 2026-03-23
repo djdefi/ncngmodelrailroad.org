@@ -112,7 +112,8 @@ const breadcrumbSchema = {
     <meta name="description" content={description} />
     <meta name="author" content={organization.fullName} />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#8B0000" />
+    <meta name="theme-color" content="#8B0000" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)" />
     
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
@@ -144,6 +145,9 @@ const breadcrumbSchema = {
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <link rel="apple-touch-icon" href={`${base}/images/hero-logo.png`} />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href={`${base}/manifest.json`} />
     {heroImage && <link rel="preload" as="image" href={heroImage} />}
     
     <!-- Structured Data -->
@@ -306,6 +310,13 @@ const breadcrumbSchema = {
         </div>
       </div>
     </footer>
+
+    <!-- Service Worker Registration -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/ncngmodelrailroad.org/sw.js');
+      }
+    </script>
   </body>
 </html>
 

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Icon } from 'astro-icon/components';
+import { organization } from '../config/organization';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -265,7 +266,7 @@ const categories = [...new Set(photos.map(p => p.category))];
           If you have historic photos of the Nevada County Narrow Gauge Railroad or photos 
           from your visits to our layout, we'd love to add them to our collection.
         </p>
-        <a href="mailto:info@ncngmodelrailroad.org" class="btn-primary">
+        <a href={`mailto:${organization.contact.email}`} class="btn-primary">
           Contact Us
         </a>
       </div>

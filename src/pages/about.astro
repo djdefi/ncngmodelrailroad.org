@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { Icon } from 'astro-icon/components';
+import { organization } from '../config/organization';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -256,8 +257,8 @@ const timeline = [
           </p>
           <div class="flex items-center gap-2">
             <Icon name="solar:letter-bold" class="w-5 h-5 text-primary" />
-            <a href="mailto:info@ncngmodelrailroad.org" class="text-primary hover:underline font-medium">
-              info@ncngmodelrailroad.org
+            <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline font-medium">
+              {organization.contact.email}
             </a>
           </div>
         </div>

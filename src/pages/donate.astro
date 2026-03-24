@@ -6,16 +6,16 @@ import { organization } from '../config/organization';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const donationUses = [
-  { icon: 'solar:settings-bold', title: 'Maintenance', desc: 'Keep our locomotives and rolling stock in operating condition' },
-  { icon: 'solar:buildings-2-bold', title: 'Layout Expansion', desc: 'Continue building new scenes and improving the layout' },
-  { icon: 'solar:lightbulb-bolt-bold', title: 'Equipment', desc: 'Upgrade DCC systems, lighting, and technical equipment' },
-  { icon: 'solar:book-bold', title: 'Education', desc: 'Develop educational materials and programs for schools' },
-  { icon: 'solar:buildings-bold', title: 'Facility', desc: 'Maintain our building at the Nevada County Fairgrounds' },
+const supportWays = [
+  { icon: 'solar:settings-bold', title: 'Maintenance', desc: 'Help keep our locomotives and rolling stock in operating condition' },
+  { icon: 'solar:buildings-2-bold', title: 'Layout Building', desc: 'Assist with building new scenes and improving the layout' },
+  { icon: 'solar:lightbulb-bolt-bold', title: 'Technical Skills', desc: 'DCC systems, lighting, electronics, and wiring' },
+  { icon: 'solar:book-bold', title: 'Education', desc: 'Help develop educational materials and guide visitors' },
+  { icon: 'solar:buildings-bold', title: 'Facility Care', desc: 'Help maintain our building at the Nevada County Fairgrounds' },
 ];
 ---
 
-<BaseLayout title="Donate | N.C.N.G. Model Railroad" description="Support the Nevada County Narrow Gauge Historical Model Railroad with a tax-deductible donation. Help preserve California railroad history for future generations.">
+<BaseLayout title="Support Us | N.C.N.G. Model Railroad" description="Support the Nevada County Narrow Gauge Historical Model Railroad. Volunteer your time or donate materials to help preserve California railroad history.">
   <!-- Hero -->
   <section class="py-20 bg-primary text-white">
     <div class="container">
@@ -24,123 +24,105 @@ const donationUses = [
           Support Railroad History
         </h1>
         <p class="text-xl text-gray-200 mb-4">
-          Your tax-deductible donation helps us preserve and share the story of the 
+          Help us preserve and share the story of the
           Nevada County Narrow Gauge Railroad with future generations.
         </p>
         <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
-          <Icon name="solar:verified-check-bold" class="w-5 h-5" />
-          <span>501(c)(3) Tax-Deductible Organization</span>
+          <Icon name="solar:users-group-rounded-bold" class="w-5 h-5" />
+          <span>All-Volunteer Organization</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Donation Options -->
+  <!-- Support Options -->
   <section class="py-16 bg-white">
     <div class="container max-w-4xl">
-      <h2 class="text-3xl font-bold text-center mb-12">Ways to Give</h2>
-      
+      <h2 class="text-3xl font-bold text-center mb-12">Ways to Help</h2>
+
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <!-- Online Donation -->
+        <!-- Volunteer -->
         <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-          <div class="mb-4"><Icon name="solar:card-bold" class="w-10 h-10 text-primary" /></div>
-          <h3 class="text-xl font-bold mb-3">Donate Online</h3>
+          <div class="mb-4"><Icon name="solar:users-group-rounded-bold" class="w-10 h-10 text-primary" /></div>
+          <h3 class="text-xl font-bold mb-3">Volunteer Your Time</h3>
           <p class="text-gray-600 mb-6">
-            Make a secure donation online. Credit cards, debit cards, and bank transfers accepted.
+            We're an all-volunteer organization and always looking for helping hands.
+            No model railroad experience necessary—just enthusiasm for history and trains!
           </p>
-          <form action="https://www.paypal.com/donate" method="post" target="_blank" rel="noopener noreferrer">
-            <input type="hidden" name="business" value="info@ncngmodelrailroad.org" />
-            <input type="hidden" name="item_name" value="N.C.N.G. Historical Model Railroad Donation" />
-            <input type="hidden" name="currency_code" value="USD" />
-            <button type="submit" class="btn-primary w-full py-3 text-center flex items-center justify-center gap-2">
-              <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="h-5" />
-              Donate with PayPal
-            </button>
-          </form>
-          <p class="text-xs text-gray-600 mt-3 text-center">
-            Secure payment via PayPal. Credit and debit cards accepted.
-          </p>
+          <Button href={`${base}/volunteer`} variant="primary" class="w-full text-center">
+            Learn About Volunteering
+          </Button>
         </div>
 
-        <!-- Mail Donation -->
+        <!-- Donate Materials -->
         <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-          <div class="mb-4"><Icon name="solar:letter-bold" class="w-10 h-10 text-primary" /></div>
-          <h3 class="text-xl font-bold mb-3">Donate by Mail</h3>
+          <div class="mb-4"><Icon name="solar:tram-bold" class="w-10 h-10 text-primary" /></div>
+          <h3 class="text-xl font-bold mb-3">Donate Equipment & Materials</h3>
           <p class="text-gray-600 mb-4">
-            Send a check made payable to:
+            We're always happy to hear from folks who have model railroad equipment
+            looking for a good home. We mostly work with On3 scale, DCC systems,
+            tools, and historical railroad items.
           </p>
-          <div class="bg-white p-4 rounded-lg border border-gray-200 mb-4">
-            <p class="font-mono text-sm">
-              N.C.N.G. Historical Model Railroad<br />
-              c/o Nevada County Fairgrounds<br />
-              Grass Valley, CA
-            </p>
-          </div>
-          <p class="text-sm text-gray-600">
-            You'll receive a tax receipt for your records.
+          <p class="text-gray-600 mb-6 text-sm">
+            We do have limited space, so please reach out before dropping anything off.
+            Feel free to send along a few photos and we can go from there!
           </p>
+          <a href={`mailto:${organization.contact.email}`} class="btn-primary w-full py-3 text-center block">
+            Send Us a Message
+          </a>
         </div>
       </div>
 
-      <!-- In-Kind Donations -->
-      <div class="bg-amber-50 p-8 rounded-2xl border border-amber-200 text-center">
-        <div class="mb-4"><Icon name="solar:tram-bold" class="w-10 h-10 text-primary" /></div>
-        <h3 class="text-xl font-bold mb-3">In-Kind Donations</h3>
-        <p class="text-gray-700 mb-4">
-          We also accept donations of model railroad equipment, tools, materials, 
-          and railroad memorabilia. Contact us to discuss what you'd like to donate.
+      <!-- Monetary donations notice -->
+      <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200 text-center">
+        <div class="mb-4"><Icon name="solar:info-circle-bold" class="w-10 h-10 text-blue-600" /></div>
+        <h3 class="text-xl font-bold mb-3">Monetary Donations</h3>
+        <p class="text-gray-700 mb-2">
+          We are currently updating our donation processing. Online donations are temporarily unavailable.
         </p>
-        <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline font-medium">
-          {organization.contact.email}
-        </a>
+        <p class="text-gray-700">
+          If you'd like to make a financial contribution, please contact us at
+          <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline font-medium">
+            {organization.contact.email}
+          </a>
+          and we'll coordinate directly.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- How Donations Help -->
+  <!-- How Support Helps -->
   <section class="py-16 bg-gray-50">
     <div class="container max-w-4xl">
-      <h2 class="text-3xl font-bold text-center mb-4">How Your Donation Helps</h2>
+      <h2 class="text-3xl font-bold text-center mb-4">Where Your Support Goes</h2>
       <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-        As an all-volunteer organization, 100% of your donation goes directly to 
+        As an all-volunteer organization, every bit of help goes directly to
         preserving and improving the layout.
       </p>
-      
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {donationUses.map(use => (
+        {supportWays.map(way => (
           <div class="bg-white p-6 rounded-xl shadow-sm">
-            <div class="mb-3"><Icon name={use.icon} class="w-8 h-8 text-primary" /></div>
-            <h3 class="font-bold mb-2">{use.title}</h3>
-            <p class="text-gray-600 text-sm">{use.desc}</p>
+            <div class="mb-3"><Icon name={way.icon} class="w-8 h-8 text-primary" /></div>
+            <h3 class="font-bold mb-2">{way.title}</h3>
+            <p class="text-gray-600 text-sm">{way.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Corporate Matching -->
-  <section class="py-16 bg-white">
-    <div class="container max-w-3xl text-center">
-      <h2 class="text-3xl font-bold mb-4">Corporate Matching</h2>
-      <p class="text-gray-600 mb-6">
-        Many employers match charitable donations made by their employees. 
-        Check with your HR department to see if your company offers a matching 
-        gift program—you could double your impact!
-      </p>
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="py-16 bg-gray-900 text-white">
     <div class="container text-center max-w-2xl">
-      <h2 class="text-3xl font-bold mb-4">Every Donation Makes a Difference</h2>
+      <h2 class="text-3xl font-bold mb-4">Every Bit of Help Makes a Difference</h2>
       <p class="text-gray-300 mb-8">
-        Whether $10 or $1,000, your support helps us continue our mission of 
-        preserving Nevada County railroad history.
+        Whether you can spare an afternoon or a box of old railroad memorabilia,
+        your support helps us continue our mission of preserving Nevada County railroad history.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
         <Button href={`${base}/volunteer`} variant="outline" class="border-white text-white hover:bg-white hover:text-gray-900">
-          Volunteer Instead
+          Volunteer With Us
         </Button>
         <Button href={`${base}/about`} variant="outline" class="border-white text-white hover:bg-white hover:text-gray-900">
           Learn More About Us

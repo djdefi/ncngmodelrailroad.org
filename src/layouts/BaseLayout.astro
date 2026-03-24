@@ -42,7 +42,7 @@ const organizationSchema = {
     "addressCountry": "US"
   },
   "areaServed": "Nevada County, California",
-  "nonprofitStatus": organization.nonprofit,
+  "nonprofitStatus": "Volunteer Organization",
   "telephone": organization.contact.phone,
   "email": organization.contact.email,
   "contactPoint": {
@@ -180,7 +180,7 @@ const breadcrumbSchema = {
           <!-- Desktop Nav -->
           <div class="hidden md:flex items-center gap-6">
             {navItems.map((item) =>
-              item.label === 'Donate' ? (
+              item.label === 'Support Us' ? (
                 <a href={`${base}${item.href}`} class="btn-primary text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                   {item.label}
                 </a>
@@ -218,7 +218,7 @@ const breadcrumbSchema = {
       >
         <div class="container py-4 flex flex-col gap-2">
           {navItems.map((item) =>
-            item.label === 'Donate' ? (
+            item.label === 'Support Us' ? (
               <a href={`${base}${item.href}`} class="block py-3 px-4 btn-primary text-center rounded-lg">
                 {item.label}
               </a>
@@ -250,7 +250,7 @@ const breadcrumbSchema = {
           <div>
             <h3 class="text-lg font-bold mb-4 text-white">{organization.name}</h3>
             <p class="text-gray-300 text-sm">
-              A {organization.nonprofit} nonprofit all volunteer organization dedicated to preserving 
+              An all-volunteer organization dedicated to preserving 
               the memory of the Nevada County Narrow Gauge Railroad.
             </p>
           </div>
@@ -302,7 +302,7 @@ const breadcrumbSchema = {
             Incorporated {organization.founded} as the "{organization.abbreviation} Project"
           </p>
           <p class="mt-2 text-xs">
-            Note: The {organization.name} is a separate nonprofit organization 
+            Note: The {organization.name} is a separate organization 
             not affiliated with other museums or groups.
           </p>
         </div>

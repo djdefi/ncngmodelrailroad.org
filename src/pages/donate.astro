@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import { Icon } from 'astro-icon/components';
+import { organization } from '../config/organization';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -89,8 +90,8 @@ const donationUses = [
           We also accept donations of model railroad equipment, tools, materials, 
           and railroad memorabilia. Contact us to discuss what you'd like to donate.
         </p>
-        <a href="mailto:info@ncngmodelrailroad.org" class="text-primary hover:underline font-medium">
-          info@ncngmodelrailroad.org
+        <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline font-medium">
+          {organization.contact.email}
         </a>
       </div>
     </div>

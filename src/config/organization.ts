@@ -25,7 +25,7 @@ export const organization = {
   contact: {
     phone: "(916) 871-6341",
     phoneHref: "tel:+19168716341",
-    email: "info@ncngmodelrailroad.org",
+    email: "ncngrr@hotmail.com",
   },
   social: {
     facebook: "https://www.facebook.com/NCNGHistoricalModelRailroad/",

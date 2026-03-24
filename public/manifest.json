@@ -2,24 +2,24 @@
   "name": "N.C.N.G. Historical Model Railroad",
   "short_name": "NCNG Railroad",
   "description": "An On3 scale historical model railroad display preserving the Nevada County Narrow Gauge Railroad (1876–1942). Located at the Nevada County Fairgrounds, Grass Valley, California.",
-  "start_url": "/ncngmodelrailroad.org/",
-  "scope": "/ncngmodelrailroad.org/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#8B0000",
   "background_color": "#FDFBF7",
   "icons": [
     {
-      "src": "/ncngmodelrailroad.org/images/hero-logo.png",
+      "src": "/images/hero-logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/ncngmodelrailroad.org/images/hero-logo.png",
+      "src": "/images/hero-logo.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/ncngmodelrailroad.org/favicon.svg",
+      "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

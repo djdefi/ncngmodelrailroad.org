@@ -109,6 +109,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                 <Icon name="solar:map-point-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <strong class="block">Address</strong>
+                  <p>{organization.location.venue}<br />{organization.location.streetAddress}<br />{organization.location.city}, {organization.location.state} {organization.location.zip}</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <Icon name="solar:letter-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <strong class="block">Mailing Address</strong>
                   <p>{organization.location.poBox}<br />{organization.location.poCity}, {organization.location.poState} {organization.location.poZip}</p>
                 </div>
               </div>
@@ -138,7 +146,53 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
             </div>
           </div>
+
+          <a
+            href={organization.location.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary w-full py-3 text-center inline-block"
+          >
+            <span class="inline-flex items-center gap-2">
+              <Icon name="solar:map-arrow-right-bold" class="w-5 h-5" />
+              Get Directions
+            </span>
+          </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <SectionHeader
+        title="Find Us"
+        description="We're located inside the Nevada County Fairgrounds in Grass Valley, California."
+        centered
+      />
+      <div class="rounded-lg overflow-hidden shadow-lg border border-gray-200">
+        <iframe
+          src={`https://maps.google.com/maps?q=${organization.location.geo.latitude},${organization.location.geo.longitude}&z=15&output=embed`}
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Nevada County Fairgrounds location map"
+        ></iframe>
+      </div>
+      <div class="mt-4 text-center">
+        <a
+          href={organization.location.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+        >
+          <Icon name="solar:map-arrow-right-bold" class="w-5 h-5" />
+          Open in Google Maps
+        </a>
       </div>
     </div>
   </section>

@@ -1,10 +1,9 @@
-const CACHE_VERSION = 'ncng-v1';
-const BASE_PATH = '/ncngmodelrailroad.org';
+const CACHE_VERSION = 'ncng-v2';
 
 const APP_SHELL = [
-  `${BASE_PATH}/`,
-  `${BASE_PATH}/favicon.svg`,
-  `${BASE_PATH}/images/hero-logo.png`,
+  '/',
+  '/favicon.svg',
+  '/images/hero-logo.png',
 ];
 
 // Install: pre-cache the app shell
@@ -34,9 +33,8 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Only handle same-origin requests under our base path
+  // Only handle same-origin requests
   if (url.origin !== self.location.origin) return;
-  if (!url.pathname.startsWith(BASE_PATH)) return;
 
   // Images: cache-first (they rarely change)
   if (request.destination === 'image') {
@@ -67,7 +65,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() =>
-          caches.match(request).then((cached) => cached || caches.match(`${BASE_PATH}/`))
+          caches.match(request).then((cached) => cached || caches.match('/'))
         )
     );
     return;

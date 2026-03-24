@@ -35,8 +35,10 @@ const organizationSchema = {
   "foundingDate": String(organization.founded),
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": organization.location.streetAddress,
     "addressLocality": organization.location.city,
     "addressRegion": organization.location.state,
+    "postalCode": organization.location.zip,
     "addressCountry": "US"
   },
   "areaServed": "Nevada County, California",
@@ -63,17 +65,18 @@ const localBusinessSchema = {
   "email": organization.contact.email,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": organization.location.venue,
+    "streetAddress": organization.location.streetAddress,
     "addressLocality": organization.location.city,
     "addressRegion": organization.location.state,
-    "postalCode": "95949",
+    "postalCode": organization.location.zip,
     "addressCountry": "US"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 39.2191,
-    "longitude": -121.0601
+    "latitude": organization.location.geo.latitude,
+    "longitude": organization.location.geo.longitude
   },
+  "hasMap": organization.location.mapsUrl,
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "description": "Open during Nevada County Fair events, special operating sessions, and by arrangement"
@@ -94,7 +97,7 @@ const breadcrumbSchema = {
       "name": "Home",
       "item": siteUrl
     },
-    ...pathSegments.filter(seg => seg !== 'ncngmodelrailroad.org').map((segment, index) => ({
+    ...pathSegments.map((segment, index) => ({
       "@type": "ListItem",
       "position": index + 2,
       "name": segment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
@@ -153,7 +156,7 @@ const breadcrumbSchema = {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-    {pathSegments.filter(seg => seg !== 'ncngmodelrailroad.org').length > 0 && (
+    {pathSegments.length > 0 && (
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     )}
     
@@ -260,7 +263,11 @@ const breadcrumbSchema = {
             <address class="text-gray-300 text-sm not-italic space-y-3">
               <div class="flex items-start gap-2">
                 <Icon name="solar:map-point-bold" class="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" />
-                <span>{organization.location.venue}<br />{organization.location.city}, California<br /><br />{organization.location.poBox}<br />{organization.location.poCity}, {organization.location.poState} {organization.location.poZip}</span>
+                <span>{organization.location.venue}<br />{organization.location.streetAddress}<br />{organization.location.city}, {organization.location.state} {organization.location.zip}<br /><br />{organization.location.poBox}<br />{organization.location.poCity}, {organization.location.poState} {organization.location.poZip}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="solar:map-arrow-right-bold" class="w-5 h-5 text-gray-500 flex-shrink-0" />
+                <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Get Directions</a>
               </div>
               <div class="flex items-center gap-2">
                 <Icon name="solar:phone-bold" class="w-5 h-5 text-gray-500 flex-shrink-0" />
@@ -314,7 +321,7 @@ const breadcrumbSchema = {
     <!-- Service Worker Registration -->
     <script is:inline>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/ncngmodelrailroad.org/sw.js');
+        navigator.serviceWorker.register('/sw.js');
       }
     </script>
   </body>

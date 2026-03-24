@@ -5,7 +5,7 @@ export const organization = {
   tagline: "Where California's Railroad Heritage Comes Alive",
   description: "An On3 scale historical model railroad display at the Nevada County Fairgrounds, preserving the memory of the Nevada County Narrow Gauge Railroad.",
   founded: 1986,
-  nonprofit: "501(c)(3)",
+  nonprofit: "",
   location: {
     venue: "Nevada County Fairgrounds",
     streetAddress: "11228 McCourtney Rd",

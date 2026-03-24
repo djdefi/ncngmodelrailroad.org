@@ -97,7 +97,7 @@ const breadcrumbSchema = {
       "name": "Home",
       "item": siteUrl
     },
-    ...pathSegments.filter(seg => seg !== 'ncngmodelrailroad.org').map((segment, index) => ({
+    ...pathSegments.map((segment, index) => ({
       "@type": "ListItem",
       "position": index + 2,
       "name": segment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
@@ -156,7 +156,7 @@ const breadcrumbSchema = {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-    {pathSegments.filter(seg => seg !== 'ncngmodelrailroad.org').length > 0 && (
+    {pathSegments.length > 0 && (
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     )}
     
@@ -321,7 +321,7 @@ const breadcrumbSchema = {
     <!-- Service Worker Registration -->
     <script is:inline>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/ncngmodelrailroad.org/sw.js');
+        navigator.serviceWorker.register('/sw.js');
       }
     </script>
   </body>

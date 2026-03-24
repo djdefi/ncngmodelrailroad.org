@@ -7,8 +7,7 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://djdefi.github.io',
-  base: '/ncngmodelrailroad.org',
+  site: 'https://ncngmodelrailroad.org',
   compressHTML: true,
   integrations: [
     react(),

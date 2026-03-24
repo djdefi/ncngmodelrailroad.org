@@ -27,7 +27,4 @@ export const organization = {
     phoneHref: "tel:+19168716341",
     email: "ncngrr@hotmail.com",
   },
-  social: {
-    facebook: "https://www.facebook.com/NCNGHistoricalModelRailroad/",
-  },
 };

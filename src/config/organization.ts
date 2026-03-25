@@ -30,6 +30,6 @@ export const organization = {
   analytics: {
     // Cloudflare Web Analytics beacon token
     // Get yours at: https://dash.cloudflare.com → Web Analytics → Add site
-    cfBeaconToken: "",
+    cfBeaconToken: "8e6f7569c50c4856a2a8800970d962d6",
   },
 };

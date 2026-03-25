@@ -313,6 +313,13 @@ const breadcrumbSchema = {
       </div>
     </footer>
 
+    <!-- Cloudflare Web Analytics (cookie-free, no consent banner needed) -->
+    {organization.analytics?.cfBeaconToken && (
+      <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${organization.analytics.cfBeaconToken}"}`}
+        is:inline />
+    )}
+
     <!-- Service Worker Registration -->
     <script is:inline>
       if ('serviceWorker' in navigator) {

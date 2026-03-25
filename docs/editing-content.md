@@ -195,9 +195,25 @@ Changes here automatically update the footer, contact page, structured data, and
 ```typescript
 contact: {
   phone: '(916) 871-6341',  // ← change this
-  email: 'info@ncngmodelrailroad.org',
+  email: 'ncngrr@hotmail.com',
 },
 ```
+
+### Analytics
+
+The site supports cookie-free analytics via Cloudflare Web Analytics (no consent banner needed). To enable it:
+
+1. Go to [Cloudflare Web Analytics](https://dash.cloudflare.com/) → **Web Analytics** → **Add site**
+2. Enter `ncngmodelrailroad.org` and copy the **beacon token**
+3. Paste it in `organization.ts`:
+
+```typescript
+analytics: {
+  cfBeaconToken: "your-token-here",  // ← paste token
+},
+```
+
+Once set, analytics data appears in your Cloudflare dashboard — page views, referrers, countries, and devices.
 
 ---
 

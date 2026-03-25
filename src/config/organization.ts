@@ -27,4 +27,9 @@ export const organization = {
     phoneHref: "tel:+19168716341",
     email: "ncngrr@hotmail.com",
   },
+  analytics: {
+    // Cloudflare Web Analytics beacon token
+    // Get yours at: https://dash.cloudflare.com → Web Analytics → Add site
+    cfBeaconToken: "",
+  },
 };

@@ -13,7 +13,7 @@ const sortedEvents = events.sort((a, b) =>
 const upcomingEvents = sortedEvents.filter(e => new Date(e.data.date) >= new Date());
 const pastEvents = sortedEvents.filter(e => new Date(e.data.date) < new Date()).reverse();
 
-const siteUrl = `https://djdefi.github.io${import.meta.env.BASE_URL}`;
+const siteUrl = Astro.site?.origin || 'https://ncngmodelrailroad.org';
 
 const eventSchemaItems = upcomingEvents.map((event) => ({
   "@context": "https://schema.org",

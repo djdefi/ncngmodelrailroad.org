@@ -8,7 +8,7 @@ Welcome! This guide is for **anyone** — board members, volunteers, or curious 
 
 This is the source code for the N.C.N.G. Historical Model Railroad website. The website is a collection of pages (Home, About, Gallery, Events, etc.) that live on the internet at:
 
-**[djdefi.github.io/ncngmodelrailroad.org](https://djdefi.github.io/ncngmodelrailroad.org/)**
+**[ncngmodelrailroad.org](https://ncngmodelrailroad.org/)**
 
 Think of this repository (repo) like a folder on a shared computer. It contains all the text, images, and code that make up the website. When someone makes a change here and saves it, the website automatically updates.
 
@@ -26,7 +26,7 @@ The website has these main pages:
 | **Gallery** | Photos of the layout, historic images, and building |
 | **Events** | Upcoming open houses and fairground events |
 | **Board Members** | Current board of directors with photos and roles |
-| **Donate** | PayPal donation link for tax-deductible contributions |
+| **Support Us** | Ways to support the organization |
 | **Volunteer** | Sign-up form for new volunteers |
 | **Contact** | Email contact form and our location info |
 | **Links** | Useful external resources about narrow gauge railroads |

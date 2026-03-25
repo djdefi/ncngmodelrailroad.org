@@ -1,8 +1,8 @@
 # N.C.N.G. Historical Model Railroad — Website
 
-The official website for the **Nevada County Narrow Gauge Historical Model Railroad**, a 501(c)(3) nonprofit preserving the legacy of the N.C.N.G. Railroad (1876–1942) through a detailed On3 scale model railroad display at the Nevada County Fairgrounds in Grass Valley, California.
+The official website for the **Nevada County Narrow Gauge Historical Model Railroad**, an all-volunteer organization preserving the legacy of the N.C.N.G. Railroad (1876–1942) through a detailed On3 scale model railroad display at the Nevada County Fairgrounds in Grass Valley, California.
 
-**Live site:** [djdefi.github.io/ncngmodelrailroad.org](https://djdefi.github.io/ncngmodelrailroad.org/)
+**Live site:** [ncngmodelrailroad.org](https://ncngmodelrailroad.org/)
 
 ---
 
@@ -19,7 +19,7 @@ npm run build      # build for production
 ```
 src/
 ├── config/           # Centralized org data & navigation
-│   ├── organization.ts   # Name, address, contact, social links
+│   ├── organization.ts   # Name, address, contact info
 │   └── navigation.ts     # Shared nav items for header/mobile
 ├── content/
 │   └── events/       # Event pages (Markdown files, one per event)
@@ -33,7 +33,7 @@ src/
 │   ├── gallery.astro     # Photo gallery with lightbox
 │   ├── events.astro      # Upcoming events (auto-generated from content/)
 │   ├── board-members.astro # Board of directors
-│   ├── donate.astro      # Donations (PayPal)
+│   ├── donate.astro      # Support / donations
 │   ├── volunteer.astro   # Volunteer signup
 │   ├── contact.astro     # Contact form
 │   ├── links.astro       # External resources

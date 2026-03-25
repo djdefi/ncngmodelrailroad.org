@@ -89,7 +89,7 @@ Serves the `dist/` folder locally so you can verify the production build looks r
 **Components** (`src/components/`) — Reusable UI pieces like `Button.astro` and `SectionHeader.astro`.
 
 **Config** (`src/config/`) — Centralized data imported across the site:
-- `organization.ts` — Org name, address, contact info, social links
+- `organization.ts` — Org name, address, contact info
 - `navigation.ts` — Nav items shared by desktop and mobile menus
 
 **Content** (`src/content/events/`) — Markdown files that Astro processes as a content collection. Each `.md` file has frontmatter (YAML between `---` lines) and body text.
@@ -129,25 +129,13 @@ The site deploys automatically via **GitHub Actions**:
 1. You push a commit to the `main` branch
 2. GitHub Actions runs `npm run build`
 3. The `dist/` folder is published to GitHub Pages
-4. Live at [djdefi.github.io/ncngmodelrailroad.org](https://djdefi.github.io/ncngmodelrailroad.org/) within ~2 minutes
+4. Live at [ncngmodelrailroad.org](https://ncngmodelrailroad.org/) within ~2 minutes
 
 You don't need to do anything special — just push to `main`.
 
-### Base URL
+### Custom Domain
 
-Because the site is hosted at a subpath (`/ncngmodelrailroad.org/`), all internal links and image paths use a `base` variable:
-
-```javascript
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-```
-
-This is configured in `astro.config.mjs`:
-
-```javascript
-base: '/ncngmodelrailroad.org',
-```
-
-Always use `` `${base}/path` `` for internal links and images, never hardcode the path.
+The site uses a custom domain (`ncngmodelrailroad.org`) configured via the `CNAME` file in `public/` and the `site` field in `astro.config.mjs`. Since the site is at the root domain, no `base` path is needed — internal links and images use root-relative paths.
 
 ---
 

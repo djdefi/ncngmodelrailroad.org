@@ -184,7 +184,7 @@ Photos are filterable by category on the gallery page:
 
 ## Updating Organization Info
 
-Centralized info (name, address, phone, email, social links) lives in one file:
+Centralized info (name, address, phone, email) lives in one file:
 
 ```
 src/config/organization.ts

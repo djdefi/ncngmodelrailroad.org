@@ -12,7 +12,7 @@
   --color-secondary-light: #A0522D;
 
   /* Custom fonts */
-  --font-display: 'Archivo Black', Georgia, serif;
+  --font-display: 'Archivo Black', 'Archivo Black Fallback', Georgia, serif;
   --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -178,6 +178,12 @@
   img + .bg-gradient-to-t.from-gray-900 {
     opacity: 0.95;
   }
+
+  /* Dim Google Maps embed in dark mode */
+  iframe[src*="google.com/maps"] {
+    filter: invert(0.9) hue-rotate(180deg);
+    border-radius: 0.75rem;
+  }
 }
 
 /* Reduced motion preference */
@@ -210,7 +216,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Archivo Black', Georgia, serif;
+  font-family: 'Archivo Black', 'Archivo Black Fallback', Georgia, serif;
   color: var(--color-primary);
   line-height: 1.2;
 }

@@ -4,6 +4,42 @@ Thanks for helping improve the N.C.N.G. Historical Model Railroad website! This 
 
 ---
 
+## Editing content (no coding required)
+
+If you need to update events, board members, gallery photos, or train information, you don't need to know how to code. There are two ways to make content changes:
+
+### Option 1: Content editor (recommended)
+
+The website has a built-in content editor at [ncngmodelrailroad.org/admin](https://ncngmodelrailroad.org/admin/).
+
+1. Go to [ncngmodelrailroad.org/admin](https://ncngmodelrailroad.org/admin/)
+2. Click **Login with GitHub** (you'll need a free [GitHub account](https://github.com/signup))
+3. Choose what to edit — Events, Board Members, Photo Gallery, or Engine Roster
+4. Make your changes using the simple form fields
+5. Click **Publish** — the website updates automatically in about 2 minutes
+
+> **First time?** Ask the webmaster to add you as a collaborator on the repository so you can log in.
+
+### Option 2: Edit files on GitHub
+
+You can also edit content files directly on GitHub:
+
+1. Go to [github.com/djdefi/ncngmodelrailroad.org](https://github.com/djdefi/ncngmodelrailroad.org)
+2. Navigate to the content folder for what you want to edit:
+   - **Events:** `src/content/events/`
+   - **Board members:** `src/content/board/`
+   - **Gallery photos:** `src/content/gallery/`
+   - **Engine roster:** `src/content/trains/`
+3. Click on a file, then click the **pencil icon** to edit
+4. Update the fields between the `---` markers at the top of the file
+5. Click **Commit changes** — the website updates automatically
+
+### Can't find what you need?
+
+[Open an issue](https://github.com/djdefi/ncngmodelrailroad.org/issues/new/choose) describing what you'd like changed and someone will help.
+
+---
+
 ## Quick changes (GitHub web editor)
 
 For simple edits (fixing a typo, updating a date, changing a bio), you can edit files directly on GitHub:
@@ -66,5 +102,5 @@ Then go to GitHub and open a **Pull Request**. Describe what you changed and why
 
 ## Questions?
 
-- Email: info@ncngmodelrailroad.org
-- Open a [GitHub Issue](https://github.com/djdefi/ncngmodelrailroad.org/issues) for bugs or feature requests
+- **Edit content:** Use the [content editor](https://ncngmodelrailroad.org/admin/) or [open an issue](https://github.com/djdefi/ncngmodelrailroad.org/issues)
+- **Email:** info@ncngmodelrailroad.org

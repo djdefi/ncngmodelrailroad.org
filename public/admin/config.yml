@@ -3,75 +3,69 @@ backend:
   repo: djdefi/ncngmodelrailroad.org
   branch: main
   auth_type: pkce
-  # TODO: Add your GitHub OAuth App client ID here after creating the app at:
-  # https://github.com/settings/developers → New OAuth App
-  # Callback URL: https://ncngmodelrailroad.org/admin/
+  # To enable CMS login, create a GitHub OAuth App:
+  # 1. Go to https://github.com/settings/developers → "New OAuth App"
+  # 2. Application name: NCNG Website CMS
+  # 3. Homepage URL: https://ncngmodelrailroad.org
+  # 4. Authorization callback URL: https://ncngmodelrailroad.org/admin/
+  # 5. Copy the Client ID and uncomment the line below:
   # app_id: YOUR_CLIENT_ID_HERE
 
 media_folder: public/images
 public_folder: /images
 
 collections:
-  - name: pages
-    label: Pages
-    files:
-      - name: home
-        label: Homepage
-        file: src/content/pages/home.md
-        fields:
-          - { name: title, label: Title, widget: string }
-          - { name: heroTitle, label: Hero Title, widget: string }
-          - { name: heroSubtitle, label: Hero Subtitle, widget: text }
-          - { name: aboutText, label: About Text, widget: markdown }
-          - { name: historyText, label: History Text, widget: markdown }
-          - { name: visitInfo, label: Visit Info, widget: markdown }
-
   - name: events
     label: Events
     folder: src/content/events
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{year}}/{{month}}/{{day}}"
     fields:
       - { name: title, label: Title, widget: string }
-      - { name: date, label: Event Date, widget: datetime }
-      - { name: endDate, label: End Date (optional), widget: datetime, required: false }
-      - { name: location, label: Location, widget: string }
-      - { name: description, label: Description, widget: markdown }
+      - { name: date, label: Event Date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { name: endDate, label: End Date (optional), widget: datetime, date_format: YYYY-MM-DD, time_format: false, required: false }
+      - { name: location, label: Location, widget: string, default: "Nevada County Fairgrounds, Grass Valley" }
+      - { name: description, label: Short Description, widget: text, required: false }
       - { name: featured, label: Featured on Homepage, widget: boolean, default: false }
+      - { name: body, label: Details, widget: markdown }
 
-  - name: blog
-    label: Blog Posts
-    folder: src/content/blog
+  - name: board
+    label: Board Members
+    folder: src/content/board
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
+    summary: "{{name}} — {{role}}"
+    sortable_fields: [order, name, role]
     fields:
-      - { name: title, label: Title, widget: string }
-      - { name: date, label: Publish Date, widget: datetime }
-      - { name: author, label: Author, widget: string, required: false }
-      - { name: image, label: Featured Image, widget: image, required: false }
-      - { name: excerpt, label: Excerpt, widget: text }
-      - { name: body, label: Body, widget: markdown }
-      - { name: tags, label: Tags, widget: list, required: false }
-
-  - name: projects
-    label: Projects
-    folder: src/content/projects
-    create: true
-    fields:
-      - { name: title, label: Title, widget: string }
-      - { name: status, label: Status, widget: select, options: ["In Progress", "Completed", "Planned"] }
-      - { name: startDate, label: Start Date, widget: datetime, required: false }
-      - { name: completedDate, label: Completed Date, widget: datetime, required: false }
-      - { name: description, label: Description, widget: markdown }
-      - { name: images, label: Images, widget: list, field: { name: image, widget: image }, required: false }
+      - { name: name, label: Full Name, widget: string }
+      - { name: role, label: Role/Title, widget: string }
+      - { name: bio, label: Bio, widget: text }
+      - { name: image, label: Photo, widget: image, media_folder: /public/images/board, public_folder: board }
+      - { name: order, label: Display Order, widget: number, value_type: int, min: 1 }
 
   - name: gallery
     label: Photo Gallery
     folder: src/content/gallery
     create: true
+    slug: "{{slug}}"
+    summary: "{{title}} ({{category}})"
     fields:
-      - { name: title, label: Title, widget: string }
-      - { name: category, label: Category, widget: select, options: ["Locomotives", "Rolling Stock", "Scenery", "Events", "Historical"] }
-      - { name: date, label: Date, widget: datetime, required: false }
-      - { name: description, label: Description, widget: text, required: false }
-      - { name: image, label: Image, widget: image }
+      - { name: title, label: Alt Text / Title, widget: string }
+      - { name: image, label: Photo, widget: image }
+      - { name: caption, label: Caption, widget: string }
+      - { name: category, label: Category, widget: select, options: ["Historic", "Layout", "Events"] }
+
+  - name: trains
+    label: Engine Roster
+    folder: src/content/trains
+    create: true
+    slug: "engine-{{fields.order}}"
+    summary: "{{number}} {{name}} ({{wheel}})"
+    sortable_fields: [order, number]
+    fields:
+      - { name: number, label: "Engine Number", widget: string }
+      - { name: name, label: "Engine Name", widget: string, hint: 'Use "—" if unnamed' }
+      - { name: wheel, label: Wheel Arrangement, widget: string, hint: "e.g. 4-4-0, 2-6-0" }
+      - { name: notes, label: Notes, widget: text }
+      - { name: order, label: Display Order, widget: number, value_type: int, min: 1 }

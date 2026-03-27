@@ -2,17 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const boardMembers = [
-  { role: 'President', name: 'Steve Coffey', image: 'board/steve-coffey.jpeg', bio: 'Leads the organization and oversees all operations of the N.C.N.G. Historical Model Railroad.' },
-  { role: 'Vice President', name: 'Barry Wright', image: 'board/barry-wright.jpeg', bio: 'Supports the president and assists with layout development and special projects.' },
-  { role: 'Member at Large', name: 'Doug Doane', image: 'board/doug-doane.jpeg', bio: 'Longtime volunteer and model railroad craftsman dedicated to preserving N.C.N.G. history.' },
-  { role: 'Secretary', name: 'Andrew Langdon', image: 'board/andrew-langdon.jpeg', bio: 'Maintains organizational records and handles correspondence for the railroad.' },
-  { role: 'Treasurer', name: 'Tarry Nelson', image: 'board/tarry-nelson.jpeg', bio: 'Manages the financial operations of our organization.' },
-  { role: 'Webmaster & Engineer Technologist', name: 'Ryan T.', image: 'board/ryan-t.jpeg', bio: 'Website, Train Cam TV, and tech.' },
-];
+const boardEntries = await getCollection('board');
+const boardMembers = boardEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(entry => ({
+    role: entry.data.role,
+    name: entry.data.name,
+    image: entry.data.image,
+    bio: entry.data.bio,
+  }));
 
 function getInitials(name: string) {
   return name.split(' ').map(n => n[0]).join('');

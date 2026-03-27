@@ -3,13 +3,7 @@ backend:
   repo: djdefi/ncngmodelrailroad.org
   branch: main
   auth_type: pkce
-  # To enable CMS login, create a GitHub OAuth App:
-  # 1. Go to https://github.com/settings/developers → "New OAuth App"
-  # 2. Application name: NCNG Website CMS
-  # 3. Homepage URL: https://ncngmodelrailroad.org
-  # 4. Authorization callback URL: https://ncngmodelrailroad.org/admin/
-  # 5. Copy the Client ID and uncomment the line below:
-  # app_id: YOUR_CLIENT_ID_HERE
+  app_id: Ov23limOE86KsddBOuAe
 
 media_folder: public/images
 public_folder: /images

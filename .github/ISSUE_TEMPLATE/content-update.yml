@@ -1,0 +1,30 @@
+name: Content Update Request
+description: Request a content change that can't be done through the CMS editor
+labels: ["content"]
+body:
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: What type of content?
+      options:
+        - Event
+        - Board Member
+        - Gallery Photo
+        - Train/Engine Info
+        - Other Page Content
+    validations:
+      required: true
+  - type: textarea
+    id: describe-change
+    attributes:
+      label: Describe the change
+      description: Provide details about the content you'd like added or updated.
+    validations:
+      required: true
+  - type: textarea
+    id: images
+    attributes:
+      label: Upload images
+      description: Drag and drop any images here.
+    validations:
+      required: false

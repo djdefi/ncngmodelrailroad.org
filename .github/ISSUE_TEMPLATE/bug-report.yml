@@ -1,0 +1,46 @@
+name: Bug Report
+description: Report a problem with the website
+labels: ["bug"]
+body:
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: The URL of the page where you encountered the issue.
+      placeholder: https://ncngmodelrailroad.org/...
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem you encountered.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: What did you expect?
+      description: Describe what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag and drop any screenshots that help illustrate the issue.
+    validations:
+      required: false
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Mobile Safari
+        - Other
+    validations:
+      required: false

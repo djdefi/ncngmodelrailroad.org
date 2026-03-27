@@ -13,4 +13,36 @@ const events = defineCollection({
   }),
 });
 
-export const collections = { events };
+const board = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/board' }),
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    bio: z.string(),
+    image: z.string(),
+    order: z.number(),
+  }),
+});
+
+const gallery = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/gallery' }),
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    caption: z.string(),
+    category: z.enum(['Historic', 'Layout', 'Events']),
+  }),
+});
+
+const trains = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/trains' }),
+  schema: z.object({
+    number: z.string(),
+    name: z.string(),
+    wheel: z.string(),
+    notes: z.string(),
+    order: z.number(),
+  }),
+});
+
+export const collections = { events, board, gallery, trains };

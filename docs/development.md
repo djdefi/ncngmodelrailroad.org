@@ -47,7 +47,7 @@ This downloads all the libraries the site needs. It creates a `node_modules/` fo
 npm run dev
 ```
 
-This starts a local server at **http://localhost:4321/ncngmodelrailroad.org/**. Open that URL in your browser.
+This starts a local server at **http://localhost:4321/**. Open that URL in your browser.
 
 The dev server **live-reloads** — when you save a file, the browser updates automatically. No need to restart.
 
@@ -136,78 +136,3 @@ You don't need to do anything special — just push to `main`.
 ### Custom Domain
 
 The site uses a custom domain (`ncngmodelrailroad.org`) configured via the `CNAME` file in `public/` and the `site` field in `astro.config.mjs`. Since the site is at the root domain, no `base` path is needed — internal links and images use root-relative paths.
-
----
-
-## Common tasks
-
-### Add a new page
-
-1. Create `src/pages/my-page.astro`
-2. Wrap content in `<BaseLayout title="My Page">`:
-
-```astro
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
----
-
-<BaseLayout title="My Page | N.C.N.G. Model Railroad">
-  <section class="py-16">
-    <div class="container">
-      <h1 class="text-4xl font-bold">My New Page</h1>
-      <p>Content here.</p>
-    </div>
-  </section>
-</BaseLayout>
-```
-
-3. Add it to navigation in `src/config/navigation.ts` if needed
-
-### Use an icon
-
-Icons use the [Solar Bold](https://icon-sets.iconify.design/solar/) set:
-
-```astro
----
-import { Icon } from 'astro-icon/components';
----
-
-<Icon name="solar:heart-bold" class="w-6 h-6" />
-```
-
-Browse available icons at [icon-sets.iconify.design/solar](https://icon-sets.iconify.design/solar/).
-
-### Add a section with consistent styling
-
-Use the `SectionHeader` component and standard section pattern:
-
-```astro
-<section class="py-16 bg-gray-50">
-  <div class="container max-w-5xl">
-    <SectionHeader eyebrow="Small Label" title="Section Title" />
-    <!-- content -->
-  </div>
-</section>
-```
-
----
-
-## Troubleshooting
-
-**`npm install` fails** — Make sure you have Node.js 18+. Run `node --version` to check.
-
-**Dev server won't start** — Try deleting `node_modules/` and running `npm install` again.
-
-**Images not showing** — Make sure the path starts with `` `${base}/images/` `` and the file exists in `public/images/`.
-
-**Build fails** — Run `npm run build` and read the error. Most common: a typo in an import path or a missing closing tag.
-
-**Changes not showing on live site** — Check that you pushed to `main` and that the GitHub Actions workflow completed successfully.
-
----
-
-## Next steps
-
-- [Editing Content](editing-content.md) — Quick reference for common content updates
-- [Contributing](../CONTRIBUTING.md) — How to submit changes via pull requests

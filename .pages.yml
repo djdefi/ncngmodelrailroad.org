@@ -1,0 +1,144 @@
+media:
+  - name: images
+    label: Images
+    input: public/images
+    output: /images
+    categories: [image]
+  - name: board-photos
+    label: Board Member Photos
+    input: public/images/board
+    output: /images/board
+    categories: [image]
+
+content:
+  - name: events
+    label: Events
+    type: collection
+    path: src/content/events
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Event Date
+        type: date
+        required: true
+      - name: endDate
+        label: End Date (optional)
+        type: date
+      - name: location
+        label: Location
+        type: string
+        required: true
+      - name: description
+        label: Short Description
+        type: text
+      - name: featured
+        label: Featured on Homepage
+        type: boolean
+      - name: body
+        label: Details
+        type: rich-text
+
+  - name: board
+    label: Board Members
+    type: collection
+    path: src/content/board
+    view:
+      primary: name
+      sort: order
+      order: asc
+      fields: [name, role, order]
+    fields:
+      - name: name
+        label: Full Name
+        type: string
+        required: true
+      - name: role
+        label: Role / Title
+        type: string
+        required: true
+      - name: bio
+        label: Bio
+        type: text
+        required: true
+      - name: image
+        label: Photo
+        type: image
+        required: true
+        options:
+          media: board-photos
+      - name: order
+        label: Display Order
+        type: number
+        required: true
+
+  - name: gallery
+    label: Photo Gallery
+    type: collection
+    path: src/content/gallery
+    view:
+      primary: title
+      fields: [title, category]
+    fields:
+      - name: title
+        label: Alt Text / Title
+        type: string
+        required: true
+      - name: image
+        label: Photo
+        type: image
+        required: true
+      - name: caption
+        label: Caption
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values:
+            - Historic
+            - Layout
+            - Events
+
+  - name: trains
+    label: Engine Roster
+    type: collection
+    path: src/content/trains
+    filename: "engine-{fields.order}.md"
+    view:
+      primary: number
+      sort: order
+      order: asc
+      fields: [number, name, wheel]
+    fields:
+      - name: number
+        label: Engine Number
+        type: string
+        required: true
+      - name: name
+        label: Engine Name
+        type: string
+        required: true
+        description: 'Use "—" if unnamed'
+      - name: wheel
+        label: Wheel Arrangement
+        type: string
+        required: true
+        description: "e.g. 4-4-0, 2-6-0"
+      - name: notes
+        label: Notes
+        type: text
+        required: true
+      - name: order
+        label: Display Order
+        type: number
+        required: true

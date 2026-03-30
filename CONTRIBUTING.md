@@ -10,13 +10,13 @@ If you need to update events, board members, gallery photos, or train informatio
 
 ### Option 1: Content editor (recommended)
 
-The website has a built-in content editor at [ncngmodelrailroad.org/admin](https://ncngmodelrailroad.org/admin/).
+The website uses [Pages CMS](https://pagescms.org), a free content editor built for GitHub.
 
-1. Go to [ncngmodelrailroad.org/admin](https://ncngmodelrailroad.org/admin/)
+1. Go to [app.pagescms.org/djdefi/ncngmodelrailroad.org](https://app.pagescms.org/djdefi/ncngmodelrailroad.org)
 2. Click **Login with GitHub** (you'll need a free [GitHub account](https://github.com/signup))
 3. Choose what to edit — Events, Board Members, Photo Gallery, or Engine Roster
 4. Make your changes using the simple form fields
-5. Click **Publish** — the website updates automatically in about 2 minutes
+5. Click **Save** — the website updates automatically in about 2 minutes
 
 > **First time?** Ask the webmaster to add you as a collaborator on the repository so you can log in.
 
@@ -102,5 +102,5 @@ Then go to GitHub and open a **Pull Request**. Describe what you changed and why
 
 ## Questions?
 
-- **Edit content:** Use the [content editor](https://ncngmodelrailroad.org/admin/) or [open an issue](https://github.com/djdefi/ncngmodelrailroad.org/issues)
+- **Edit content:** Use [Pages CMS](https://app.pagescms.org/djdefi/ncngmodelrailroad.org) or [open an issue](https://github.com/djdefi/ncngmodelrailroad.org/issues)
 - **Email:** info@ncngmodelrailroad.org

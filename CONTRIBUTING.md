@@ -1,6 +1,17 @@
 # Contributing to the N.C.N.G. Website
 
-Thanks for helping improve the N.C.N.G. Historical Model Railroad website! This guide covers how to submit changes.
+Thanks for helping improve the N.C.N.G. Historical Model Railroad website! This guide covers how to get access and submit changes.
+
+---
+
+## Getting Access
+
+To edit content on the website, you need **collaborator access** to the GitHub repository. Here's how to get it:
+
+1. Create a free [GitHub account](https://github.com/signup) if you don't have one
+2. Email **info@ncngmodelrailroad.org** or ask the webmaster to add you as a collaborator
+3. Accept the invitation you receive from GitHub (check your email)
+4. You're all set — you can now use [Pages CMS](https://app.pagescms.org/djdefi/ncngmodelrailroad.org) or edit files directly on GitHub
 
 ---
 
@@ -8,17 +19,15 @@ Thanks for helping improve the N.C.N.G. Historical Model Railroad website! This 
 
 If you need to update events, board members, gallery photos, or train information, you don't need to know how to code. There are two ways to make content changes:
 
-### Option 1: Content editor (recommended)
+### Option 1: Pages CMS (recommended)
 
 The website uses [Pages CMS](https://pagescms.org), a free content editor built for GitHub.
 
 1. Go to [app.pagescms.org/djdefi/ncngmodelrailroad.org](https://app.pagescms.org/djdefi/ncngmodelrailroad.org)
-2. Click **Login with GitHub** (you'll need a free [GitHub account](https://github.com/signup))
+2. Click **Login with GitHub**
 3. Choose what to edit — Events, Board Members, Photo Gallery, or Engine Roster
 4. Make your changes using the simple form fields
 5. Click **Save** — the website updates automatically in about 2 minutes
-
-> **First time?** Ask the webmaster to add you as a collaborator on the repository so you can log in.
 
 ### Option 2: Edit files on GitHub
 
@@ -37,20 +46,6 @@ You can also edit content files directly on GitHub:
 ### Can't find what you need?
 
 [Open an issue](https://github.com/djdefi/ncngmodelrailroad.org/issues/new/choose) describing what you'd like changed and someone will help.
-
----
-
-## Quick changes (GitHub web editor)
-
-For simple edits (fixing a typo, updating a date, changing a bio), you can edit files directly on GitHub:
-
-1. Navigate to the file on [github.com/djdefi/ncngmodelrailroad.org](https://github.com/djdefi/ncngmodelrailroad.org)
-2. Click the **pencil icon** (Edit this file)
-3. Make your change
-4. Scroll down, add a short description of what you changed
-5. Click **Commit changes**
-
-For members with write access, this commits directly to `main` and the site updates in ~2 minutes.
 
 ---
 

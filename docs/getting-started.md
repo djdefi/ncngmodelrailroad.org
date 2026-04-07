@@ -37,13 +37,19 @@ The website has these main pages:
 
 You don't need to know how to code to get something changed on the site. Here's what to do:
 
-### Option 1: Email the webmaster
+### Option 1: Edit it yourself with Pages CMS (easiest)
+
+[Pages CMS](https://app.pagescms.org/djdefi/ncngmodelrailroad.org) is a simple web editor that lets you update events, board members, gallery photos, and engine roster — no coding needed. Just log in with your GitHub account.
+
+> **Need access?** See [Getting Access](../CONTRIBUTING.md#getting-access) to request collaborator access.
+
+### Option 2: Email the webmaster
 Send an email to **info@ncngmodelrailroad.org** with what you'd like changed. Be specific:
 - "Please update Doug's role to Member at Large"
 - "Can we add photos from the June open house?"
 - "The Christmas Fair date should be November 27-29"
 
-### Option 2: Open a GitHub Issue
+### Option 3: Open a GitHub Issue
 If you have a GitHub account, you can open an issue directly:
 1. Go to the repository on GitHub
 2. Click the **Issues** tab
@@ -71,10 +77,10 @@ That's it. There's no separate "publish" step. Push to `main` and it goes live.
 A: Not easily. GitHub keeps a full history of every change. Anything can be undone.
 
 **Q: Who can make changes?**
-A: Anyone with write access to the GitHub repository. Currently that's the webmaster (Ryan T.) and anyone he grants access to.
+A: Anyone with collaborator access to the GitHub repository. See the [Contributing Guide](../CONTRIBUTING.md#getting-access) for how to request access.
 
 **Q: How do I get access?**
-A: Ask Ryan or email info@ncngmodelrailroad.org.
+A: Email info@ncngmodelrailroad.org to be added as a collaborator.
 
 **Q: Is the site free to host?**
 A: Yes. GitHub Pages hosting is free for public repositories.
@@ -87,5 +93,7 @@ A: In the `public/images/` folder in this repository. They're served directly �
 ## Next steps
 
 Ready to make changes yourself? Move on to:
-- [Editing Content](editing-content.md) — How to update events, board members, and photos
+- [Pages CMS](https://app.pagescms.org/djdefi/ncngmodelrailroad.org) — The quickest way to update content (no coding needed)
+- [Editing Content](editing-content.md) — How to update events, board members, and photos by editing files
 - [Development Guide](development.md) — How to run the site on your own computer
+- [Support](../SUPPORT.md) — Where to get help

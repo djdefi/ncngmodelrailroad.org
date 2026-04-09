@@ -74,13 +74,28 @@ function formatDate(date: Date, endDate?: Date) {
     <div class="container text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Upcoming Events</h1>
       <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-        Operating sessions, open houses, and community events at the Nevada County Fairgrounds.
+        Posted events, regular work sessions, open houses, and community events at the Nevada County Fairgrounds.
       </p>
     </div>
   </section>
 
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4 max-w-4xl">
+      <div class="mb-10 rounded-2xl border border-amber-200 bg-amber-50 p-6 md:p-8">
+        <div class="flex items-start gap-4">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+            <Icon name="solar:settings-bold" class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <p class="mb-2 text-sm font-semibold uppercase tracking-wider text-primary">Regular Work Sessions</p>
+            <h2 class="mb-3 text-2xl font-display text-gray-900">Usually the first Saturday and third Wednesday, 11 AM to 2 PM</h2>
+            <p class="text-gray-700">
+              Work sessions are a good time to meet volunteers, see what is being built or repaired, and ask about helping out.
+              They may shift or be canceled during paid-admission fairground events, so check ahead if you are making a special trip.
+            </p>
+          </div>
+        </div>
+      </div>
       
       {upcomingEvents.length > 0 ? (
         <div class="space-y-8">
@@ -137,7 +152,7 @@ function formatDate(date: Date, endDate?: Date) {
   <section class="py-16 bg-primary text-white text-center">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-display mb-4">Want to Get Involved?</h2>
-      <p class="text-xl mb-8 text-gray-200">We're always looking for volunteers to help with events and operations.</p>
+      <p class="text-xl mb-8 text-gray-200">We&apos;re always looking for volunteers to help with events, work sessions, and operations.</p>
       <Button href={`${base}/volunteer`} variant="white">Become a Volunteer</Button>
     </div>
   </section>

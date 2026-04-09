@@ -149,7 +149,7 @@ Delete their entry from the array. Optionally delete their photo from `public/im
 
 ## Adding Gallery Photos
 
-The gallery is managed in `src/pages/gallery.astro`.
+The gallery is managed with one Markdown file per photo in `src/content/gallery/`.
 
 ### Step 1: Add the image file
 
@@ -164,35 +164,42 @@ public/images/gallery-open-house-2026.jpg
 - Resize to **800px wide** max before adding (keeps the site fast)
 - Keep file size under **200KB** if possible
 
-### Step 2: Add it to the photos array
+### Step 2: Add a gallery entry
 
-Open `src/pages/gallery.astro` and find the `photos` array near the top. Add a new entry:
+Create a new Markdown file in `src/content/gallery/`, for example:
 
-```javascript
-  {
-    src: `${base}/images/gallery-open-house-2026.jpg`,
-    alt: 'Visitors viewing the layout during the 2026 open house',
-    caption: 'Visitors at our 2026 Summer Open House',
-    category: 'Events'
-  },
+```md
+src/content/gallery/gallery-open-house-2026.md
+```
+
+Add frontmatter like this:
+
+```md
+---
+title: "Visitors viewing the layout during the 2026 open house"
+image: gallery-open-house-2026.jpg
+caption: "Visitors at our 2026 Summer Open House"
+category: Fairgrounds & Events
+---
 ```
 
 **Field reference:**
 
 | Field | Description |
 | :---- | :---------- |
-| `src` | File path — always start with `` `${base}/images/` `` |
-| `alt` | Describe the image for screen readers and accessibility |
+| `title` | Used for the image alt text and lightbox title context |
+| `image` | Filename in `public/images/` |
 | `caption` | Short text shown below the photo in the lightbox |
-| `category` | One of: `Historic`, `Layout`, `Events` |
+| `category` | One of: `Historic`, `Layout`, `Volunteer Work`, `Fairgrounds & Events` |
 
 ### Categories
 
 Photos are filterable by category on the gallery page:
 
-- **Historic** — Original N.C.N.G. Railroad photos, building history
-- **Layout** — Model railroad scenes, detail shots, construction
-- **Events** — Open houses, visitors, public events
+- **Historic** — Original N.C.N.G. Railroad photos and archival views
+- **Layout** — Model railroad scenes, trains, structures, and scenery details
+- **Volunteer Work** — Members building, maintaining, or improving the layout
+- **Fairgrounds & Events** — Building exterior, exhibit context, open houses, and fairgrounds scenes
 
 ---
 

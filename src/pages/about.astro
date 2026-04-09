@@ -8,15 +8,15 @@ import { organization } from '../config/organization';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const timeline = [
-  { year: '1875', event: 'Nevada County Narrow Gauge Railroad begins operations, connecting Colfax to Nevada City and Grass Valley' },
+  { year: '1875', event: 'Nevada County Narrow Gauge Railroad begins operations, connecting Colfax, Chicago Park, Grass Valley, and Nevada City' },
   { year: '1942', event: 'Last train runs; railroad ceases operations after 67 years of service' },
-  { year: '1986', event: 'NCNG Historical Model Railroad founded as the "N.C.N.G. Project"' },
-  { year: '1990s', event: 'Layout construction begins at Nevada County Fairgrounds' },
+  { year: '1986', event: 'NCNG Historical Model Railroad is founded as the "N.C.N.G. Project," and basic layout construction begins' },
+  { year: '1990s', event: 'The layout continues to grow at Nevada County Fairgrounds' },
   { year: 'Today', event: 'Volunteer team continues to expand and improve the On3 scale layout' },
 ];
 ---
 
-<BaseLayout title="About Us | N.C.N.G. Model Railroad" description="Learn about the Nevada County Narrow Gauge Historical Model Railroad, our mission, history, and the volunteers who preserve this piece of California railroad history." image="/images/about-layout.jpeg" heroImage={`${base}/images/about-layout.jpeg`}>
+<BaseLayout title="About Us | N.C.N.G. Model Railroad" description="Learn about the N.C.N.G. Historical Model Railroad, its history, the layout, and the volunteers who built it." image="/images/about-layout.jpeg" heroImage={`${base}/images/about-layout.jpeg`}>
   <!-- Hero with real photo -->
   <section class="relative py-28 md:py-36 text-white overflow-hidden">
     <div class="absolute inset-0 z-0">
@@ -35,12 +35,9 @@ const timeline = [
     <div class="container relative z-10">
       <div class="max-w-3xl">
         <span class="text-sm uppercase tracking-widest text-gray-300 font-medium">About Us</span>
-        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
-          Preserving Railroad History <span class="text-amber-400">Since 1986</span>
-        </h1>
+        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6">About the N.C.N.G. Layout</h1>
         <p class="text-xl text-gray-200">
-          The N.C.N.G. Historical Model Railroad is an all-volunteer 
-          organization dedicated to preserving the memory of the Nevada County Narrow Gauge Railroad.
+          A volunteer-built, operating On3 scale model railroad at the Nevada County Fairgrounds since 1986.
         </p>
       </div>
     </div>
@@ -51,17 +48,16 @@ const timeline = [
     <div class="container max-w-5xl">
       <div class="grid md:grid-cols-5 gap-10 items-center">
         <div class="md:col-span-3">
-          <SectionHeader eyebrow="Our Mission" title="Keeping History Alive" />
+          <SectionHeader eyebrow="Why We Built It" title="Interpreting the Original Railroad" />
           <div class="prose prose-lg max-w-none">
             <p>
-              Our mission is to educate the public about the historic Nevada County Narrow Gauge Railroad 
-              through our meticulously crafted On3 scale model railroad. The original N.C.N.G. railroad operated 
-              from 1875 to 1942, serving the gold mining communities of Nevada City, Grass Valley, and 
-              connecting them to the transcontinental railroad at Colfax.
+              The layout interprets the Nevada County Narrow Gauge Railroad through an operating On3 scale model.
+              The original line ran from Colfax to Nevada City by way of Chicago Park and Grass Valley, carrying
+              passengers, freight, and mining supplies through western Nevada County.
             </p>
             <p>
-              Through accurate modeling of the locomotives, rolling stock, structures, and scenery, 
-              we bring this important piece of California history to life for new generations.
+              Volunteers research, build, wire, maintain, and operate the layout so visitors can see the trains,
+              structures, and local scenes together instead of only reading about them.
             </p>
           </div>
         </div>
@@ -85,7 +81,7 @@ const timeline = [
   <!-- Timeline -->
   <section class="py-16 bg-cream">
     <div class="container max-w-4xl">
-      <SectionHeader eyebrow="Our History" title="A Timeline of Preservation" />
+      <SectionHeader eyebrow="Our History" title="A Brief Timeline" />
       <div class="space-y-6">
         {timeline.map((item, index) => (
           <div class="flex gap-4 items-start">
@@ -176,27 +172,31 @@ const timeline = [
       </div>
 
       <div class="mt-12">
-        <h3 class="text-xl font-bold mb-3">Towns &amp; Scenes</h3>
-        <p class="text-gray-600 mb-4">
-          The layout recreates the three major towns along the original line:
-        </p>
-        <div class="grid sm:grid-cols-3 gap-4">
-          <div class="bg-cream p-5 rounded-xl">
-            <h4 class="font-bold text-primary">Nevada City</h4>
-            <p class="text-gray-600 text-sm">Northern terminus of the line</p>
+          <h3 class="text-xl font-bold mb-3">Towns &amp; Scenes</h3>
+          <p class="text-gray-600 mb-4">
+            The layout recreates key communities, stops, and scenic details along the original line:
+          </p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-cream p-5 rounded-xl">
+              <h4 class="font-bold text-primary">Nevada City</h4>
+              <p class="text-gray-600 text-sm">Northern terminus of the line</p>
+            </div>
+            <div class="bg-cream p-5 rounded-xl">
+              <h4 class="font-bold text-primary">Grass Valley</h4>
+              <p class="text-gray-600 text-sm">Heart of the mining district</p>
+            </div>
+            <div class="bg-cream p-5 rounded-xl">
+              <h4 class="font-bold text-primary">Chicago Park</h4>
+              <p class="text-gray-600 text-sm">Community stop along the original line</p>
+            </div>
+            <div class="bg-cream p-5 rounded-xl">
+              <h4 class="font-bold text-primary">Colfax</h4>
+              <p class="text-gray-600 text-sm">Connection to SP mainline</p>
+            </div>
           </div>
-          <div class="bg-cream p-5 rounded-xl">
-            <h4 class="font-bold text-primary">Grass Valley</h4>
-            <p class="text-gray-600 text-sm">Heart of the mining district</p>
-          </div>
-          <div class="bg-cream p-5 rounded-xl">
-            <h4 class="font-bold text-primary">Colfax</h4>
-            <p class="text-gray-600 text-sm">Connection to SP mainline</p>
-          </div>
-        </div>
-        <p class="text-gray-600 mt-4">
-          Plus scenic highlights like the Bear River Bridge and gold mining operations.
-        </p>
+          <p class="text-gray-600 mt-4">
+            Plus scenic highlights like Town Talk, the Bear River Bridge, gold mining operations, and other familiar local scenes.
+          </p>
       </div>
     </div>
   </section>
@@ -217,19 +217,19 @@ const timeline = [
     </div>
     <div class="container relative z-10 text-center max-w-2xl">
       <Icon name="solar:users-group-rounded-bold" class="w-12 h-12 text-amber-300 mx-auto mb-4" />
-      <h2 class="text-3xl font-bold mb-4">All-Volunteer Organization</h2>
+      <h2 class="text-3xl font-bold mb-4">Built and Run by Volunteers</h2>
       <p class="text-xl text-gray-200 mb-6">
-        The N.C.N.G. Historical Model Railroad is run entirely by dedicated volunteers
-        who give their time and skills to preserve this piece of California history.
+        The layout is built, maintained, and operated by volunteers who contribute carpentry,
+        wiring, scenery, research, and operating time.
       </p>
       <p class="text-sm text-gray-300 mb-8">
         <strong>Note:</strong> We are a separate organization not affiliated with 
         other museums or groups.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <Button href={`${base}/donate`} variant="white">Support Our Mission</Button>
+        <Button href={`${base}/donate`} variant="white">Support the Layout</Button>
         <Button href={`${base}/volunteer`} variant="outline" class="border-white text-white hover:bg-white hover:text-primary">
-          Join Our Team
+          Volunteer With Us
         </Button>
       </div>
     </div>
@@ -246,7 +246,7 @@ const timeline = [
             <span>Nevada County Fairgrounds<br />Grass Valley, California</span>
           </address>
           <p class="text-gray-600">
-            Open during major fairground events, special open houses, and by special arrangement.
+            Open during fairground events, open houses, regular work sessions, and by arrangement.
           </p>
           <Button href={`${base}/events`} class="mt-4">View Events</Button>
         </div>

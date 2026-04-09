@@ -9,7 +9,7 @@ Thanks for helping improve the N.C.N.G. Historical Model Railroad website! This 
 To edit content on the website, you need **collaborator access** to the GitHub repository. Here's how to get it:
 
 1. Create a free [GitHub account](https://github.com/signup) if you don't have one
-2. Email **info@ncngmodelrailroad.org** or ask the webmaster to add you as a collaborator
+2. Ask the webmaster or websitesite admin to add you as a collaborator
 3. Accept the invitation you receive from GitHub (check your email)
 4. You're all set — you can now use [Pages CMS](https://app.pagescms.org/djdefi/ncngmodelrailroad.org) or edit files directly on GitHub
 

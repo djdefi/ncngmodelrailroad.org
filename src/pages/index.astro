@@ -30,12 +30,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <h1 id="hero-title" class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white leading-[1.1]" style="font-family: 'Archivo Black', serif;">
           Nevada County<br />Narrow Gauge
         </h1>
-        <p class="text-sm uppercase tracking-[0.2em] text-gray-400 font-medium mb-6">Historical Model Railroad</p>
+        <p class="text-sm uppercase tracking-[0.2em] text-gray-200 font-medium mb-6">Historical Model Railroad</p>
         <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl">
-          An On3 scale model preserving the railroad that connected Nevada City, Grass Valley, and Colfax from 1875 to 1942.
+          An On3 scale model preserving the railroad that connected Nevada City, Grass Valley, Chicago Park, and Colfax from 1875 to 1942.
         </p>
         <div class="flex flex-wrap gap-4">
-          <Button href={`${base}/about`} size="lg">Discover Our Story</Button>
+          <Button href={`${base}/about`} size="lg">About the Layout</Button>
           <Button href={`${base}/events`} variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-gray-900">
             Visit Us
           </Button>
@@ -51,15 +51,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <div class="lg:col-span-3">
           <span class="text-primary font-semibold uppercase tracking-wider text-sm">About the Layout</span>
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 mb-6 leading-tight">
-            Where California's Railroad Heritage<br class="hidden lg:block" />
-            Comes Alive
+            A Working Model of the N.C.N.G.
           </h2>
           <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-            The N.C.N.G. Historical Model Railroad is a historically accurate and operating On3 scale model 
-            of the famous Nevada County Narrow Gauge Railroad. Built by volunteers over nearly four decades, 
-            our layout recreates the three towns along the original line — <strong>Nevada City</strong>, 
-            <strong>Grass Valley</strong>, and <strong>Colfax</strong> — along with scenic highlights 
-            like the Bear River Bridge.
+            Built by volunteers since 1986, the layout interprets the Nevada County Narrow Gauge Railroad
+            in operating On3 scale. It follows the line through <strong>Nevada City</strong>,
+            <strong>Grass Valley</strong>, <strong>Chicago Park</strong>, and <strong>Colfax</strong>,
+            with scenes such as Town Talk and the Bear River Bridge.
           </p>
           <div class="flex flex-wrap gap-6 text-sm text-gray-600">
             <span class="flex items-center gap-2">
@@ -98,9 +96,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section class="py-20 bg-cream">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-primary font-semibold uppercase tracking-wider text-sm">The Experience</span>
-        <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">More Than a Model Railroad</h2>
-        <p class="text-gray-600">Every detail tells a story of Nevada County's railroad era.</p>
+        <span class="text-primary font-semibold uppercase tracking-wider text-sm">What You&apos;ll See</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Highlights of the Layout</h2>
+        <p class="text-gray-600">Trains, local scenes, and operating details that make the line easy to follow.</p>
       </div>
       
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -110,7 +108,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           </div>
           <div>
             <h3 class="font-bold text-lg mb-2">Historically Accurate Roster</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Every locomotive and piece of rolling stock faithfully reproduces the original N.C.N.G. equipment, from Engine #1 "Grass Valley" to Engine #8 from the Denver &amp; Rio Grande.</p>
+            <p class="text-gray-600 text-sm leading-relaxed">The roster includes models based on original N.C.N.G. equipment, from Engine #1 &quot;Grass Valley&quot; to Engine #8 from the Denver &amp; Rio Grande.</p>
           </div>
         </div>
 
@@ -120,7 +118,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           </div>
           <div>
             <h3 class="font-bold text-lg mb-2">"Train Cam TV"</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">On-board cameras give you an engineer's-eye view of the layout, riding right along with the trains through towns and over bridges.</p>
+            <p class="text-gray-600 text-sm leading-relaxed">On-board cameras let visitors ride along through towns, yards, and bridge scenes from a train-level view.</p>
           </div>
         </div>
 
@@ -130,7 +128,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           </div>
           <div>
             <h3 class="font-bold text-lg mb-2">DCC Digital Control</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Modern DCC technology brings precise control of multiple trains simultaneously, with realistic sound and lighting effects.</p>
+            <p class="text-gray-600 text-sm leading-relaxed">DCC control lets operators run multiple trains with synchronized lighting, sound, and smooth low-speed movement.</p>
           </div>
         </div>
 
@@ -139,8 +137,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <Icon name="solar:history-bold" class="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-2">Living History</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">The layout recreates the three major towns — Nevada City, Grass Valley, and Colfax — plus scenic points including the famous Bear River Bridge.</p>
+            <h3 class="font-bold text-lg mb-2">Scenes Along the Line</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">The layout follows the line from Colfax to Nevada City, including Chicago Park, Town Talk, and the Bear River Bridge.</p>
           </div>
         </div>
       </div>
@@ -153,7 +151,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="max-w-4xl mx-auto">
         <SectionHeader eyebrow="Come See Us" title="When We're Open" />
         
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           <div class="bg-cream rounded-xl p-6 border border-amber-100">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -162,6 +160,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               <h3 class="font-bold">Fairground Events</h3>
             </div>
             <p class="text-gray-600 text-sm">We're open during major Nevada County Fairgrounds events throughout the year. Check our events page for specific dates.</p>
+          </div>
+
+          <div class="bg-cream rounded-xl p-6 border border-amber-100">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                <Icon name="solar:settings-bold" class="w-5 h-5 text-primary" />
+              </div>
+              <h3 class="font-bold">Work Sessions</h3>
+            </div>
+            <p class="text-gray-600 text-sm">Join us during regular work sessions, usually the first Saturday and third Wednesday from 11 AM to 2 PM, to meet volunteers and see what is underway.</p>
           </div>
 
           <div class="bg-cream rounded-xl p-6 border border-amber-100">
@@ -217,7 +225,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <span>
             Nevada County Fairgrounds<br />
             Grass Valley, CA<br />
-            <span class="text-sm text-gray-400">Free admission during events · Donations appreciated</span>
+            <span class="text-sm text-gray-200">Free admission during events · Donations appreciated</span>
           </span>
         </address>
         <div class="flex flex-wrap gap-4">
@@ -240,16 +248,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <div class="relative z-10">
               <div class="flex items-center gap-3 mb-4">
                 <Icon name="solar:heart-bold" class="w-8 h-8 text-amber-300" />
-                <span class="text-amber-300 font-semibold uppercase tracking-wider text-sm">Support Our Mission</span>
+                <span class="text-amber-300 font-semibold uppercase tracking-wider text-sm">Support the Layout</span>
               </div>
-              <h2 class="text-2xl md:text-3xl font-bold mb-4">Help Keep This History Alive</h2>
+              <h2 class="text-2xl md:text-3xl font-bold mb-4">Help Maintain the Layout</h2>
               <p class="text-gray-200 mb-6 leading-relaxed">
-                As an all-volunteer organization, every bit of support goes directly to maintaining 
-                and improving this piece of California railroad history. Your help
-                makes a real difference.
+                Donations help cover upkeep, repairs, scenery work, rolling stock, wiring,
+                and improvements to the building and display.
               </p>
               <Button href={`${base}/donate`} variant="white">
-                Support Us
+                Support the Layout
               </Button>
             </div>
             <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-white/5 rounded-full"></div>
@@ -265,7 +272,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
               <h2 class="text-xl md:text-2xl font-bold mb-4 text-gray-900">Become a Volunteer</h2>
               <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                Model railroad enthusiast or history buff — there's a place for you on our team.
+                If you like trains, local history, scenery, wiring, carpentry, or talking with visitors, there&apos;s useful work to do.
               </p>
             </div>
             <Button href={`${base}/volunteer`}>

@@ -107,7 +107,8 @@ content:
           values:
             - Historic
             - Layout
-            - Events
+            - "Volunteer Work"
+            - "Fairgrounds & Events"
 
   - name: trains
     label: Engine Roster
@@ -134,6 +135,12 @@ content:
         type: string
         required: true
         description: "e.g. 4-4-0, 2-6-0"
+      - name: source
+        label: Builder / Previous Owner
+        type: string
+      - name: rosterEntry
+        label: Roster Note
+        type: string
       - name: notes
         label: Notes
         type: text

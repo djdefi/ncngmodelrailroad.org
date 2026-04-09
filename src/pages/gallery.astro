@@ -5,6 +5,7 @@ import { organization } from '../config/organization';
 import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const getCategoryKey = (category: string) => category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const galleryEntries = await getCollection('gallery');
 const photos = galleryEntries.map(entry => ({
@@ -12,12 +13,17 @@ const photos = galleryEntries.map(entry => ({
   alt: entry.data.title,
   caption: entry.data.caption,
   category: entry.data.category,
+  categoryKey: getCategoryKey(entry.data.category),
 }));
 
-const categories = [...new Set(photos.map(p => p.category))];
+const categoryOrder = ['Layout', 'Historic', 'Volunteer Work', 'Fairgrounds & Events'];
+const categories = [
+  ...categoryOrder.filter(category => photos.some(photo => photo.category === category)),
+  ...[...new Set(photos.map(photo => photo.category))].filter(category => !categoryOrder.includes(category)),
+];
 ---
 
-<BaseLayout title="Photo Gallery - N.C.N.G. Historical Model Railroad" description="Browse our collection of historic photographs and detailed On3 scale model railroad images from the Nevada County Narrow Gauge Historical Model Railroad at the Nevada County Fairgrounds." image="/images/trestle-bridge-wide.jpg">
+<BaseLayout title="Photo Gallery - N.C.N.G. Historical Model Railroad" description="Browse historic railroad photos, layout scenes, volunteer work, and fairgrounds images from the N.C.N.G. Historical Model Railroad." image="/images/trestle-bridge-wide.jpg">
   <!-- Hero Section -->
   <section class="relative py-20 md:py-28 bg-gray-900 text-white overflow-hidden">
     <div class="absolute inset-0 opacity-30">
@@ -36,8 +42,7 @@ const categories = [...new Set(photos.map(p => p.category))];
       <div class="max-w-3xl">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Photo Gallery</h1>
         <p class="text-xl text-gray-300">
-          Explore our collection of historic photographs and images from our meticulously 
-          crafted On3 scale model railroad layout.
+          Browse historic railroad photos, layout scenes, volunteer work, and fairgrounds views.
         </p>
       </div>
     </div>
@@ -46,13 +51,13 @@ const categories = [...new Set(photos.map(p => p.category))];
   <!-- Category Filter -->
   <section class="py-6 bg-white border-b sticky top-0 z-30">
     <div class="container">
-      <div class="flex flex-wrap gap-3 justify-center">
-        <button class="category-btn active" data-category="all" aria-pressed="true">All Photos</button>
-        {categories.map(cat => (
-          <button class="category-btn" data-category={cat.toLowerCase()} aria-pressed="false">{cat}</button>
-        ))}
+        <div class="flex flex-wrap gap-3 justify-center">
+          <button type="button" class="category-btn active" data-category="all" aria-pressed="true">All Photos</button>
+          {categories.map(cat => (
+          <button type="button" class="category-btn" data-category={getCategoryKey(cat)} aria-pressed="false">{cat}</button>
+          ))}
+        </div>
       </div>
-    </div>
   </section>
 
   <!-- Photo Grid -->
@@ -62,7 +67,7 @@ const categories = [...new Set(photos.map(p => p.category))];
         {photos.map((photo, index) => (
           <article 
             class="photo-card group cursor-pointer" 
-            data-category={photo.category.toLowerCase()}
+            data-category={photo.categoryKey}
             data-index={index}
             tabindex="0"
             role="button"
@@ -86,9 +91,9 @@ const categories = [...new Set(photos.map(p => p.category))];
                   <p class="text-white text-sm">{photo.caption}</p>
                 </div>
               </div>
-              <button class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-label="View full size">
+              <span class="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                 <Icon name="solar:magnifer-bold" class="w-5 h-5 text-gray-700" />
-              </button>
+              </span>
             </div>
           </article>
         ))}
@@ -102,8 +107,7 @@ const categories = [...new Set(photos.map(p => p.category))];
       <div class="max-w-2xl mx-auto text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Have Photos to Share?</h2>
         <p class="text-gray-600 mb-6">
-          If you have historic photos of the Nevada County Narrow Gauge Railroad or photos 
-          from your visits to our layout, we'd love to add them to our collection.
+          If you have N.C.N.G. photos, layout images, or fairgrounds shots to share, send us a note.
         </p>
         <a href={`mailto:${organization.contact.email}`} class="btn-primary">
           Contact Us

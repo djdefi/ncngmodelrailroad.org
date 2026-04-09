@@ -30,7 +30,7 @@ const gallery = defineCollection({
     title: z.string(),
     image: z.string(),
     caption: z.string(),
-    category: z.enum(['Historic', 'Layout', 'Events']),
+    category: z.enum(['Historic', 'Layout', 'Volunteer Work', 'Fairgrounds & Events']),
   }),
 });
 
@@ -40,6 +40,8 @@ const trains = defineCollection({
     number: z.string(),
     name: z.string(),
     wheel: z.string(),
+    source: z.string().optional(),
+    rosterEntry: z.string().optional(),
     notes: z.string(),
     order: z.number(),
   }),

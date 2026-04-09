@@ -15,17 +15,17 @@ const supportWays = [
 ];
 ---
 
-<BaseLayout title="Support Us | N.C.N.G. Model Railroad" description="Support the Nevada County Narrow Gauge Historical Model Railroad. Volunteer your time or donate materials to help preserve California railroad history.">
+<BaseLayout title="Support Us | N.C.N.G. Model Railroad" description="Support the N.C.N.G. Historical Model Railroad with volunteer time, donated materials, or financial contributions.">
   <!-- Hero -->
   <section class="py-20 bg-primary text-white">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6">
-          Support Railroad History
+          Support the Layout
         </h1>
         <p class="text-xl text-gray-200 mb-4">
-          Help us preserve and share the story of the
-          Nevada County Narrow Gauge Railroad with future generations.
+          Volunteer time, donated materials, and financial support help keep the layout running
+          and open to the public.
         </p>
         <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
           <Icon name="solar:users-group-rounded-bold" class="w-5 h-5" />
@@ -46,8 +46,8 @@ const supportWays = [
           <div class="mb-4"><Icon name="solar:users-group-rounded-bold" class="w-10 h-10 text-primary" /></div>
           <h3 class="text-xl font-bold mb-3">Volunteer Your Time</h3>
           <p class="text-gray-600 mb-6">
-            We're an all-volunteer organization and always looking for helping hands.
-            No model railroad experience necessary—just enthusiasm for history and trains!
+            We always need people who can help operate trains, work on scenery, maintain equipment,
+            or talk with visitors. No prior model railroad experience is required.
           </p>
           <Button href={`${base}/volunteer`} variant="primary" class="w-full text-center">
             Learn About Volunteering
@@ -74,19 +74,28 @@ const supportWays = [
       </div>
 
       <!-- Monetary donations notice -->
-      <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200 text-center">
-        <div class="mb-4"><Icon name="solar:info-circle-bold" class="w-10 h-10 text-blue-600" /></div>
-        <h3 class="text-xl font-bold mb-3">Monetary Donations</h3>
-        <p class="text-gray-700 mb-2">
-          We are currently updating our donation processing. Online donations are temporarily unavailable.
-        </p>
-        <p class="text-gray-700">
-          If you'd like to make a financial contribution, please contact us at
-          <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline font-medium">
-            {organization.contact.email}
-          </a>
-          and we'll coordinate directly.
-        </p>
+      <div class="bg-amber-50 p-8 rounded-2xl border border-amber-200" aria-labelledby="monetary-donations-title">
+        <div class="flex flex-col gap-5 md:flex-row md:items-start">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+            <Icon name="solar:heart-bold" class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h3 id="monetary-donations-title" class="text-xl font-bold mb-3 text-gray-900">Monetary Donations</h3>
+            <p class="text-gray-800 mb-3">
+              We&apos;re updating our donation processing, so online donations are temporarily unavailable.
+            </p>
+            <p class="text-gray-700 mb-5">
+              To make a financial contribution, email{' '}
+              <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline font-semibold">
+                {organization.contact.email}
+              </a>
+              {' '}and we&apos;ll coordinate directly.
+            </p>
+            <a href={`mailto:${organization.contact.email}`} class="btn-primary">
+              Email Us About Donations
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -95,10 +104,9 @@ const supportWays = [
   <section class="py-16 bg-gray-50">
     <div class="container max-w-4xl">
       <h2 class="text-3xl font-bold text-center mb-4">Where Your Support Goes</h2>
-      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-        As an all-volunteer organization, every bit of help goes directly to
-        preserving and improving the layout.
-      </p>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Support goes straight to maintenance, scenery, electrical work, rolling stock, and building upkeep.
+        </p>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {supportWays.map(way => (
@@ -115,10 +123,10 @@ const supportWays = [
   <!-- CTA -->
   <section class="py-16 bg-gray-900 text-white">
     <div class="container text-center max-w-2xl">
-      <h2 class="text-3xl font-bold mb-4">Every Bit of Help Makes a Difference</h2>
+      <h2 class="text-3xl font-bold mb-4">Want to Help?</h2>
       <p class="text-gray-300 mb-8">
-        Whether you can spare an afternoon or a box of old railroad memorabilia,
-        your support helps us continue our mission of preserving Nevada County railroad history.
+        Whether you can volunteer, donate materials, or make a financial contribution,
+        it all helps keep the layout operating.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
         <Button href={`${base}/volunteer`} variant="outline" class="border-white text-white hover:bg-white hover:text-gray-900">

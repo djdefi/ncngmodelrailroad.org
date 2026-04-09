@@ -46,8 +46,8 @@
 /* Dark mode - automatic, respects OS preference */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #EF4444;
-    --color-primary-dark: #DC2626;
+    --color-primary: #DC2626;
+    --color-primary-dark: #B91C1C;
     --color-primary-light: #F87171;
 
     --color-secondary: #C8855F;
@@ -63,7 +63,7 @@
     --color-accent: #4ADE80;
     --color-gold: #F59E0B;
 
-    --focus-ring: 0 0 0 3px rgba(239, 68, 68, 0.5);
+    --focus-ring: 0 0 0 3px rgba(220, 38, 38, 0.45);
   }
 
   /* Card backgrounds */
@@ -94,6 +94,14 @@
 
   .text-gray-700 {
     color: #C0C0C0 !important;
+  }
+
+  .text-gray-500 {
+    color: #CBD5E1 !important;
+  }
+
+  .text-gray-400 {
+    color: #D1D5DB !important;
   }
 
   .text-gray-900 {

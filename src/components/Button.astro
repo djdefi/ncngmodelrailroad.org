@@ -17,11 +17,11 @@ const {
   external = false
 } = Astro.props;
 
-const baseStyles = 'inline-flex items-center justify-center gap-2 font-bold rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2';
+const baseStyles = 'inline-flex items-center justify-center gap-2 font-bold rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2';
 
 const variants = {
   primary: 'bg-primary text-white hover:bg-primary-dark focus:ring-primary',
-  outline: 'border-2 border-current hover:bg-current hover:text-white focus:ring-current',
+  outline: 'border-2 border-current bg-white/10 backdrop-blur hover:bg-current hover:text-white focus:ring-current',
   white: 'bg-white text-primary hover:bg-gray-100 focus:ring-white'
 };
 

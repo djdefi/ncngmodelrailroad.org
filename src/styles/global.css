@@ -18,15 +18,15 @@
 
 /* Design System Variables */
 :root {
-  /* Primary Colors - Railroad Heritage Red */
-  --color-primary: #8B0000;
-  --color-primary-dark: #5C0000;
-  --color-primary-light: #B22222;
+  /* Primary Colors - refined railroad red */
+  --color-primary: #8A1F17;
+  --color-primary-dark: #5E130F;
+  --color-primary-light: #B9493E;
   
-  /* Secondary Colors - Warm Earth Tones */
-  --color-secondary: #8B4513;
-  --color-secondary-dark: #5C2E0A;
-  --color-secondary-light: #A0522D;
+  /* Secondary Colors - warm earth tones */
+  --color-secondary: #8B5E34;
+  --color-secondary-dark: #5F3A1C;
+  --color-secondary-light: #B88455;
   
   /* Neutral Colors */
   --color-bg: #FCF8F1;
@@ -44,6 +44,9 @@
   /* System tokens */
   --radius-card: 1.25rem;
   --radius-pill: 999px;
+  --size-brand-mark: 2.75rem;
+  --tracking-kicker: 0.25em;
+  /* Diagonal for button depth; vertical for card surface sheen. */
   --gradient-direction-diagonal: 135deg;
   --gradient-direction-vertical: 180deg;
   --shadow-soft: 0 18px 55px rgba(48, 28, 15, 0.10);
@@ -399,6 +402,15 @@ select:focus-visible {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.hero-kicker {
+  letter-spacing: var(--tracking-kicker);
+}
+
+.brand-mark {
+  width: var(--size-brand-mark);
+  height: var(--size-brand-mark);
 }
 
 .clean-card {

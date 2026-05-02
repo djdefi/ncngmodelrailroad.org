@@ -50,6 +50,8 @@
   --color-kicker-bg: rgba(0, 0, 0, 0.20);
   --color-card-border-soft: rgba(var(--color-secondary-rgb), 0.18);
   --color-card-border-hover: rgba(var(--color-primary-rgb), 0.28);
+  --color-hero-overlay-rgb: 20, 14, 12;
+  --color-hero-copy: rgba(255, 255, 255, 0.88);
 
   /* System tokens */
   --radius-card: 1.25rem;
@@ -250,7 +252,6 @@ body {
   background-image:
     radial-gradient(circle at top left, rgba(var(--color-gold-rgb), 0.10), transparent 30rem),
     radial-gradient(circle at bottom right, rgba(var(--color-primary-rgb), 0.08), transparent 28rem);
-  background-attachment: fixed;
   color: var(--color-text);
   line-height: 1.6;
   text-rendering: optimizeLegibility;
@@ -447,6 +448,25 @@ select:focus-visible {
 .brand-mark {
   width: var(--size-brand-mark);
   height: var(--size-brand-mark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: white;
+  font-family: 'Archivo Black', 'Archivo Black Fallback', serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.hero-label {
+  color: var(--color-hero-copy);
+  letter-spacing: 0.2em;
+}
+
+.hero-copy {
+  color: var(--color-hero-copy);
 }
 
 .clean-card {
@@ -468,8 +488,8 @@ select:focus-visible {
 
 .hero-vignette {
   background:
-    linear-gradient(90deg, rgba(20, 14, 12, 0.86), rgba(20, 14, 12, 0.45) 52%, rgba(20, 14, 12, 0.14)),
-    linear-gradient(0deg, rgba(20, 14, 12, 0.72), transparent 42%);
+    linear-gradient(90deg, rgba(var(--color-hero-overlay-rgb), 0.86), rgba(var(--color-hero-overlay-rgb), 0.45) 52%, rgba(var(--color-hero-overlay-rgb), 0.14)),
+    linear-gradient(0deg, rgba(var(--color-hero-overlay-rgb), 0.72), transparent 42%);
 }
 
 .section-shell {

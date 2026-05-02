@@ -44,6 +44,8 @@
   /* System tokens */
   --radius-card: 1.25rem;
   --radius-pill: 999px;
+  --gradient-direction-diagonal: 135deg;
+  --gradient-direction-vertical: 180deg;
   --shadow-soft: 0 18px 55px rgba(48, 28, 15, 0.10);
   --shadow-card: 0 12px 30px rgba(48, 28, 15, 0.08), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
   
@@ -331,7 +333,7 @@ select:focus-visible {
   font-weight: 600;
   transition: all 0.2s;
   color: white;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: linear-gradient(var(--gradient-direction-diagonal), var(--color-primary), var(--color-primary-dark));
   box-shadow: 0 12px 24px rgba(138, 31, 23, 0.20);
 }
 
@@ -400,7 +402,7 @@ select:focus-visible {
 }
 
 .clean-card {
-  background: linear-gradient(180deg, var(--color-surface), var(--color-surface-soft));
+  background: linear-gradient(var(--gradient-direction-vertical), var(--color-surface), var(--color-surface-soft));
   border: 1px solid rgba(138, 94, 52, 0.18);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);

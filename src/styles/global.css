@@ -3,11 +3,13 @@
 @theme {
   /* Primary Colors - refined railroad red */
   --color-primary: #8A1F17;
+  --color-primary-rgb: 138, 31, 23;
   --color-primary-dark: #5E130F;
   --color-primary-light: #B9493E;
 
   /* Secondary Colors - warm earth tones */
   --color-secondary: #8B5E34;
+  --color-secondary-rgb: 139, 94, 52;
   --color-secondary-dark: #5F3A1C;
   --color-secondary-light: #B88455;
 
@@ -20,11 +22,13 @@
 :root {
   /* Primary Colors - refined railroad red */
   --color-primary: #8A1F17;
+  --color-primary-rgb: 138, 31, 23;
   --color-primary-dark: #5E130F;
   --color-primary-light: #B9493E;
   
   /* Secondary Colors - warm earth tones */
   --color-secondary: #8B5E34;
+  --color-secondary-rgb: 139, 94, 52;
   --color-secondary-dark: #5F3A1C;
   --color-secondary-light: #B88455;
   
@@ -40,6 +44,12 @@
   /* Accent Colors */
   --color-accent: #2F5D46;
   --color-gold: #B9821B;
+  --color-gold-rgb: 185, 130, 27;
+  --color-kicker-text: #FCD34D;
+  --color-kicker-border: rgba(252, 211, 77, 0.40);
+  --color-kicker-bg: rgba(0, 0, 0, 0.20);
+  --color-card-border-soft: rgba(var(--color-secondary-rgb), 0.18);
+  --color-card-border-hover: rgba(var(--color-primary-rgb), 0.28);
 
   /* System tokens */
   --radius-card: 1.25rem;
@@ -47,7 +57,7 @@
   --size-brand-mark: 2.75rem;
   --tracking-kicker: 0.25em;
   --tracking-eyebrow: 0.12em;
-  /* Diagonal for button depth; vertical for card surface sheen. */
+  /* Diagonal for button depth; Vertical for card surface sheen. */
   --gradient-direction-diagonal: 135deg;
   --gradient-direction-vertical: 180deg;
   --shadow-soft: 0 18px 55px rgba(48, 28, 15, 0.10);
@@ -61,10 +71,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-primary: #DC2626;
+    --color-primary-rgb: 220, 38, 38;
     --color-primary-dark: #B91C1C;
     --color-primary-light: #F87171;
 
     --color-secondary: #C8855F;
+    --color-secondary-rgb: 200, 133, 95;
     --color-secondary-dark: #A0694A;
     --color-secondary-light: #D4976E;
 
@@ -78,6 +90,7 @@
 
     --color-accent: #4ADE80;
     --color-gold: #F59E0B;
+    --color-gold-rgb: 245, 158, 11;
 
     --focus-ring: 0 0 0 3px rgba(220, 38, 38, 0.45);
   }
@@ -236,8 +249,8 @@ body {
   font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(circle at top left, rgba(185, 130, 27, 0.10), transparent 30rem),
-    radial-gradient(circle at bottom right, rgba(138, 31, 23, 0.08), transparent 28rem);
+    radial-gradient(circle at top left, rgba(var(--color-gold-rgb), 0.10), transparent 30rem),
+    radial-gradient(circle at bottom right, rgba(var(--color-primary-rgb), 0.08), transparent 28rem);
   background-attachment: fixed;
   color: var(--color-text);
   line-height: 1.6;
@@ -342,7 +355,7 @@ select:focus-visible {
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-dark);
+  background: linear-gradient(var(--gradient-direction-diagonal), var(--color-primary-dark), var(--color-primary));
   transform: translateY(-1px);
 }
 
@@ -426,6 +439,10 @@ select:focus-visible {
 
 .hero-kicker {
   letter-spacing: var(--tracking-kicker);
+  color: var(--color-kicker-text);
+  border-color: var(--color-kicker-border);
+  background-color: var(--color-kicker-bg);
+  backdrop-filter: blur(8px);
 }
 
 .brand-mark {
@@ -435,7 +452,7 @@ select:focus-visible {
 
 .clean-card {
   background: linear-gradient(var(--gradient-direction-vertical), var(--color-surface), var(--color-surface-soft));
-  border: 1px solid rgba(138, 94, 52, 0.18);
+  border: 1px solid var(--color-card-border-soft);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
@@ -447,7 +464,7 @@ select:focus-visible {
 .hover-lift:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-soft);
-  border-color: rgba(138, 31, 23, 0.28);
+  border-color: var(--color-card-border-hover);
 }
 
 .hero-vignette {

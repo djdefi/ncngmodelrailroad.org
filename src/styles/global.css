@@ -59,8 +59,8 @@
   --size-brand-mark: 2.75rem;
   --tracking-kicker: 0.25em;
   --tracking-eyebrow: 0.12em;
-  --gradient-direction-diagonal: 135deg; /* Button depth. */
-  --gradient-direction-vertical: 180deg; /* Card surface sheen. */
+  --gradient-direction-diagonal: 135deg; /* Used for button depth effects. */
+  --gradient-direction-vertical: 180deg; /* Used for card surface sheen effects. */
   --shadow-soft: 0 18px 55px rgba(48, 28, 15, 0.10);
   --shadow-card: 0 12px 30px rgba(48, 28, 15, 0.08), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
   

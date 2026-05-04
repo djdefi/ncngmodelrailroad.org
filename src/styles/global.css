@@ -494,8 +494,8 @@ select:focus-visible {
 
 .section-shell {
   border-radius: calc(var(--radius-card) + 0.75rem);
-  background: rgba(255, 253, 249, 0.72);
-  border: 1px solid rgba(223, 207, 187, 0.72);
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
   box-shadow: var(--shadow-soft);
 }
 

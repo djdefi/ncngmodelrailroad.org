@@ -73,19 +73,26 @@ Color modes follow the operating system. There is no manual theme toggle.
 
 | Component | Props | Notes |
 |---|---|---|
-| `Button` | `variant` (`primary` \| `outline` \| `white`), `size` (`sm` \| `md` \| `lg`), `href`, `type`, `external` | Renders an `<a>` when `href` is set, else a `<button>`. |
+| `Button` | `variant` (`primary` \| `outline` \| `outline-inverse` \| `white`), `size` (`sm` \| `md` \| `lg`), `href`, `type`, `external` | Renders an `<a>` when `href` is set, else a `<button>`. |
 | `SectionHeader` | `title`, `eyebrow?`, `description?`, `as` (`h1` \| `h2` \| `h3`), `centered?` | Use `as="h1"` once per page for the page title. |
 | `PhotoCard` | `src`, `alt`, `caption?`, `aspectRatio` (`video` \| `square` \| `4/3`), `overlay?` | Lazy-loads, lifts on hover, optional caption overlay. |
 
 `BaseLayout` also takes a `noindex` prop to keep a page out of search and the
 sitemap (used by `/styleguide`).
 
+Use `outline` on page surfaces and `outline-inverse` on dark or photo backgrounds.
+The inverse variant uses white text and borders, then dark text on a white hover
+surface in both color schemes. Do not assemble it with competing color utilities.
+Both outline variants share their CSS with the matching `.btn-*` classes.
+`npm run a11y` checks their hover contrast in both color schemes, along with
+short-screen menu access and long-link reflow.
+
 ## Utility and component classes
 
 Defined in `global.css`, usable on any element:
 
 - **Layout:** `.page-container`, `.section`, `.section-alt`, `.section-shell`.
-- **Buttons:** `.btn-primary`, `.btn-outline` (the `Button` component is preferred in markup).
+- **Buttons:** `.btn-primary`, `.btn-outline`, `.btn-outline-inverse` (the `Button` component is preferred in markup).
 - **Cards:** `.card` + `.card-body`, `.clean-card`, `.hover-lift`.
 - **Labels:** `.eyebrow`, `.hero-kicker`, `.hero-label`, `.hero-copy`.
 - **Nav:** `.nav-link`, `.nav-link-icon`.
@@ -108,7 +115,7 @@ built stylesheet, so an element carrying it picks up Tailwind's breakpoint
 widths instead of this shell. The rules are harmless only because nothing in
 the markup uses the class.
 
-`.btn`, `.btn-primary`, and `.btn-outline` live in `@layer components` for the
+`.btn`, `.btn-primary`, `.btn-outline`, and `.btn-outline-inverse` live in `@layer components` for the
 same reason. They set `display` and `padding`, so as unlayered rules they beat
 any spacing utility placed next to them. Layering means `px-8` on a button now
 does what it says. Any class that sets a property a component already sets
@@ -117,6 +124,8 @@ for.
 
 ## Conventions
 
+- Keep the mobile navigation scrollable within the viewport, including short
+  landscape screens. Long text in `.prose` wraps rather than widening the page.
 - Reach for an existing token, component, or class before adding new CSS.
 - Use tokens, not raw hex, so dark and high-contrast modes keep working.
 - Add a brand color in the `@theme` block; add a semantic token in `:root`

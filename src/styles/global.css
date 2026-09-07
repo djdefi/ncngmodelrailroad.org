@@ -436,7 +436,8 @@ select:focus-visible {
     box-shadow: var(--focus-ring);
   }
 
-  .btn-outline {
+  .btn-outline,
+  .btn-outline-inverse {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -444,13 +445,29 @@ select:focus-visible {
     border-radius: var(--radius-pill);
     font-weight: 600;
     transition: all 0.2s;
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
+    border: 2px solid;
+  }
+
+  .btn-outline {
+    --button-outline-color: var(--color-primary);
+    border-color: var(--button-outline-color);
+    color: var(--button-outline-color);
   }
 
   .btn-outline:hover {
     background-color: var(--color-primary);
-    color: white;
+    color: var(--color-white);
+  }
+
+  .btn-outline-inverse {
+    border-color: var(--color-white);
+    background-color: color-mix(in srgb, var(--color-white) 10%, transparent);
+    color: var(--color-white);
+  }
+
+  .btn-outline-inverse:hover {
+    background-color: var(--color-white);
+    color: var(--color-gray-900);
   }
 }
 
@@ -622,6 +639,7 @@ blockquote {
 
 /* Rich text content theming (event bodies and similar) */
 .prose {
+  overflow-wrap: anywhere;
   --tw-prose-body: var(--color-text);
   --tw-prose-bold: var(--color-text);
   --tw-prose-links: var(--color-primary);
@@ -724,13 +742,12 @@ textarea:invalid:focus {
   h1, h2, h3, h4, h5, h6,
   .text-primary,
   .eyebrow,
-  .btn-outline,
   blockquote {
     color: var(--color-primary-light);
   }
 
   .btn-outline {
-    border-color: var(--color-primary-light);
+    --button-outline-color: var(--color-primary-light);
   }
 
   blockquote {
@@ -741,11 +758,9 @@ textarea:invalid:focus {
     color: var(--color-primary-light);
   }
 
-  /* Hover and group-hover states that turn text red must use the lighter red on
-     dark surfaces too. axe does not test hover, so these are easy to miss. The
-     about-page outline button hovers to a white background, so it is excluded
-     and keeps the darker red there. */
-  .hover\:text-primary:not(.hover\:bg-white):hover,
+  /* Text links need the lighter red on dark surfaces, including hover states.
+     Inverse outline buttons define their own white hover surface and dark text. */
+  .hover\:text-primary:hover,
   .group:hover .group-hover\:text-primary,
   .prose a:hover {
     color: var(--color-primary-light);

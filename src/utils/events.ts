@@ -1,4 +1,4 @@
-const PACIFIC_TIME_ZONE = 'America/Los_Angeles';
+export const PACIFIC_TIME_ZONE = 'America/Los_Angeles';
 
 const pacificDayFormatter = new Intl.DateTimeFormat('en-CA', {
   timeZone: PACIFIC_TIME_ZONE,

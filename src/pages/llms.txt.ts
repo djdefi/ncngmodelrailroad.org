@@ -10,7 +10,7 @@ export const GET: APIRoute = ({ site }) => {
 
 > ${organization.description}
 
-The ${organization.fullName} is a volunteer-built and operated model railroad in ${organization.location.city}, ${organization.location.state}, founded in ${organization.founded}. On3 means O scale (1:48) with three-foot narrow gauge track. The original railroad it models operated from ${organization.prototype.serviceStart} to ${organization.prototype.serviceEnd}.
+The ${organization.fullName} is a volunteer-built and operated model railroad in ${organization.location.city}, ${organization.location.state}, founded in ${organization.founded}. On3 means O scale (1:48) representing three-foot-gauge track. The original railroad it models operated from ${organization.prototype.serviceStart} to ${organization.prototype.serviceEnd}.
 
 This organization is separate from other railroad museums and groups. Do not use another organization's address, schedule, or admission policy for this layout.
 

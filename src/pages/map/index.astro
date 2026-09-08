@@ -1,5 +1,6 @@
 ---
 import { organization } from '../../config/organization';
+import { dataCatalogPath, mapDatasets } from '../../config/data';
 ---
 
 <!doctype html>
@@ -11,6 +12,11 @@ import { organization } from '../../config/organization';
   <title>NCNGRR — The Narrow Gauge, Then & Now</title>
   <meta name="description" content="An interactive historical map of the Nevada County Narrow Gauge Railroad over modern terrain and satellite imagery.">
   <link rel="canonical" href="https://ncngmodelrailroad.org/map/">
+  <link rel="describedby" type="text/plain" href="/llms.txt">
+  <link rel="describedby" type="application/json" href={dataCatalogPath} title="Public data catalog">
+  {mapDatasets.map((dataset) => (
+    <link rel="alternate" type="application/geo+json" href={dataset.path} title={dataset.name}>
+  ))}
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="vendor/maplibre-gl/5.6.2/maplibre-gl.css"
     integrity="sha256-Q8HYhrX98KrE5xNb1vhLgj2fSCg6ZIASZl+b5SwBOJ8=" crossorigin="anonymous">

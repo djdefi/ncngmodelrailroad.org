@@ -20,6 +20,8 @@ const {
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 import { organization } from '../config/organization';
+import { contentUse } from '../config/contentUse';
+import { contentFeeds, dataCatalogPath } from '../config/data';
 
 // Self-hosted fonts (no third-party CDN, no visitor IP sent to Google).
 import '@fontsource/archivo-black';
@@ -47,6 +49,10 @@ function navCurrent(href?: string): 'page' | 'location' | undefined {
   if (currentPath === path) return 'page';
   return path !== '/' && currentPath.startsWith(`${path}/`) ? 'location' : undefined;
 }
+
+const pageFeed = Object.values(contentFeeds).find(
+  (feed) => `${base}${feed.page}` === Astro.url.pathname.replace(/\/$/, ''),
+);
 
 const now = new Date();
 const footerEvents = (await getCollection('events'))
@@ -159,6 +165,11 @@ const breadcrumbSchema = {
     
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="describedby" type="text/plain" href={`${base}/llms.txt`} />
+    <link rel="describedby" type="application/json" href={`${base}${dataCatalogPath}`} title="Public data catalog" />
+    {pageFeed && (
+      <link rel="alternate" type="application/json" href={`${base}${pageFeed.path}`} title={pageFeed.name} />
+    )}
     
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -393,6 +404,8 @@ const breadcrumbSchema = {
             <a href={`${base}/privacy`} class="inline-block py-1 underline hover:text-white">Privacy</a>
             <span class="mx-2" aria-hidden="true">·</span>
             <a href={`${base}/accessibility`} class="inline-block py-1 underline hover:text-white">Accessibility</a>
+            <span class="mx-2" aria-hidden="true">·</span>
+            <a href={`${base}${contentUse.path}`} class="inline-block py-1 underline hover:text-white">{contentUse.title}</a>
           </p>
         </div>
       </div>

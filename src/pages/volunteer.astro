@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactCard from '../components/ContactCard.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
+import { organization } from '../config/organization';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const volunteerPhotoIds = ['gallery-img-7238', 'gallery-img-7040', 'gallery-img-7041', 'gallery-img-9141'];
@@ -62,6 +63,15 @@ const volunteerEmailBody = [
   <section class="py-16 bg-white">
     <div class="page-container max-w-4xl">
 
+      <ContactCard
+        heading="Start with a Conversation"
+        intro="No model railroad experience is required. Email us about your interests before attending a volunteer work session. The message opens with a list of volunteer roles; keep the ones that interest you."
+        subject="Volunteer inquiry"
+        body={volunteerEmailBody}
+        cta="Email Us About Volunteering"
+        class="mb-8"
+      />
+
       <div class="bg-cream p-6 rounded-lg mb-8">
         <h2 class="text-xl font-semibold mb-4">Volunteer Opportunities</h2>
         <ul class="space-y-3">
@@ -113,8 +123,8 @@ const volunteerEmailBody = [
         <div class="bg-white border border-gray-200 p-6 rounded-lg">
           <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:calendar-bold" class="w-5 h-5" /> Work Sessions</h3>
           <p class="text-gray-700 font-medium mb-2">First Saturday and Third Wednesday of the month — usually 11 AM to 2 PM</p>
-          <p class="text-gray-600 mb-3">We usually meet at the layout on the first Saturday and third Wednesday of the month from 11 AM to 2 PM. Stop by, introduce yourself, and see what kind of work is underway.</p>
-          <p class="text-sm text-gray-600 italic">These sessions are usually canceled during paid-admission fairground events. Some free fairground events may still charge for parking. Otherwise, park at Gate 1 and enter; the Historical Model Railroad is to the left.</p>
+          <p class="text-gray-600 mb-3">Work sessions are for volunteer work, not public visits. Email us before attending so we can confirm the session and entry arrangements.</p>
+          <p class="text-sm text-gray-600">{organization.visiting.publicAccess} <a href={`${base}/events`} class="text-primary underline">See published events.</a></p>
         </div>
 
         <div class="bg-white border border-gray-200 p-6 rounded-lg">
@@ -129,22 +139,10 @@ const volunteerEmailBody = [
 
         <div class="bg-white border border-gray-200 p-6 rounded-lg">
           <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:book-bold" class="w-5 h-5" /> School Teachers</h3>
-          <p class="text-gray-600">Teachers covering Nevada County history or transportation history can contact us about class visits. Tours are usually scheduled well in advance.</p>
+          <p class="text-gray-600">Teachers covering Nevada County history or transportation history can email us with questions about bringing a class to a published public event.</p>
         </div>
       </div>
 
-      <ContactCard
-        heading="Ready to join us?"
-        intro="Email us and tell us a little about yourself. The message opens prefilled with the volunteer areas listed at the top of this page, so you can delete the ones that do not apply. No model railroad experience is required."
-        subject="Volunteer inquiry"
-        body={volunteerEmailBody}
-        cta="Email us about volunteering"
-        class="max-w-2xl mx-auto"
-      />
-
-      <p class="mt-6 text-center text-gray-600 max-w-2xl mx-auto">
-        You are also welcome to just turn up at a work session and introduce yourself in person.
-      </p>
     </div>
   </section>
 </BaseLayout>

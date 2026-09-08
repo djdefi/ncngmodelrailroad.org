@@ -5,6 +5,7 @@ import { Icon } from 'astro-icon/components';
 import { organization } from '../config/organization';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const donationEmail = `mailto:${organization.contact.email}?subject=${encodeURIComponent('Financial contribution inquiry')}`;
 
 const supportWays = [
   { icon: 'solar:settings-bold', title: 'Maintenance', desc: 'Help keep our locomotives and rolling stock in operating condition' },
@@ -17,7 +18,7 @@ const supportWays = [
 
 <BaseLayout title="Get Involved | N.C.N.G. Model Railroad" description="Support the N.C.N.G. Historical Model Railroad with volunteer time, donated materials, or financial contributions.">
   <!-- Hero -->
-  <section class="py-20 bg-primary text-white">
+  <section class="py-12 md:py-16 bg-primary text-white">
     <div class="page-container">
       <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6">
@@ -25,7 +26,7 @@ const supportWays = [
         </h1>
         <p class="text-xl text-gray-200 mb-4">
           Volunteer time, donated materials, and financial support help keep the layout running
-          and open to the public.
+          and open during published public events.
         </p>
         <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
           <Icon name="solar:users-group-rounded-bold" class="w-5 h-5" />
@@ -36,9 +37,22 @@ const supportWays = [
   </section>
 
   <!-- Support Options -->
-  <section class="py-16 bg-white">
+  <section class="py-10 md:py-12 bg-white">
     <div class="page-container max-w-4xl">
-      <h2 class="text-3xl font-bold text-center mb-12">Ways to Help</h2>
+      <div class="max-w-prose mb-12" aria-labelledby="monetary-donations-title">
+        <h2 id="monetary-donations-title" class="text-3xl font-bold mb-4">Make a Financial Contribution</h2>
+        <p class="text-gray-700 mb-4">
+          Online donations are temporarily unavailable while we update our donation processing.
+          Email us to coordinate a contribution directly.
+        </p>
+        <a href={donationEmail} class="btn-primary">Email Us About Donations</a>
+        <p class="text-gray-600 mt-4">
+          You can also copy our address into your email service:
+          <a href={donationEmail} class="text-primary underline font-semibold">{organization.contact.email}</a>.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-bold mb-8">Other Ways to Help</h2>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <!-- Volunteer -->
@@ -73,30 +87,6 @@ const supportWays = [
         </div>
       </div>
 
-      <!-- Monetary donations notice -->
-      <div class="bg-amber-50 p-8 rounded-2xl border border-amber-200" aria-labelledby="monetary-donations-title">
-        <div class="flex flex-col gap-5 md:flex-row md:items-start">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-            <Icon name="solar:heart-bold" class="w-6 h-6 text-primary" />
-          </div>
-          <div>
-            <h3 id="monetary-donations-title" class="text-xl font-bold mb-3 text-gray-900">Monetary Donations</h3>
-            <p class="text-gray-800 mb-3">
-              We&apos;re updating our donation processing, so online donations are temporarily unavailable.
-            </p>
-            <p class="text-gray-700 mb-5">
-              To make a financial contribution, email{' '}
-              <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline font-semibold">
-                {organization.contact.email}
-              </a>
-              {' '}and we&apos;ll coordinate directly.
-            </p>
-            <a href={`mailto:${organization.contact.email}`} class="btn-primary">
-              Email Us About Donations
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 

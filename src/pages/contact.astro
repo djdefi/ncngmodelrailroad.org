@@ -43,18 +43,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <SectionHeader title="Send Us a Message" />
             <ContactCard
               heading="Get in touch"
-              intro="We are an all-volunteer group, so replies can take a few days. Email is the surest way to reach us, and the address is listed alongside."
+              intro="We are an all-volunteer group, so replies can take a few days. Email is the surest way to reach us."
               subject="Message from the N.C.N.G. website"
               cta="Write us an email"
-              showDetails={false}
             />
           </div>
 
           <div>
             <SectionHeader title="Visit the Layout" />
             <p class="text-gray-600">
-              The best way to understand the layout is to see it running in person during an event, open house, or arranged visit.
+              {organization.visiting.publicAccess}
             </p>
+            <a href={`${base}/events`} class="inline-block mt-4 text-primary underline font-semibold">See Published Events and Layout Hours</a>
           </div>
         </div>
 
@@ -108,7 +108,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                 <Icon name="solar:clock-circle-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <strong class="block">Hours</strong>
-                  <p>Posted events, work sessions, and arranged visits</p>
+                  <p>Published public events only. See each listing for layout hours.</p>
                 </div>
               </div>
             </div>
@@ -140,7 +140,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       />
       <div class="rounded-lg overflow-hidden shadow-lg border border-gray-200">
         <iframe
-          src={`https://maps.google.com/maps?q=${organization.location.geo.latitude},${organization.location.geo.longitude}&z=15&output=embed`}
+          src={organization.location.mapsEmbedUrl}
           width="100%"
           height="400"
           style="border:0;"
@@ -149,6 +149,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           referrerpolicy="no-referrer-when-downgrade"
           title="Nevada County Fairgrounds location map"
         ></iframe>
+      </div>
+      <p class="mt-4 text-gray-600 text-center max-w-prose mx-auto">
+        This map shows the fairgrounds, not a confirmed event entrance. Check the published event for entry and parking information.
+      </p>
+      <div class="mt-8 max-w-prose mx-auto">
+        <h3 class="text-xl font-bold mb-3">Before You Travel</h3>
+        <p class="text-gray-700 mb-3">
+          Check your event's entry and parking instructions. Fairground gates and
+          layout hours can differ between events.
+        </p>
+        <p class="text-gray-700">
+          If the listing does not answer your question about the building entrance,
+          step-free access, or viewing arrangements,
+          <a href={`mailto:${organization.contact.email}?subject=Published%20event%20access%20question`} class="text-primary underline">email us before your visit</a>.
+          Include the event name and the access information you need. Replies can take a few days.
+        </p>
       </div>
       <div class="mt-4 text-center">
         <a

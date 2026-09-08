@@ -1,3 +1,17 @@
+const location = {
+  venue: "Nevada County Fairgrounds",
+  streetAddress: "11228 McCourtney Rd",
+  city: "Grass Valley",
+  state: "CA",
+  zip: "95949",
+  poBox: "P.O. Box 2258",
+  poCity: "Nevada City",
+  poState: "CA",
+  poZip: "95959",
+};
+
+const mapsDestination = `${location.venue}, ${location.streetAddress}, ${location.city}, ${location.state} ${location.zip}`;
+
 export const organization = {
   name: "N.C.N.G. Historical Model Railroad",
   fullName: "Nevada County Narrow Gauge Historical Model Railroad",
@@ -6,6 +20,10 @@ export const organization = {
   description: "An On3 scale historical model railroad display at the Nevada County Fairgrounds, preserving the memory of the Nevada County Narrow Gauge Railroad.",
   founded: 1986,
   nonprofit: "",
+  visiting: {
+    publicAccess: "We are open to the public only during events published on this site.",
+    eventTiming: "These usually coincide with major Nevada County Fairgrounds events. Layout hours may differ from fairground event hours.",
+  },
   // The prototype railroad the layout models. Stated once so the operating era
   // cannot drift between pages: the site previously published both 1875-1942
   // and 1876-1942. Construction broke ground near Colfax on February 11, 1875,
@@ -21,20 +39,9 @@ export const organization = {
     routeMiles: "22",
   },
   location: {
-    venue: "Nevada County Fairgrounds",
-    streetAddress: "11228 McCourtney Rd",
-    city: "Grass Valley",
-    state: "CA",
-    zip: "95949",
-    poBox: "P.O. Box 2258",
-    poCity: "Nevada City",
-    poState: "CA",
-    poZip: "95959",
-    geo: {
-      latitude: 39.2191,
-      longitude: -121.0601,
-    },
-    mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Nevada+County+Fairgrounds,+11228+McCourtney+Rd,+Grass+Valley,+CA+95949",
+    ...location,
+    mapsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapsDestination)}`,
+    mapsEmbedUrl: `https://maps.google.com/maps?q=${encodeURIComponent(mapsDestination)}&z=15&output=embed`,
   },
   contact: {
     phone: "(916) 871-6341",

@@ -29,3 +29,18 @@ export function eventEndDay(event: EventDates): string {
 export function isUpcomingEvent(event: EventDates, now: Date = new Date()): boolean {
   return eventEndDay(event) >= pacificToday(now);
 }
+
+export function formatEventDate(date: Date, endDate?: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  };
+  const start = date.toLocaleDateString('en-US', options);
+  if (endDate && endDate.getTime() !== date.getTime()) {
+    return `${start} - ${endDate.toLocaleDateString('en-US', options)}`;
+  }
+  return start;
+}

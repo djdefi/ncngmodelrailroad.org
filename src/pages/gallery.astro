@@ -83,17 +83,13 @@ const categories = [
                 width={600}
                 height={450}
               />
-              <div class="photo-card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent">
-                <div class="absolute bottom-0 left-0 right-0 p-4">
-                  <span class="inline-block bg-primary text-white text-xs font-semibold px-2 py-1 rounded mb-2">
-                    {photo.category}
-                  </span>
-                  <p class="text-white text-sm">{photo.caption}</p>
-                </div>
-              </div>
               <span class="photo-card-zoom absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center" aria-hidden="true">
                 <Icon name="solar:magnifer-bold" class="w-5 h-5 text-gray-700" />
               </span>
+            </div>
+            <div class="px-1 pt-3 pb-4">
+              <span class="photo-category text-primary text-sm font-semibold">{photo.category}</span>
+              <p class="text-gray-700 text-sm mt-1">{photo.caption}</p>
             </div>
           </article>
         ))}
@@ -183,23 +179,16 @@ const categories = [
     box-shadow: var(--focus-ring);
   }
 
-  /* Caption, category, and the zoom affordance are always visible by default.
-     They used to be hover-only, which meant touch visitors saw an unlabeled
-     grid with no cue that tapping opened anything. Devices that actually
-     support hover keep the reveal as an enhancement. */
-  .photo-card-overlay,
+  /* Captions stay visible; hover only enhances the zoom affordance. */
   .photo-card-zoom {
     transition: opacity 0.3s ease;
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .photo-card-overlay,
     .photo-card-zoom {
       opacity: 0;
     }
 
-    .photo-card:hover .photo-card-overlay,
-    .photo-card:focus-visible .photo-card-overlay,
     .photo-card:hover .photo-card-zoom,
     .photo-card:focus-visible .photo-card-zoom {
       opacity: 1;
@@ -256,7 +245,10 @@ const categories = [
     currentIndex = index;
     const card = photos[index];
     const img = card.querySelector('img') as HTMLImageElement;
-    const caption = card.querySelector('p')?.textContent || '';
+    const caption = [
+      card.querySelector('.photo-category')?.textContent,
+      card.querySelector('p')?.textContent,
+    ].filter(Boolean).join(' · ');
 
     // Only capture the return target when opening from the grid. nextPhoto and
     // prevPhoto route back through here, and at that point the active element

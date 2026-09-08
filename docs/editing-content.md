@@ -35,6 +35,21 @@ The rest of this guide covers editing files directly — useful if you prefer wo
 
 Events are Markdown files in `src/content/events/`. Each file = one event on the Events page.
 
+Public visits are available **only during published events**, which usually
+coincide with major fairground events. Volunteer work sessions are not public
+visiting hours. Do not advertise drop-in visits or private tours.
+
+Confirm an event before publishing it. State layout hours separately from host
+event dates and hours; use **TBA** if layout hours are not confirmed. Keep
+host-event admission and parking separate from layout admission, and do not
+publish an unconfirmed layout price or free-admission claim.
+
+Include confirmed gate, parking, and building-entry instructions for that event.
+Do not reuse another event's arrangements without confirmation. For physical
+access, publish verified information about the entrance route and viewing
+arrangements; otherwise direct questions to the contact page without promising
+access conditions that have not been established.
+
 ### File location
 ```
 src/content/events/
@@ -63,8 +78,9 @@ location: "Nevada County Fairgrounds, Grass Valley"
 featured: true
 ---
 
-Join us during the Father's Day Bluegrass Festival! Our layout will be open
-for visitors throughout the weekend. Check the festival for admission details.
+This published public event coincides with the Father's Day Bluegrass Festival.
+Layout hours are TBA and may differ from festival hours. Check the festival
+for host-event admission and parking details.
 ```
 
 **Field reference:**
@@ -87,7 +103,11 @@ Open the file and change the fields you need. The most common update is changing
 
 Delete the file. The event disappears from the site automatically.
 
-> **Note:** The Events page automatically hides past events. You don't need to delete old events — they just won't show up after their date passes.
+> **Note:** Events move to the collapsed Past Events section on the next build
+> after their final day in California. A daily deployment refreshes the
+> homepage, Events page, and footer, even when no content has changed. The
+> refresh updates date grouping; it does not confirm event details. Avoid
+> relative wording such as "our next open house" in event bodies.
 
 ---
 
@@ -282,7 +302,7 @@ To add, remove, or reorder pages in the nav, edit the `navItems` array:
 ```typescript
 export const navItems = [
   { label: 'About', href: '/about' },
-  { label: 'Events', href: '/events', icon: 'solar:calendar-bold' },
+  { label: 'Visit & Events', href: '/events', icon: 'solar:calendar-bold' },
   { label: 'Get Involved', href: '/donate', cta: true },
   // ... add or remove items here
 ];

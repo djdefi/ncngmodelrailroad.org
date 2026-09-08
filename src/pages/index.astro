@@ -1,15 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
-import PhotoCard from '../components/PhotoCard.astro';
-import SectionHeader from '../components/SectionHeader.astro';
 import { Icon } from 'astro-icon/components';
 import { organization } from '../config/organization';
+import { getCollection } from 'astro:content';
+import { formatEventDate, isUpcomingEvent } from '../utils/events';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const now = new Date();
+const nextEvent = (await getCollection('events'))
+  .filter(event => isUpcomingEvent(event.data, now))
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())[0];
 ---
 
-<BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad" description="An On3 scale historical model railroad display at the Nevada County Fairgrounds, preserving the legacy of the Nevada County Narrow Gauge Railroad (1876 to 1942). Open during major fairground events." image="/images/engine8-hero.jpg" heroImage={`${base}/images/engine8-hero.jpg`}>
+<BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad" description="A historical model railroad at the Nevada County Fairgrounds, preserving the Nevada County Narrow Gauge Railroad (1876 to 1942). Public visits only during published events." image="/images/engine8-hero.jpg" heroImage={`${base}/images/engine8-hero.jpg`}>
   <!-- Hero Section - Full-bleed with Engine #8 -->
   <section class="relative min-h-[90vh] flex items-end text-white overflow-hidden" aria-labelledby="hero-title">
     <div class="absolute inset-0 z-0">
@@ -33,171 +37,85 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </h1>
         <p class="hero-label text-sm uppercase font-medium mb-6">Historical Model Railroad</p>
         <p class="hero-copy text-lg md:text-xl mb-10 leading-relaxed max-w-xl">
-          An On3 scale model preserving the railroad that connected Nevada City, Grass Valley, Chicago Park, and Colfax from {organization.prototype.serviceStart} to {organization.prototype.serviceEnd}.
+          Watch miniature trains travel through local towns and landscapes,
+          recreating the railroad that served Nevada County from {organization.prototype.serviceStart} to {organization.prototype.serviceEnd}.
         </p>
         <div class="flex flex-wrap gap-4">
-          <Button href={`${base}/about`} size="lg">About the Layout</Button>
+          <Button href={`${base}/events`} size="lg">Plan Your Visit</Button>
           <Button href={`${base}/map/`} variant="outline-inverse" size="lg">
             Explore the Railroad Map
           </Button>
-          <Button href={`${base}/events`} variant="outline-inverse" size="lg">
-            Visit Us
+          <Button href={`${base}/about`} variant="outline-inverse" size="lg">
+            About the Layout
           </Button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What is the N.C.N.G.? - Asymmetric layout with real photo -->
-  <section class="py-20 md:py-28 bg-white grain-overlay">
+  <section class="py-12 bg-cream border-b border-gray-200" aria-labelledby="visit-title">
+    <div class="page-container grid md:grid-cols-2 gap-8 md:gap-12">
+      <div>
+        <h2 id="visit-title" class="text-3xl font-bold mb-4">When You Can Visit</h2>
+        <p class="text-lg text-gray-900 font-semibold mb-3">{organization.visiting.publicAccess}</p>
+        <p class="text-gray-600 mb-5">{organization.visiting.eventTiming}</p>
+        <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="text-primary underline font-semibold">
+          Get Directions to the Fairgrounds
+        </a>
+      </div>
+      <div>
+        {nextEvent ? (
+          <>
+            <h3 class="text-xl font-bold mb-3">Next Published Event: {nextEvent.data.title}</h3>
+            <p class="text-gray-700 mb-3">Event dates: {formatEventDate(nextEvent.data.date, nextEvent.data.endDate)}</p>
+            <p class="text-gray-600 mb-5">Read the event details for layout hours. If no times are listed, hours are still to be announced.</p>
+            <Button href={`${base}/events#event-${nextEvent.id}`}>View Event Details</Button>
+          </>
+        ) : (
+          <>
+            <h3 class="text-xl font-bold mb-3">No Upcoming Public Events Published</h3>
+            <p class="text-gray-600 mb-5">Please wait for a published event before planning a public visit.</p>
+            <Button href={`${base}/events`}>View Events</Button>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
     <div class="page-container">
-      <div class="section-shell p-6 md:p-10 lg:p-12 grid lg:grid-cols-5 gap-12 items-center">
+      <div class="grid lg:grid-cols-5 gap-8 md:gap-12 items-center">
         <div class="lg:col-span-3">
-          <span class="eyebrow">About the Layout</span>
-          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 mb-6 leading-tight">
-            A Working Model of the N.C.N.G.
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            Local History in Miniature
           </h2>
           <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-            Built by volunteers since 1986, the layout interprets the Nevada County Narrow Gauge Railroad
-            in operating On3 scale. It follows the line through <strong>Nevada City</strong>,
-            <strong>Grass Valley</strong>, <strong>Chicago Park</strong>, and <strong>Colfax</strong>,
-            with scenes such as Town Talk and the Bear River Bridge.
+            Volunteers have built and maintained the layout since {organization.founded}.
+            Follow trains through miniature Nevada City, Grass Valley, Chicago Park,
+            and Colfax, including the Bear River Bridge.
           </p>
-          <div class="flex flex-wrap gap-6 text-sm text-gray-600">
-            <span class="flex items-center gap-2">
-              <Icon name="solar:verified-check-bold" class="w-5 h-5 text-primary" />
-              All Volunteer
-            </span>
-            <span class="flex items-center gap-2">
-              <Icon name="solar:verified-check-bold" class="w-5 h-5 text-primary" />
-              Since 1986
-            </span>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            On-board cameras bring a train-level view of the towns, yards, and bridges
+            to our Train Cam TV display.
+          </p>
+          <div class="flex flex-wrap gap-6">
+            <a href={`${base}/gallery`} class="text-primary underline font-semibold">See Layout Photos</a>
+            <a href={`${base}/about`} class="text-primary underline font-semibold">How the Layout Works</a>
           </div>
         </div>
         <div class="lg:col-span-2">
-          <div class="relative">
+          <figure>
             <img 
-              src={`${base}/images/about-layout.jpeg`}
-              alt="Overview of the N.C.N.G. model railroad layout"
-              class="rounded-2xl shadow-2xl w-full"
+              src={`${base}/images/gallery-img_9139.jpg`}
+              alt="Miniature freight cars beside a trackside building and wooded hills"
+              class="rounded-xl w-full"
               loading="lazy"
               decoding="async"
-              width={1000}
-              height={572}
+              width={800}
+              height={600}
             />
-            <div class="absolute -bottom-4 -left-4 bg-primary text-white px-5 py-3 rounded-full shadow-lg text-sm font-bold">
-              {organization.prototype.routeMiles} miles of history · {organization.prototype.era}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="track-divider"></div>
-
-  <!-- Features / What Makes It Special -->
-  <section class="py-20 bg-cream">
-    <div class="page-container">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Highlights of the Layout</h2>
-        <p class="text-gray-600">Trains, local scenes, and operating details that make the line easy to follow.</p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="clean-card hover-lift flex gap-5 p-6">
-          <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <Icon name="solar:tram-bold" class="w-6 h-6 text-primary" />
-          </div>
-          <div>
-            <h3 class="font-bold text-lg mb-2">Historically Accurate Roster</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">The roster includes models based on original N.C.N.G. equipment, from Engine #1 &quot;Grass Valley&quot; to Engine #8 from the Denver &amp; Rio Grande.</p>
-          </div>
-        </div>
-
-        <div class="clean-card hover-lift flex gap-5 p-6">
-          <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <Icon name="solar:camera-bold" class="w-6 h-6 text-primary" />
-          </div>
-          <div>
-            <h3 class="font-bold text-lg mb-2">"Train Cam TV"</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">On-board cameras let visitors ride along through towns, yards, and bridge scenes from a train-level view.</p>
-          </div>
-        </div>
-
-        <div class="clean-card hover-lift flex gap-5 p-6">
-          <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <Icon name="solar:cpu-bold" class="w-6 h-6 text-primary" />
-          </div>
-          <div>
-            <h3 class="font-bold text-lg mb-2">DCC Digital Control</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">DCC control lets operators run multiple trains with synchronized lighting, sound, and smooth low-speed movement.</p>
-          </div>
-        </div>
-
-        <div class="clean-card hover-lift flex gap-5 p-6">
-          <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <Icon name="solar:history-bold" class="w-6 h-6 text-primary" />
-          </div>
-          <div>
-            <h3 class="font-bold text-lg mb-2">Scenes Along the Line</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">The layout follows the line from Colfax to Nevada City, including Chicago Park, Town Talk, and the Bear River Bridge.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Events Section - Invitation-style cards -->
-  <section class="py-20 bg-white">
-    <div class="page-container">
-      <div class="max-w-4xl mx-auto">
-        <SectionHeader title="When We're Open" />
-        
-        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-          <div class="clean-card hover-lift p-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Icon name="solar:calendar-bold" class="w-5 h-5 text-primary" />
-              </div>
-              <h3 class="font-bold">Fairground Events</h3>
-            </div>
-            <p class="text-gray-600 text-sm">We're open during major Nevada County Fairgrounds events throughout the year. Check our events page for specific dates.</p>
-          </div>
-
-          <div class="clean-card hover-lift p-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Icon name="solar:settings-bold" class="w-5 h-5 text-primary" />
-              </div>
-              <h3 class="font-bold">Work Sessions</h3>
-            </div>
-            <p class="text-gray-600 text-sm">Join us during regular work sessions, usually the first Saturday and third Wednesday from 11 AM to 2 PM, to meet volunteers and see what is underway.</p>
-          </div>
-
-          <div class="clean-card hover-lift p-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Icon name="solar:clock-circle-bold" class="w-5 h-5 text-primary" />
-              </div>
-              <h3 class="font-bold">Open Houses</h3>
-            </div>
-            <p class="text-gray-600 text-sm">Special open house events let you see the trains running and talk with our volunteer crew about the railroad's history.</p>
-          </div>
-
-          <div class="clean-card hover-lift p-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Icon name="solar:users-group-rounded-bold" class="w-5 h-5 text-primary" />
-              </div>
-              <h3 class="font-bold">Group Tours</h3>
-            </div>
-            <p class="text-gray-600 text-sm">Schools, scout troops, and other groups can arrange private visits. We love sharing this history with young people.</p>
-          </div>
-        </div>
-
-        <div class="mt-8 text-center">
-          <Button href={`${base}/events`}>View Upcoming Events</Button>
+            <figcaption class="text-sm text-gray-600 mt-3">Trackside scenery on our model railroad.</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -221,19 +139,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="max-w-2xl">
         <h2 class="text-3xl md:text-5xl font-bold mb-6">Visit the Layout</h2>
         <p class="text-xl text-gray-200 mb-4">
-          Located at the Nevada County Fairgrounds in Grass Valley, California.
+          {organization.visiting.publicAccess}
         </p>
         <address class="text-gray-300 not-italic mb-8 flex items-start gap-3">
           <Icon name="solar:map-point-bold" class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" />
           <span>
-            Nevada County Fairgrounds<br />
-            Grass Valley, CA<br />
-            <span class="text-sm text-gray-200">$1 suggested donation · Kids under 12 free with an adult · Some events charge fairgrounds admission</span>
+            {organization.location.venue}<br />
+            {organization.location.streetAddress}<br />
+            {organization.location.city}, {organization.location.state}
           </span>
         </address>
         <div class="flex flex-wrap gap-4">
-          <Button href={`${base}/events`} size="lg">View Events</Button>
-          <Button href={`${base}/contact`} variant="outline-inverse" size="lg">
+          <Button href={`${base}/events`} size="lg">Plan Your Visit</Button>
+          <Button href={organization.location.mapsUrl} external variant="outline-inverse" size="lg">
             Get Directions
           </Button>
         </div>

@@ -47,6 +47,14 @@ You can also edit content files directly on GitHub:
 
 [Open an issue](https://github.com/djdefi/ncngmodelrailroad.org/issues/new/choose) describing what you'd like changed and someone will help.
 
+### Public visiting information
+
+The layout is open to the public only during published events, usually alongside
+major fairground events. Work sessions are for volunteers, not public visits.
+Do not advertise drop-in visits or private tours. Confirm event details before
+publishing, list layout hours separately from host-event hours, and use TBA when
+layout hours are unknown. See [Updating Events](docs/editing-content.md#updating-events).
+
 ---
 
 ## Larger changes (branch + pull request)

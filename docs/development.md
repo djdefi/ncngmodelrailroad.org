@@ -102,6 +102,31 @@ Serves the `dist/` folder locally so you can verify the production build looks r
 
 **Images** (`public/images/`) — Static files served as-is. No processing by Astro. Keep images optimized (800px wide, <200KB for gallery).
 
+**AI site guide** (`src/pages/llms.txt.ts`) - Generates `/llms.txt` as a static Markdown-formatted text file during the build. It uses the shared organization config and Astro's `site` URL, and lists key public pages with visit-planning caveats. Update its curated links and descriptions when routes or their purpose change; keep event dates, hours, prices, and board names on their source pages. The shared layout and standalone map page link to the guide with `rel="describedby"`. This follows the [llms.txt proposal](https://llmstxt.org/), but does not change crawler permissions in `public/robots.txt` or guarantee AI service support.
+
+### Machine-readable data
+
+`/llms.txt` links to `/data/catalog.json`, a JSON catalog of downloadable datasets. The catalog includes field descriptions, formats, source links, caveats, and counts derived from the map files at build time. The shared layout advertises the catalog with `rel="describedby"`; the Events, Trains, Glossary, and standalone map pages also advertise their datasets with `rel="alternate"`.
+
+| URL | Contents | Source |
+| :-- | :------- | :----- |
+| `/data/catalog.json` | Dataset index and field descriptions | `src/config/data.ts` and the map files |
+| `/data/events.json` | All published event entries, including past events | `src/content/events/` |
+| `/data/trains.json` | Historical locomotive roster | `src/content/trains/` |
+| `/data/glossary.json` | Terms, definitions, categories, and term links | `src/data/glossary.yaml` |
+| `/map/extracted/ncng_historical_route_lines.geojson` | Historical track segments | Existing map asset |
+| `/map/extracted/ncng_historical_reference_features.geojson` | Historical stations and reference features | Existing map asset |
+
+The three content feeds use a versioned JSON envelope with `schemaVersion`, `generatedAt`, `catalogUrl`, `usagePolicyUrl`, `snapshotNote`, `id`, `name`, `description`, `url`, `sourcePageUrl`, `caveats`, and `items`. The event feed also includes the venue's IANA `timeZone`. Optional content fields are explicit `null` values. Entry IDs come from their content sources; do not derive dates or other facts from filenames. The catalog describes each item's fields. Event and train feeds follow date and roster order respectively, with ID as a tie-breaker; glossary entries sort by ID.
+
+These files are snapshots from `npm run build`, not live APIs. `generatedAt` records generation, not source verification. Event dates are local calendar dates, not opening-hour timestamps. The feed does not infer layout opening hours, admission prices, future recurrences, or upcoming/past status. When determining whether a date has passed, compare `endDate` (or `date` if it is null) to today's date in the feed's `timeZone`. Regular work sessions and full event bodies remain on the Events page.
+
+Map downloads remain their original GeoJSON, without a feed envelope or duplicate copies. Coordinates use WGS84 in longitude, latitude order. Track segments are not an ordered navigable route; reference features include points, lines, and polygons. Preserve original source credits and caveats. Source descriptions can contain HTML and must be sanitized before rendering. Do not interpret map geometry as public access, surveyed boundaries, or the model layout track plan. This catalog does not grant a new license to third-party data.
+
+To update the published data, edit its existing source. Dataset descriptions, field descriptions, and caveats live in `src/config/data.ts`; feed generation lives in `src/pages/data/`. Keep these descriptions aligned when collection fields change, and increment `dataSchemaVersion` for breaking feed-contract changes. The catalog deliberately covers the route, historical reference features, and the three content feeds, not board records or parcel-level data.
+
+The public `/content-use` page explains attribution, considerate crawling, source accuracy, reuse limits, and optional support. Its copy and support links come from `src/config/contentUse.ts`, shared with `/llms.txt` and the catalog's `usage` object. Every content feed links to the page through `usagePolicyUrl`, and the site footer links to it for readers. These are advisory requests, not crawler enforcement, a donation requirement, or a new copyright or AI-training license. Crawler rules remain in `public/robots.txt`; hosting or CDN configuration, not this page, controls rate limiting.
+
 ### Architecture diagram
 
 ```

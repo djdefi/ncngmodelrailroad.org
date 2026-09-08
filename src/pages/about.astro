@@ -247,14 +247,14 @@ const timeline = [
             <span>Nevada County Fairgrounds<br />Grass Valley, California</span>
           </address>
           <p class="text-gray-600">
-            Open during fairground events, open houses, regular work sessions, and by arrangement.
+            {organization.visiting.publicAccess}
           </p>
           <Button href={`${base}/events`} class="mt-4">View Events</Button>
         </div>
         <div>
           <SectionHeader title="Get in Touch" />
           <p class="text-gray-600 mb-4">
-            For inquiries about visiting, volunteering, or group tours, please contact us:
+            For questions about published events or volunteering, please contact us:
           </p>
           <div class="flex items-center gap-2">
             <Icon name="solar:letter-bold" class="w-5 h-5 text-primary" />

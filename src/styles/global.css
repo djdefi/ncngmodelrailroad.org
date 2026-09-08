@@ -522,6 +522,13 @@ select:focus-visible {
   color: var(--color-primary);
 }
 
+header nav a[aria-current],
+header nav summary[data-current-section="true"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
 .nav-link-icon {
   display: inline-flex;
   align-items: center;
@@ -620,6 +627,17 @@ select:focus-visible {
   background:
     linear-gradient(90deg, rgba(var(--color-hero-overlay-rgb), 0.86), rgba(var(--color-hero-overlay-rgb), 0.45) 52%, rgba(var(--color-hero-overlay-rgb), 0.14)),
     linear-gradient(0deg, rgba(var(--color-hero-overlay-rgb), 0.72), transparent 42%);
+}
+
+@media (max-width: 47.999rem) {
+  .hero-vignette {
+    background: linear-gradient(
+      0deg,
+      rgba(var(--color-hero-overlay-rgb), 0.88),
+      rgba(var(--color-hero-overlay-rgb), 0.76) 65%,
+      rgba(var(--color-hero-overlay-rgb), 0.3)
+    );
+  }
 }
 
 .section-shell {

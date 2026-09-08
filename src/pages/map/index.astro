@@ -26,6 +26,159 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
       data-cf-beacon={`{"token":"${organization.analytics.cfBeaconToken}"}`}
       is:inline></script>
   )}
+  <!-- Keep entry controls with the cached HTML, independent of the shipped map bundle. -->
+  <style is:inline>
+    /* The historical overlay is at z-index 2; details must span both basemaps. */
+    #now-map .maplibregl-popup {
+      z-index: 3;
+    }
+
+    .brand,
+    .brand.collapsed {
+      width: min(380px, calc(100vw - 44px));
+      max-height: calc(100dvh - 94px);
+      overflow-y: auto;
+    }
+
+    .brand.collapsed {
+      display: block;
+      padding: 8px;
+      box-shadow: none;
+    }
+
+    .brand.collapsed h1 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .brand .brand-toggle {
+      position: static;
+    }
+
+    .map-entry-actions {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .map-entry-actions .button,
+    .map-entry-actions .brand-toggle {
+      min-width: 0;
+      min-height: 44px;
+      padding: 8px;
+      white-space: normal;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .map-entry-actions .search-open {
+      color: var(--ink);
+      background: var(--control);
+      border-color: var(--line);
+    }
+
+    .map-entry-actions .search-open:hover {
+      background: var(--control-hover);
+      border-color: var(--line);
+    }
+
+    .map-entry-actions .brand-toggle-icon {
+      display: none;
+    }
+
+    .map-entry-actions .brand-toggle-label {
+      margin: 0;
+      font: inherit;
+    }
+
+    .map-entry-tour {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+
+    .map-entry-tour .tour-picker select {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .brand .actions {
+      display: grid;
+    }
+
+    .brand.collapsed .actions {
+      display: none;
+    }
+
+    .brand.collapsed .map-entry-actions {
+      margin: 0;
+    }
+
+    .stats {
+      display: none;
+    }
+
+    .brand:not(.collapsed) .mobile-facts {
+      display: block;
+    }
+
+    .tour-controls {
+      position: sticky;
+      bottom: 0;
+      background: var(--panel-solid);
+    }
+
+    @media (max-width: 820px) {
+      .brand,
+      .brand.collapsed {
+        width: calc(100vw - 24px - env(safe-area-inset-left) - env(safe-area-inset-right));
+        max-height: calc(100dvh - 82px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (max-width: 820px) and (orientation: portrait) {
+      .tour-card {
+        max-height: max(140px, calc(100dvh - 240px));
+        overflow-y: auto;
+      }
+
+      body.tour-active .panel.collapsed {
+        bottom: calc(var(--tour-card-height) + 36px + env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (max-width: 950px) and (orientation: landscape) {
+      .brand,
+      .brand.collapsed {
+        width: min(320px, calc(50vw - 18px));
+      }
+
+      .tour-card {
+        left: auto;
+        right: calc(12px + env(safe-area-inset-right));
+        width: min(320px, calc(50vw - 18px));
+        max-height: calc(100dvh - 144px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        overflow-y: auto;
+        transform: none;
+      }
+
+      body.tour-active .panel {
+        z-index: 13;
+      }
+
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#panel-toggle">Skip to map controls</a>
@@ -48,6 +201,14 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
     </div>
 
     <header class="brand">
+      <nav class="map-entry-actions" aria-label="Explore the map and model railroad">
+        <button class="button search-open" id="search-open" type="button" aria-haspopup="dialog" aria-controls="map-search">Search</button>
+        <button class="brand-toggle" id="brand-toggle" type="button" aria-expanded="true" aria-label="Close tours and map introduction">
+          <span class="brand-toggle-icon disclosure-icon" aria-hidden="true">−</span>
+          <span class="brand-toggle-label disclosure-label">Close guide</span>
+        </button>
+        <a class="button button-subtle" href="../">Model railroad website</a>
+      </nav>
       <p class="eyebrow">Colfax → Grass Valley → Nevada City</p>
       <h1>
         <span class="title-main">The Narrow Gauge</span>
@@ -56,16 +217,7 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
       <p class="lede">Trace the Nevada County Narrow Gauge Railroad across the modern Sierra foothills. Drag the veil to compare terrain, explore stations and spurs, or travel the route stop by stop.</p>
       <p class="mobile-facts"><span data-route-miles>—</span> mapped miles · {organization.prototype.era} · 3 ft gauge</p>
       <div class="actions">
-        <div class="quick-actions">
-          <button class="button search-open" id="search-open" type="button" aria-haspopup="dialog" aria-controls="map-search">Search the map</button>
-          <button class="button" id="fit-route" type="button">Fit full route</button>
-          <a class="button button-subtle" href="../">Website</a>
-        </div>
-        <div class="tour-launcher">
-          <div class="tour-launcher-copy">
-            <strong>Guided tour</strong>
-            <span>Travel stop by stop</span>
-          </div>
+        <div class="tour-launcher map-entry-tour">
           <label class="tour-picker">
             <span class="visually-hidden">Choose a map tour</span>
             <select id="tour-select" aria-label="Choose a map tour">
@@ -76,13 +228,10 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
               <option value="grass-valley">Grass Valley</option>
             </select>
           </label>
-          <button class="button primary" id="start-tour" type="button">Start</button>
+          <button class="button primary" id="start-tour" type="button" aria-label="Start tour">Start Tour</button>
         </div>
+        <button class="button" id="fit-route" type="button">Fit full route</button>
       </div>
-      <button class="brand-toggle" id="brand-toggle" type="button" aria-expanded="true" aria-label="Minimize introduction">
-        <span class="brand-toggle-icon disclosure-icon" aria-hidden="true">−</span>
-        <span class="brand-toggle-label disclosure-label">Minimize</span>
-      </button>
     </header>
 
     <section class="map-search" id="map-search" role="dialog" aria-modal="false" aria-labelledby="search-title" hidden>
@@ -218,5 +367,41 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
     onerror="window.__mapBootstrapFail('MapLibre could not be loaded from this site. Reload or contact the site administrator.')"
     is:inline></script>
   <script src="app.min.js?v=083b1ca1cf59011b" is:inline></script>
+  <script is:inline>
+    // Use the bundled disclosure handlers so their ARIA and layout state stay in sync.
+    const entryTourCard = document.getElementById('tour-card');
+    const entryBrandToggle = document.getElementById('brand-toggle');
+    const entryLayersToggle = document.getElementById('panel-toggle');
+    for (const toggle of [entryBrandToggle, entryLayersToggle]) {
+      if (toggle.getAttribute('aria-expanded') === 'true') toggle.click();
+    }
+
+    function labelMapGuide() {
+      const expanded = entryBrandToggle.getAttribute('aria-expanded') === 'true';
+      entryBrandToggle.querySelector('.disclosure-label').textContent = expanded ? 'Close guide' : 'Tours & info';
+      entryBrandToggle.setAttribute('aria-label', expanded ? 'Close guide' : 'Tours & info');
+    }
+    new MutationObserver(labelMapGuide).observe(entryBrandToggle, {
+      attributes: true,
+      attributeFilter: ['aria-expanded'],
+    });
+    labelMapGuide();
+
+    let entryTourWasOpen = false;
+    function syncTourIntroduction() {
+      const open = !entryTourCard.hidden;
+      if (open && entryBrandToggle.getAttribute('aria-expanded') === 'true') {
+        entryBrandToggle.click();
+      }
+      // The Start control is now tucked away; return to its visible disclosure.
+      if (!open && entryTourWasOpen) entryBrandToggle.focus({ preventScroll: true });
+      entryTourWasOpen = open;
+    }
+    new MutationObserver(syncTourIntroduction).observe(entryTourCard, {
+      attributes: true,
+      attributeFilter: ['hidden'],
+    });
+    syncTourIntroduction();
+  </script>
 </body>
 </html>

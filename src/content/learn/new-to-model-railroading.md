@@ -40,7 +40,7 @@ Model railroading welcomes every age and budget. A few friendly tips:
 - **Start small.** A simple loop of track and one locomotive is plenty to learn on.
 - **Visit a hobby shop.** Local shops are glad to help beginners. See our [links page](/links) for places to start.
 - **Find your people.** The [National Model Railroad Association](https://www.nmra.org) and local clubs are full of folks happy to share what they know.
-- **Come see us.** Stop by during an event, or join a work session and watch how it all comes together.
+- **Come see us.** Public visits are available only during [published events](/events). Check the listing for layout hours before planning your trip.
 
 ## Keep exploring
 

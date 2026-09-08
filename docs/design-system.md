@@ -126,6 +126,22 @@ for.
 
 - Keep the mobile navigation scrollable within the viewport, including short
   landscape screens. Long text in `.prose` wraps rather than widening the page.
+- Navigation underlines the current destination without relying on color alone.
+  Exact matches use `aria-current="page"`; nested Learn pages mark the parent
+  link with `aria-current="location"`. More is underlined when a child is current.
+- The homepage photo scrim is stronger on small screens so descriptive text
+  remains readable over the locomotive's pale front.
+- Gallery categories and captions stay visible below each image on every device.
+  Only the zoom affordance uses hover enhancement.
+- The historical map is also an entry point from the layout. Its initial view
+  keeps Search, Tours & info, and the model railroad website link in a compact
+  toolbar. The introduction, tour picker, and Layers panel start collapsed on
+  every screen size. Starting a tour closes the guide; closing a tour returns
+  focus to Tours & info.
+  Feature popups sit above both basemaps, so the comparison divider never hides
+  their text or actions.
+  Map-specific styles and disclosure integration live in `src/pages/map/index.astro`
+  alongside its markup; the shipped map bundle and its cache revisions stay intact.
 - Reach for an existing token, component, or class before adding new CSS.
 - Use tokens, not raw hex, so dark and high-contrast modes keep working.
 - Add a brand color in the `@theme` block; add a semantic token in `:root`

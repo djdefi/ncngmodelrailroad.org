@@ -47,6 +47,14 @@ You can also edit content files directly on GitHub:
 
 [Open an issue](https://github.com/djdefi/ncngmodelrailroad.org/issues/new/choose) describing what you'd like changed and someone will help.
 
+### Public visiting information
+
+The layout is open to the public only during published events, usually alongside
+major fairground events. Work sessions are for volunteers, not public visits.
+Do not advertise drop-in visits or private tours. Confirm event details before
+publishing, list layout hours separately from host-event hours, and use TBA when
+layout hours are unknown. See [Updating Events](docs/editing-content.md#updating-events).
+
 ### Machine-readable content
 
 The site publishes a [JSON data catalog](https://ncngmodelrailroad.org/data/catalog.json) linked from `/llms.txt`. Event and train feeds rebuild from their content collections; the glossary feed rebuilds from `src/data/glossary.yaml`. Edit those sources, not generated files in `dist/`. Historical map downloads use the existing GeoJSON files without copying them. Keep feed field descriptions and caveats in `src/config/data.ts` aligned with source changes. See [Machine-readable data](docs/development.md#machine-readable-data) for the format and scope.

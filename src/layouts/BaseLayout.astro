@@ -41,6 +41,15 @@ const socialImageRatio = socialImageSize ? socialImageSize.width / socialImageSi
 const twitterCard = socialImageRatio >= 1.5 ? 'summary_large_image' : 'summary';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+function navCurrent(href?: string): 'page' | 'location' | undefined {
+  if (!href) return undefined;
+  const path = `${base}${href}`.replace(/\/$/, '') || '/';
+  if (currentPath === path) return 'page';
+  return path !== '/' && currentPath.startsWith(`${path}/`) ? 'location' : undefined;
+}
+
 const pageFeed = Object.values(contentFeeds).find(
   (feed) => `${base}${feed.page}` === Astro.url.pathname.replace(/\/$/, ''),
 );
@@ -111,16 +120,11 @@ const localBusinessSchema = {
     "postalCode": organization.location.zip,
     "addressCountry": "US"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": organization.location.geo.latitude,
-    "longitude": organization.location.geo.longitude
-  },
   "hasMap": organization.location.mapsUrl,
   "sameAs": socialProfiles,
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "description": "Open during fairground events, regular work sessions, special open houses, and by arrangement"
+    "description": organization.visiting.publicAccess
   },
 };
 
@@ -226,7 +230,7 @@ const breadcrumbSchema = {
     <header class="bg-white backdrop-blur-xl border-b border-gray-200 shadow-sm sticky top-0 z-50 flex flex-col max-h-dvh" role="banner">
       <nav class="page-container py-3 shrink-0" aria-label="Main navigation">
         <div class="flex items-center justify-between">
-          <a href={`${base}/`} class="flex items-center gap-3" aria-label={`${organization.name} - Home`}>
+          <a href={`${base}/`} class="flex items-center gap-3" aria-label={`${organization.name} - Home`} aria-current={navCurrent('/')}>
             <span class="text-xl md:text-2xl font-bold text-primary" style="font-family: 'Archivo Black', 'Archivo Black Fallback', serif;">
               {organization.abbreviation}
             </span>
@@ -240,29 +244,29 @@ const breadcrumbSchema = {
             {navItems.map((item) =>
               item.children ? (
                 <details class="nav-more relative">
-                  <summary class="nav-link nav-link-icon cursor-pointer list-none focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                  <summary data-current-section={item.children.some(child => navCurrent(child.href)) ? 'true' : undefined} class="nav-link nav-link-icon cursor-pointer list-none focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     {item.label}
                     <Icon name="solar:alt-arrow-down-linear" class="w-3.5 h-3.5 nav-more-chevron" />
                   </summary>
                   <ul class="nav-more-panel">
                     {item.children.map((child) => (
                       <li>
-                        <a href={`${base}${child.href}`} class="nav-more-link">{child.label}</a>
+                        <a href={`${base}${child.href}`} aria-current={navCurrent(child.href)} class="nav-more-link">{child.label}</a>
                       </li>
                     ))}
                   </ul>
                 </details>
               ) : item.cta ? (
-                <a href={`${base}${item.href}`} class="btn-outline text-sm py-2 px-4 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                <a href={`${base}${item.href}`} aria-current={navCurrent(item.href)} class="btn-outline text-sm py-2 px-4 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                   {item.label}
                 </a>
               ) : item.icon ? (
-                <a href={`${base}${item.href}`} class="nav-link nav-link-icon whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                <a href={`${base}${item.href}`} aria-current={navCurrent(item.href)} class="nav-link nav-link-icon whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                   <Icon name={item.icon} class="w-4 h-4" />
                   {item.label}
                 </a>
               ) : (
-                <a href={`${base}${item.href}`} class="nav-link whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                <a href={`${base}${item.href}`} aria-current={navCurrent(item.href)} class="nav-link whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                   {item.label}
                 </a>
               )
@@ -294,22 +298,22 @@ const breadcrumbSchema = {
               <div class="pt-2">
                 <p class="px-4 pb-1 text-xs font-bold uppercase tracking-wider text-gray-500">{item.label}</p>
                 {item.children.map((child) => (
-                  <a href={`${base}${child.href}`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-xl transition-colors">
+                  <a href={`${base}${child.href}`} aria-current={navCurrent(child.href)} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-xl transition-colors">
                     {child.label}
                   </a>
                 ))}
               </div>
             ) : item.cta ? (
-              <a href={`${base}${item.href}`} class="btn-outline text-center rounded-full">
+              <a href={`${base}${item.href}`} aria-current={navCurrent(item.href)} class="btn-outline text-center rounded-full">
                 {item.label}
               </a>
             ) : item.icon ? (
-              <a href={`${base}${item.href}`} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-xl transition-colors">
+              <a href={`${base}${item.href}`} aria-current={navCurrent(item.href)} class="flex items-center gap-2 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-xl transition-colors">
                 <Icon name={item.icon} class="w-4 h-4" />
                 {item.label}
               </a>
             ) : (
-              <a href={`${base}${item.href}`} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-xl transition-colors">
+              <a href={`${base}${item.href}`} aria-current={navCurrent(item.href)} class="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-xl transition-colors">
                 {item.label}
               </a>
             )
@@ -334,6 +338,7 @@ const breadcrumbSchema = {
               An all-volunteer organization dedicated to preserving 
               the memory of the Nevada County Narrow Gauge Railroad.
             </p>
+            <p class="text-gray-300 text-sm mt-4">{organization.visiting.publicAccess}</p>
           </div>
           
           <div>
@@ -369,7 +374,7 @@ const breadcrumbSchema = {
                 {footerEvents.map((event) => (
                   <li class="flex items-start gap-2">
                     <Icon name="solar:calendar-bold" class="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                    <a href={`${base}/events`} class="group block py-1 hover:text-white transition-colors">
+                    <a href={`${base}/events#event-${event.id}`} class="group block py-1 hover:text-white transition-colors">
                       <span class="block">{event.data.title}</span>
                       <span class="block text-xs text-gray-400 group-hover:text-gray-300">{footerEventDate(event.data.date, event.data.endDate)}</span>
                     </a>

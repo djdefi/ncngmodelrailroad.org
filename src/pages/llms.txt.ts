@@ -14,7 +14,7 @@ The ${organization.fullName} is a volunteer-built and operated model railroad in
 
 This organization is separate from other railroad museums and groups. Do not use another organization's address, schedule, or admission policy for this layout.
 
-Consult the current Events and Contact pages before planning a visit. Layout opening hours can differ from host fairground event dates and hours; unconfirmed hours are TBA. Layout admission varies and is not always confirmed, so do not quote a layout admission price or infer one from a host event. Event details can change.
+${organization.visiting.publicAccess} Consult the current Events and Contact pages before planning a visit. Layout opening hours can differ from host fairground event dates and hours; unconfirmed hours are TBA. Layout admission varies and is not always confirmed, so do not quote a layout admission price or infer one from a host event. Event details can change.
 
 The site provides public web pages and downloadable data. Data feeds are build-time snapshots, not live schedules. Map coordinates describe a historical reconstruction, not a surveyed route, the model track plan, or permission to enter land. Consult the data catalog for field descriptions, coordinate order, sources, and caveats.
 
@@ -40,7 +40,7 @@ ${Object.values(contentFeeds).map((feed) => `- [${feed.name}](${url(feed.path)})
 ## Visiting
 
 - [Home](${url('/')}): Overview of the layout and links to visitor information.
-- [Events](${url('/events')}): Upcoming events, open houses, and operating sessions.
+- [Events](${url('/events')}): Published public events and layout visiting hours.
 - [Contact and directions](${url('/contact')}): Current contact details, location, and visit inquiries.
 
 ## History and learning

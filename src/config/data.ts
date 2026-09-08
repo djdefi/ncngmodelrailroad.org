@@ -16,7 +16,7 @@ export const contentFeeds = {
       'Dates are calendar dates at the venue, not UTC instants or confirmed layout opening hours. An event date range may describe the host festival rather than the days the layout opens.',
       'Read the current Events and Contact pages for layout hours. Unconfirmed hours are TBA. Host admission terms are not layout admission terms; no layout price or admission offer is provided by this feed.',
       'No upcoming/past status is stored. Compare dates using the venue time zone; endDate is inclusive, and a null endDate means no separate end date was published.',
-      'Regular work sessions described on the Events page are not individual event entries and are not expanded into this feed.',
+      'Public visits are available only during published events. Volunteer work sessions are not public visits and are not expanded into this feed.',
     ],
     fields: {
       id: 'string: Content entry ID. Treat as opaque; use date fields, not a date embedded in the ID.',

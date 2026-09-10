@@ -87,7 +87,38 @@ const volunteerEmailBody = [
         </ul>
       </div>
 
-      <div class="mb-10">
+      <!-- Detailed Info Sections -->
+      <div class="space-y-8 mb-8">
+        <div class="bg-amber-50 border border-amber-200 p-6 rounded-lg">
+          <h2 class="text-2xl font-bold text-primary mb-3">New Members Welcome</h2>
+          <p class="text-gray-700 font-semibold mb-2">Members, junior members, docents, and teachers are all welcome.</p>
+          <p class="text-gray-600">There is useful work to do whether you like train operations, scenery, carpentry, wiring, research, photography, or talking with visitors during open houses.</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 rounded-lg">
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:calendar-bold" class="w-5 h-5" /> Work Sessions</h3>
+          <p class="text-gray-700 font-medium mb-2">First Saturday and Third Wednesday of the month, usually 11 AM to 2 PM</p>
+          <p class="text-gray-600 mb-3">Work sessions are for volunteer work, not public visits. Email us before attending so we can confirm the session and entry arrangements.</p>
+          <p class="text-sm text-gray-600">{organization.visiting.publicAccess} <a href={`${base}/events`} class="text-primary underline">See announced openings.</a></p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 rounded-lg">
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:microphone-bold" class="w-5 h-5" /> Docents Needed</h3>
+          <p class="text-gray-600">Docents help greet visitors and explain the history of the railroad and the layout during open houses. If you like talking with the public and sharing local history, this is a good place to help.</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 rounded-lg">
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:users-group-rounded-bold" class="w-5 h-5" /> Junior Members (Ages 12-18)</h3>
+          <p class="text-gray-600">Junior members ages 12 to 18 are welcome with an accompanying adult member. It is a good way to learn model railroading, layout work, and local railroad history together.</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 rounded-lg">
+          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:book-bold" class="w-5 h-5" /> School Teachers</h3>
+          <p class="text-gray-600">Teachers covering Nevada County history or transportation history can email us with questions about bringing a class to a published public event.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
         <h2 class="text-2xl font-bold text-primary mb-3">Volunteers at Work</h2>
         <p class="text-gray-600 mb-5">
           A few scenes from construction, scenery work, and day-to-day upkeep on the layout.
@@ -111,38 +142,6 @@ const volunteerEmailBody = [
           ))}
         </div>
       </div>
-
-      <!-- Detailed Info Sections -->
-      <div class="space-y-8 mb-8">
-        <div class="bg-amber-50 border border-amber-200 p-6 rounded-lg">
-          <h2 class="text-2xl font-bold text-primary mb-3">New Members Welcome</h2>
-          <p class="text-gray-700 font-semibold mb-2">Members, junior members, docents, and teachers are all welcome.</p>
-          <p class="text-gray-600">There is useful work to do whether you like train operations, scenery, carpentry, wiring, research, photography, or talking with visitors during open houses.</p>
-        </div>
-
-        <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:calendar-bold" class="w-5 h-5" /> Work Sessions</h3>
-          <p class="text-gray-700 font-medium mb-2">First Saturday and Third Wednesday of the month — usually 11 AM to 2 PM</p>
-          <p class="text-gray-600 mb-3">Work sessions are for volunteer work, not public visits. Email us before attending so we can confirm the session and entry arrangements.</p>
-          <p class="text-sm text-gray-600">{organization.visiting.publicAccess} <a href={`${base}/events`} class="text-primary underline">See published events.</a></p>
-        </div>
-
-        <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:microphone-bold" class="w-5 h-5" /> Docents Needed</h3>
-          <p class="text-gray-600">Docents help greet visitors and explain the history of the railroad and the layout during open houses. If you like talking with the public and sharing local history, this is a good place to help.</p>
-        </div>
-
-        <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:users-group-rounded-bold" class="w-5 h-5" /> Junior Members (Ages 12-18)</h3>
-          <p class="text-gray-600">Junior members ages 12 to 18 are welcome with an accompanying adult member. It is a good way to learn model railroading, layout work, and local railroad history together.</p>
-        </div>
-
-        <div class="bg-white border border-gray-200 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Icon name="solar:book-bold" class="w-5 h-5" /> School Teachers</h3>
-          <p class="text-gray-600">Teachers covering Nevada County history or transportation history can email us with questions about bringing a class to a published public event.</p>
-        </div>
-      </div>
-
     </div>
   </section>
 </BaseLayout>

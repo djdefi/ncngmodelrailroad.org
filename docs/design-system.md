@@ -131,11 +131,32 @@ for.
   link with `aria-current="location"`. More is underlined when a child is current.
 - The homepage photo scrim is stronger on small screens so descriptive text
   remains readable over the locomotive's pale front.
+- Major headings use Archivo Black. Supporting headings (`h3` through `h6`)
+  use Libre Franklin by default; use `font-body` for small supporting `h2`s.
+  Heading font defaults live in the base layer so font utilities can override them.
+- The homepage leads with the next event and its detail link, followed by the
+  second upcoming event. Both come from the event collection in date order, not
+  hardcoded promotions. Confirmed layout dates lead when available; otherwise,
+  compact ranges are explicitly labeled as fairgrounds event dates. Layout hours
+  stay in each listing. With no upcoming events, the hero highlights
+  layout photos instead. General opening guidance and directions sit below the
+  layout introduction rather than competing with the events.
+- Navigation, the Events page, and the footer use event-first labels. The Events
+  page puts event listings before general event-day logistics.
+- Visitor-planning sections use `building-exterior-visit.jpg`, a crop of the
+  original building photograph without admission and OPEN signage. The uncropped
+  gallery photograph carries a caption explaining that its signs are not current
+  visitor guidance.
 - Gallery categories and captions stay visible below each image on every device.
-  Only the zoom affordance uses hover enhancement.
+  Confirmed area labels are optional and appear with captions when provided.
+  Category and area filters share a result count, reset action, empty state,
+  and filtered lightbox sequence. The area selector stays hidden until an area
+  is assigned. Only the zoom affordance uses hover enhancement.
 - The historical map is also an entry point from the layout. Its initial view
-  keeps Search, Tours & info, and the model railroad website link in a compact
-  toolbar. The introduction, tour picker, and Layers panel start collapsed on
+  keeps a visible Historic Railroad Map title, a website return link, Search,
+  Show Whole Route, Tours & info, and a short comparison instruction in a compact
+  toolbar. Meaningful secondary map text uses at least 12px; supporting source
+  and search prose uses 13px. The introduction, tour picker, and Layers panel start collapsed on
   every screen size. Starting a tour closes the guide; closing a tour returns
   focus to Tours & info.
   Feature popups sit above both basemaps, so the comparison divider never hides

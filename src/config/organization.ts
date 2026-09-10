@@ -21,8 +21,8 @@ export const organization = {
   founded: 1986,
   nonprofit: "",
   visiting: {
-    publicAccess: "We are open to the public only during events published on this site.",
-    eventTiming: "These usually coincide with major Nevada County Fairgrounds events. Layout hours may differ from fairground event hours.",
+    publicAccess: `We open during selected events at the ${location.venue}, only when an opening is announced on this website.`,
+    eventTiming: "Fairgrounds event dates and hours are not necessarily our opening dates and hours. Check the announcement before visiting.",
   },
   // The prototype railroad the layout models. Stated once so the operating era
   // cannot drift between pages: the site previously published both 1875-1942

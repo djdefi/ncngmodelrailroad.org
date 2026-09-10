@@ -37,6 +37,8 @@ export const GET: APIRoute = async ({ params, site }) => {
             title: data.title,
             date: data.date.toISOString().split('T')[0],
             endDate: data.endDate ? data.endDate.toISOString().split('T')[0] : null,
+            layoutStartDate: data.layoutStartDate ? data.layoutStartDate.toISOString().split('T')[0] : null,
+            layoutEndDate: data.layoutEndDate ? data.layoutEndDate.toISOString().split('T')[0] : null,
             location: data.location,
             description: data.description ?? null,
             featured: data.featured,

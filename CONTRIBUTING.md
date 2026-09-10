@@ -25,7 +25,7 @@ The website uses [Pages CMS](https://pagescms.org), a free content editor built 
 
 1. Go to [app.pagescms.org/djdefi/ncngmodelrailroad.org](https://app.pagescms.org/djdefi/ncngmodelrailroad.org)
 2. Click **Login with GitHub**
-3. Choose what to edit — Events, Board Members, Photo Gallery, or Engine Roster
+3. Choose what to edit: Events, Board Members, Photo Gallery, or Historical Locomotive Roster
 4. Make your changes using the simple form fields
 5. Click **Save** — the website updates automatically in about 2 minutes
 
@@ -49,11 +49,26 @@ You can also edit content files directly on GitHub:
 
 ### Public visiting information
 
-The layout is open to the public only during published events, usually alongside
-major fairground events. Work sessions are for volunteers, not public visits.
+The layout opens during selected Nevada County Fairgrounds events, only when an
+opening is announced on this website. A host event does not establish layout
+opening dates or hours. Work sessions are for volunteers, not public visits.
 Do not advertise drop-in visits or private tours. Confirm event details before
 publishing, list layout hours separately from host-event hours, and use TBA when
-layout hours are unknown. See [Updating Events](docs/editing-content.md#updating-events).
+layout hours are unknown. Keep host dates in `date` / `endDate`; use optional
+`layoutStartDate` / `layoutEndDate` only for confirmed layout opening days.
+See [Updating Events](docs/editing-content.md#updating-events).
+
+### Gallery areas and historical roster
+
+Gallery entries have an optional **Layout Area** field in Pages CMS (`area` in
+Markdown). Keep the existing category and add an area only when it is identified.
+Use consistent area names; leave unknown or unrelated photographs unassigned.
+Area filtering appears automatically when at least one photo has an area.
+See [Layout areas](docs/editing-content.md#layout-areas).
+
+The `trains` collection describes the original railroad's historical locomotives.
+It is not an inventory of the models and rolling stock currently on the layout.
+Keep future, verified model-inventory information separate from that roster.
 
 ### Machine-readable content
 

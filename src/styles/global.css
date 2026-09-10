@@ -295,11 +295,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  h3, h4, h5, h6 {
+    font-family: var(--font-body);
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Archivo Black', 'Archivo Black Fallback', Georgia, serif;
   color: var(--color-primary);
   line-height: 1.2;
   letter-spacing: -0.03em;
+}
+
+h3, h4, h5, h6 {
+  letter-spacing: -0.01em;
 }
 
 /* Allow parent text-white to override heading color in dark sections */
@@ -635,7 +648,7 @@ header nav summary[data-current-section="true"] {
       0deg,
       rgba(var(--color-hero-overlay-rgb), 0.88),
       rgba(var(--color-hero-overlay-rgb), 0.76) 65%,
-      rgba(var(--color-hero-overlay-rgb), 0.3)
+      rgba(var(--color-hero-overlay-rgb), 0.66)
     );
   }
 }

@@ -160,7 +160,7 @@ const rosterHighlights = [
   <!-- Engine Roster - Card-based -->
   <section class="py-16 bg-cream">
     <div class="page-container max-w-5xl">
-      <SectionHeader title="Engine Roster" description="Original Baldwin locomotives, later acquisitions, and the engines represented on the layout." />
+      <SectionHeader title="Historical Locomotive Roster" description="Locomotives of the original Nevada County Narrow Gauge Railroad. This is not an inventory of the models or rolling stock currently on our layout." />
 
       <!-- Photo showcase -->
       <div class="grid md:grid-cols-3 gap-4 mb-12">
@@ -195,7 +195,7 @@ const rosterHighlights = [
             {(engine.source || engine.rosterEntry) && (
               <ul class="mb-3 space-y-1 text-xs text-gray-600">
                 {engine.source && (
-                  <li><span class="font-semibold text-gray-900">Source:</span> {engine.source}</li>
+                  <li><span class="font-semibold text-gray-900">Builder / Previous Railroad:</span> {engine.source}</li>
                 )}
                 {engine.rosterEntry && (
                   <li><span class="font-semibold text-gray-900">Roster:</span> {engine.rosterEntry}</li>

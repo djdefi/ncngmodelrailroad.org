@@ -8,27 +8,25 @@ import { organization } from '../config/organization';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<BaseLayout title="Contact Us | N.C.N.G. Model Railroad" description="Get in touch with the Nevada County Narrow Gauge Historical Model Railroad. Send us a message or visit us in person." image="/images/building-exterior.jpg" heroImage={`${base}/images/building-exterior.jpg`}>
+<BaseLayout title="Contact Us | N.C.N.G. Model Railroad" description="Contact the volunteers about announced layout openings, volunteering, or the model railroad. Find directions to the Nevada County Fairgrounds." image="/images/building-exterior-visit.jpg" heroImage={`${base}/images/building-exterior-visit.jpg`}>
   <!-- Hero with building exterior -->
   <section class="relative py-20 text-white overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img 
-        src={`${base}/images/building-exterior.jpg`} 
+        src={`${base}/images/building-exterior-visit.jpg`}
         alt="N.C.N.G. Historical Model Railroad building at Nevada County Fairgrounds" 
         class="w-full h-full object-cover"
         loading="eager"
         decoding="async"
         fetchpriority="high"
-        width={1200}
-        height={675}
+        width={800}
+        height={600}
       />
       <div class="absolute inset-0 bg-gray-900/65"></div>
     </div>
     <div class="page-container relative z-10">
       <div class="max-w-3xl">
-        <span class="text-sm uppercase tracking-widest text-gray-300 font-medium">Get In Touch</span>
-        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Contact Us</h1>
-        <p class="text-xl text-gray-200">Drop us a line!</p>
+        <h1 class="text-4xl md:text-5xl font-bold">Contact Us</h1>
       </div>
     </div>
   </section>
@@ -39,35 +37,32 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Left: how to reach us -->
         <div class="space-y-8">
-          <div>
-            <SectionHeader title="Send Us a Message" />
-            <ContactCard
-              heading="Get in touch"
-              intro="We are an all-volunteer group, so replies can take a few days. Email is the surest way to reach us."
-              subject="Message from the N.C.N.G. website"
-              cta="Write us an email"
-            />
-          </div>
+          <ContactCard
+            heading="Email the Volunteers"
+            intro="We are an all-volunteer group, so replies can take a few days. Email is the surest way to reach us."
+            subject="Message from the N.C.N.G. website"
+            cta="Write Us an Email"
+          />
 
           <div>
             <SectionHeader title="Visit the Layout" />
             <p class="text-gray-600">
               {organization.visiting.publicAccess}
             </p>
-            <a href={`${base}/events`} class="inline-block mt-4 text-primary underline font-semibold">See Published Events and Layout Hours</a>
+            <a href={`${base}/events`} class="inline-block mt-4 text-primary underline font-semibold">See Announced Openings</a>
           </div>
         </div>
 
-        <!-- Right: full contact and location details -->
+        <!-- Right: visiting and mailing addresses -->
         <div class="space-y-8">
           <div class="bg-cream p-6 rounded-lg">
-            <h3 class="text-xl font-bold text-primary mb-4">{organization.fullName}</h3>
+            <h2 class="text-xl font-body font-bold text-primary mb-4">Location &amp; Mailing Address</h2>
 
             <div class="space-y-4 text-gray-700">
               <div class="flex items-start gap-3">
                 <Icon name="solar:map-point-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong class="block">Address</strong>
+                  <strong class="block">Fairgrounds Address</strong>
                   <p>{organization.location.venue}<br />{organization.location.streetAddress}<br />{organization.location.city}, {organization.location.state} {organization.location.zip}</p>
                 </div>
               </div>
@@ -80,37 +75,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                 </div>
               </div>
 
-              <div class="flex items-start gap-3">
-                <Icon name="solar:phone-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong class="block">Phone</strong>
-                  <a href={organization.contact.phoneHref} class="text-primary hover:underline">{organization.contact.phone}</a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <Icon name="solar:letter-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong class="block">Email</strong>
-                  <a href={`mailto:${organization.contact.email}`} class="text-primary hover:underline">{organization.contact.email}</a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <Icon name="simple-icons:facebook" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong class="block">Facebook</strong>
-                  <a href={organization.social.facebook} target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Follow us for photos and event updates</a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <Icon name="solar:clock-circle-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                <div>
-                  <strong class="block">Hours</strong>
-                  <p>Published public events only. See each listing for layout hours.</p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -122,7 +86,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           >
             <span class="inline-flex items-center gap-2">
               <Icon name="solar:map-arrow-right-bold" class="w-5 h-5" />
-              Get Directions
+              Directions to the Fairgrounds
             </span>
           </a>
         </div>
@@ -151,7 +115,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         ></iframe>
       </div>
       <p class="mt-4 text-gray-600 text-center max-w-prose mx-auto">
-        This map shows the fairgrounds, not a confirmed event entrance. Check the published event for entry and parking information.
+        This map shows the fairgrounds, not a confirmed event entrance. Check the opening announcement for entry and parking information.
       </p>
       <div class="mt-8 max-w-prose mx-auto">
         <h3 class="text-xl font-bold mb-3">Before You Travel</h3>
@@ -190,7 +154,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       />
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href={`${base}/volunteer`} class="btn-primary px-8">Become a Volunteer</a>
-        <a href={`${base}/events`} class="btn-outline px-8">Upcoming Events</a>
+        <a href={`${base}/events`} class="btn-outline px-8">See Announced Openings</a>
       </div>
     </div>
   </section>

@@ -29,7 +29,7 @@ import '@fontsource-variable/libre-franklin';
 import archivoBlackUrl from '@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2?url';
 import libreFranklinUrl from '@fontsource-variable/libre-franklin/files/libre-franklin-latin-wght-normal.woff2?url';
 import { navItems } from '../config/navigation';
-import { isUpcomingEvent } from '../utils/events';
+import { getEventDisplayDates, isUpcomingEvent } from '../utils/events';
 import { getPublicImageSize } from '../utils/imageSize';
 
 // Preview cards are sized from the declared dimensions before the image loads,
@@ -57,7 +57,7 @@ const pageFeed = Object.values(contentFeeds).find(
 const now = new Date();
 const footerEvents = (await getCollection('events'))
   .filter((event) => isUpcomingEvent(event.data, now))
-  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
+  .sort((a, b) => getEventDisplayDates(a.data).date.getTime() - getEventDisplayDates(b.data).date.getTime())
   .slice(0, 3);
 
 function footerEventDate(date: Date, endDate?: Date) {
@@ -351,7 +351,7 @@ const breadcrumbSchema = {
               </div>
               <div class="flex items-center gap-2">
                 <Icon name="solar:map-arrow-right-bold" class="w-5 h-5 text-gray-400 flex-shrink-0" />
-                <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="inline-block py-1 hover:text-white transition-colors">Get Directions</a>
+                <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="inline-block py-1 hover:text-white transition-colors">Directions to the Fairgrounds</a>
               </div>
               <div class="flex items-center gap-2">
                 <Icon name="solar:phone-bold" class="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -372,21 +372,24 @@ const breadcrumbSchema = {
             <h3 class="text-lg font-bold mb-4 text-white">Upcoming Events</h3>
             {footerEvents.length > 0 ? (
               <ul class="text-gray-300 text-sm space-y-3">
-                {footerEvents.map((event) => (
-                  <li class="flex items-start gap-2">
-                    <Icon name="solar:calendar-bold" class="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                    <a href={`${base}/events#event-${event.id}`} class="group block py-1 hover:text-white transition-colors">
-                      <span class="block">{event.data.title}</span>
-                      <span class="block text-xs text-gray-400 group-hover:text-gray-300">{footerEventDate(event.data.date, event.data.endDate)}</span>
-                    </a>
-                  </li>
-                ))}
+                {footerEvents.map((event) => {
+                  const { date, endDate, label } = getEventDisplayDates(event.data);
+                  return (
+                    <li class="flex items-start gap-2">
+                      <Icon name="solar:calendar-bold" class="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                      <a href={`${base}/events#event-${event.id}`} class="group block py-1 hover:text-white transition-colors">
+                        <span class="block">{event.data.title}</span>
+                        <span class="block text-xs text-gray-400 group-hover:text-gray-300">{label}: {footerEventDate(date, endDate)}</span>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             ) : (
-              <p class="text-gray-300 text-sm">No events are scheduled right now.</p>
+              <p class="text-gray-300 text-sm">Our next event will appear here when it's announced.</p>
             )}
             <a href={`${base}/events`} class="mt-4 inline-flex items-center gap-1 py-1 text-sm font-semibold text-white hover:text-gray-300 transition-colors">
-              See all events
+              All upcoming events
               <Icon name="solar:arrow-right-linear" class="w-4 h-4" />
             </a>
           </div>

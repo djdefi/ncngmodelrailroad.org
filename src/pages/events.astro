@@ -3,14 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection, render } from 'astro:content';
-import { formatEventDate, isUpcomingEvent } from '../utils/events';
+import { formatEventDate, getEventDisplayDates, isUpcomingEvent } from '../utils/events';
 import { organization } from '../config/organization';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const events = await getCollection('events');
 const sortedEvents = events.sort((a, b) => 
-  new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
+  getEventDisplayDates(a.data).date.getTime() - getEventDisplayDates(b.data).date.getTime()
 );
 const now = new Date();
 const upcomingEvents = sortedEvents.filter(e => isUpcomingEvent(e.data, now));
@@ -19,13 +19,14 @@ const pastEvents = sortedEvents.filter(e => !isUpcomingEvent(e.data, now)).rever
 const siteUrl = Astro.site?.origin || 'https://ncngmodelrailroad.org';
 
 const eventSchemaItems = upcomingEvents.map((event) => {
+  const { date, endDate } = getEventDisplayDates(event.data);
   const item: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Event",
     "name": event.data.title,
     "description": event.data.description || event.data.title,
-    "startDate": event.data.date.toISOString().split('T')[0],
-    "endDate": (event.data.endDate || event.data.date).toISOString().split('T')[0],
+    "startDate": date.toISOString().split('T')[0],
+    "endDate": (endDate ?? date).toISOString().split('T')[0],
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {
@@ -59,35 +60,22 @@ const eventSchemaJson = JSON.stringify(eventSchemaItems)
 
 ---
 
-<BaseLayout title="Plan Your Visit & Events | N.C.N.G. Model Railroad" description="Public visits are available only during published events. Find event dates and layout visiting hours for the N.C.N.G. Historical Model Railroad." image="/images/building-exterior.jpg">
+<BaseLayout title="Upcoming Events | N.C.N.G. Model Railroad" description="See upcoming events at the N.C.N.G. Historical Model Railroad, with event details and layout opening information for selected Nevada County Fairgrounds events." image="/images/building-exterior-visit.jpg">
   {eventSchemaItems.length > 0 && (
     <script type="application/ld+json" set:html={eventSchemaJson} />
   )}
   <!-- Hero -->
   <section class="bg-gray-900 text-white py-12 md:py-16">
     <div class="page-container text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Plan Your Visit</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Upcoming Events</h1>
       <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-        {organization.visiting.publicAccess}
+        What's coming up at the model railroad during {organization.location.venue} events.
       </p>
     </div>
   </section>
 
   <section class="py-10 md:py-12 bg-white">
     <div class="page-container max-w-4xl">
-      <div class="mb-8 max-w-prose">
-        <p class="text-gray-700 mb-3">{organization.visiting.eventTiming}</p>
-        <p class="text-gray-600 mb-4">
-          Read each listing for layout hours. Times not yet listed are TBA.
-          Host events may charge admission or parking to reach the layout.
-        </p>
-        <div class="flex flex-wrap gap-x-6 gap-y-3">
-          <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="text-primary underline font-semibold">Get Directions</a>
-          <a href={`${base}/contact`} class="text-primary underline font-semibold">Ask About a Published Event</a>
-        </div>
-      </div>
-      <h2 class="text-3xl font-bold mb-6">Upcoming Public Events</h2>
-      
       {upcomingEvents.length > 0 ? (
         <div class="space-y-8">
           {upcomingEvents.map(async (event) => {
@@ -97,8 +85,13 @@ const eventSchemaJson = JSON.stringify(eventSchemaItems)
                 <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
                   <div>
                     <h2 class="text-2xl font-display text-gray-900">{event.data.title}</h2>
-                    <p class="text-primary font-medium mt-1">
-                      Event dates: {formatEventDate(event.data.date, event.data.endDate)}
+                    {event.data.layoutStartDate && (
+                      <p class="text-primary font-semibold mt-2">
+                        Layout open: {formatEventDate(event.data.layoutStartDate, event.data.layoutEndDate ?? undefined)}
+                      </p>
+                    )}
+                    <p class="text-gray-600 mt-2">
+                      Host event dates: {formatEventDate(event.data.date, event.data.endDate)}
                     </p>
                   </div>
                   {event.data.featured && (
@@ -119,8 +112,30 @@ const eventSchemaJson = JSON.stringify(eventSchemaItems)
           })}
         </div>
       ) : (
-        <p class="text-gray-600">No upcoming public events are published. Please wait for a listed event before planning your visit.</p>
+        <p class="text-gray-600">
+          No upcoming events are posted.
+          <a href={`${base}/gallery`} class="text-primary underline">Explore the layout photos</a>
+          while we prepare the next announcement.
+        </p>
       )}
+    </div>
+  </section>
+
+  <section class="py-10 md:py-12 bg-cream">
+    <div class="page-container max-w-4xl">
+      <h2 class="text-2xl font-bold mb-4">Event Day Details</h2>
+      <div class="max-w-prose">
+        <p class="text-gray-700 mb-3">{organization.visiting.publicAccess}</p>
+        <p class="text-gray-600 mb-3">{organization.visiting.eventTiming}</p>
+        <p class="text-gray-600 mb-4">
+          If layout hours are marked TBA, check the event listing for an update.
+          Host events may charge admission or parking to reach the layout.
+        </p>
+        <div class="flex flex-wrap gap-x-6 gap-y-3">
+          <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-11 text-primary underline font-semibold">Directions to the Fairgrounds</a>
+          <a href={`${base}/contact`} class="inline-flex items-center min-h-11 text-primary underline font-semibold">Ask About an Event</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -138,7 +153,12 @@ const eventSchemaJson = JSON.stringify(eventSchemaItems)
                   <div class="flex flex-wrap items-start justify-between gap-3 mb-2">
                     <div>
                       <h2 class="text-xl font-display text-gray-800">{event.data.title}</h2>
-                      <p class="text-sm text-gray-500 mt-1">{formatEventDate(event.data.date, event.data.endDate)}</p>
+                      {event.data.layoutStartDate && (
+                        <p class="text-sm text-gray-600 mt-1">
+                          Layout dates: {formatEventDate(event.data.layoutStartDate, event.data.layoutEndDate ?? undefined)}
+                        </p>
+                      )}
+                      <p class="text-sm text-gray-500 mt-1">Host event: {formatEventDate(event.data.date, event.data.endDate)}</p>
                     </div>
                     <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">Past event</span>
                   </div>

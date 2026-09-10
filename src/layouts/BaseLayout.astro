@@ -75,9 +75,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://ncngmode
 // Structured data for nonprofit organization (Schema.org)
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "NonprofitOrganization",
+  "@type": "Organization",
   "name": organization.fullName,
-  "alternateName": organization.name,
+  "alternateName": [organization.name, organization.nonprofit.irsName],
   "url": siteUrl,
   "logo": `${siteUrl}/images/hero-logo.png`,
   "description": description,
@@ -91,7 +91,8 @@ const organizationSchema = {
     "addressCountry": "US"
   },
   "areaServed": "Nevada County, California",
-  "nonprofitStatus": "Volunteer Organization",
+  "nonprofitStatus": organization.nonprofit.schemaStatus,
+  "taxID": organization.nonprofit.ein,
   "sameAs": socialProfiles,
   "telephone": organization.contact.phone,
   "email": organization.contact.email,
@@ -395,6 +396,12 @@ const breadcrumbSchema = {
           <p>
             © {new Date().getFullYear()} {organization.name}. 
             Incorporated {organization.founded} as the "{organization.abbreviation} Project"
+          </p>
+          <p class="mt-2 text-xs">
+            {organization.nonprofit.classification} nonprofit organization.
+            <a href={`${base}/donate#nonprofit-details`} class="inline-block py-1 underline hover:text-white">
+              EIN: {organization.nonprofit.ein}
+            </a>
           </p>
           <p class="mt-2 text-xs">
             Note: The {organization.name} is a separate organization 

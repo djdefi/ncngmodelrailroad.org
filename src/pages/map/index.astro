@@ -61,11 +61,38 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
       position: static;
     }
 
+    .map-entry-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .map-entry-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .map-entry-return {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      max-width: 48%;
+      flex-shrink: 0;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.35;
+      text-underline-offset: 3px;
+    }
+
     .map-entry-actions {
       display: grid;
-      grid-template-columns: auto auto 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1.2fr);
       gap: 6px;
-      margin-bottom: 16px;
+      margin: 0;
     }
 
     .map-entry-actions .button,
@@ -75,8 +102,19 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
       padding: 8px;
       white-space: normal;
       text-align: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
+    }
+
+    .brand .map-entry-help {
+      margin: 6px 0 16px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .brand.collapsed .map-entry-help {
+      margin-bottom: 0;
     }
 
     .map-entry-actions .search-open {
@@ -133,9 +171,25 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
       display: block;
     }
 
+    #map-controls :is(.layer-count, .route-key, .panel-toggle-label, .map-era > span),
+    #map-controls h2,
+    .tour-card :is(.tour-source, .tour-progress, .tour-hint),
+    #status {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    #map-controls .source-note,
+    #map-era-detail,
+    .map-search .search-help {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     .tour-controls {
       position: sticky;
       bottom: 0;
+      flex-wrap: wrap;
       background: var(--panel-solid);
     }
 
@@ -197,24 +251,29 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
 
     <div class="compare-control" aria-label="Historical and modern map comparison">
       <input id="compare" type="range" min="0" max="100" value="42" tabindex="-1" aria-hidden="true">
-      <div class="compare-handle" aria-hidden="true"></div>
+      <div class="compare-handle" aria-hidden="true" aria-describedby="map-entry-help"></div>
     </div>
 
     <header class="brand">
-      <nav class="map-entry-actions" aria-label="Explore the map and model railroad">
+      <div class="map-entry-heading">
+        <p class="map-entry-title">Historic Railroad Map</p>
+        <a class="map-entry-return" href="../">Back to Model Railroad Website</a>
+      </div>
+      <nav class="map-entry-actions" aria-label="Map tools">
         <button class="button search-open" id="search-open" type="button" aria-haspopup="dialog" aria-controls="map-search">Search</button>
+        <button class="button" id="fit-route" type="button">Show Whole Route</button>
         <button class="brand-toggle" id="brand-toggle" type="button" aria-expanded="true" aria-label="Close tours and map introduction">
           <span class="brand-toggle-icon disclosure-icon" aria-hidden="true">−</span>
           <span class="brand-toggle-label disclosure-label">Close guide</span>
         </button>
-        <a class="button button-subtle" href="../">Model railroad website</a>
       </nav>
+      <p class="map-entry-help" id="map-entry-help">Drag the divider to compare the historic map and modern satellite imagery.</p>
       <p class="eyebrow">Colfax → Grass Valley → Nevada City</p>
       <h1>
         <span class="title-main">The Narrow Gauge</span>
         <span class="title-sub">Then &amp; now.</span>
       </h1>
-      <p class="lede">Trace the Nevada County Narrow Gauge Railroad across the modern Sierra foothills. Drag the veil to compare terrain, explore stations and spurs, or travel the route stop by stop.</p>
+      <p class="lede">Trace the Nevada County Narrow Gauge Railroad across the modern Sierra foothills. Explore stations and spurs, or travel the route stop by stop.</p>
       <p class="mobile-facts"><span data-route-miles>—</span> mapped miles · {organization.prototype.era} · 3 ft gauge</p>
       <div class="actions">
         <div class="tour-launcher map-entry-tour">
@@ -230,7 +289,6 @@ import { dataCatalogPath, mapDatasets } from '../../config/data';
           </label>
           <button class="button primary" id="start-tour" type="button" aria-label="Start tour">Start Tour</button>
         </div>
-        <button class="button" id="fit-route" type="button">Fit full route</button>
       </div>
     </header>
 

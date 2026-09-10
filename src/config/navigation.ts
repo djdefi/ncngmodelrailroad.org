@@ -16,8 +16,8 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { label: 'About', href: '/about' },
-  { label: 'Explore Map', href: '/map/', icon: 'solar:map-bold' },
-  { label: 'Visit & Events', href: '/events', icon: 'solar:calendar-bold' },
+  { label: 'Historic Map', href: '/map/', icon: 'solar:map-bold' },
+  { label: 'Events', href: '/events', icon: 'solar:calendar-bold' },
   { label: 'Gallery', href: '/gallery', icon: 'solar:camera-bold' },
   { label: 'Trains', href: '/trains', icon: 'solar:tram-bold' },
   { label: 'Learn', href: '/learn', icon: 'solar:book-bold' },
@@ -30,5 +30,5 @@ export const navItems: NavItem[] = [
       { label: 'Links', href: '/links' },
     ],
   },
-  { label: 'Get Involved', href: '/donate', cta: true },
+  { label: 'Support the Layout', href: '/donate', cta: true },
 ];

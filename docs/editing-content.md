@@ -10,7 +10,7 @@ For most content updates, you don't need to edit files directly. **[Pages CMS](h
 
 1. Go to [app.pagescms.org/djdefi/ncngmodelrailroad.org](https://app.pagescms.org/djdefi/ncngmodelrailroad.org)
 2. Log in with your GitHub account
-3. Select what you want to edit (Events, Board Members, Gallery, or Engine Roster)
+3. Select what you want to edit (Events, Board Members, Gallery, or Historical Locomotive Roster)
 4. Fill in the fields and click **Save**
 5. The site updates automatically in about 2 minutes
 
@@ -35,9 +35,10 @@ The rest of this guide covers editing files directly — useful if you prefer wo
 
 Events are Markdown files in `src/content/events/`. Each file = one event on the Events page.
 
-Public visits are available **only during published events**, which usually
-coincide with major fairground events. Volunteer work sessions are not public
-visiting hours. Do not advertise drop-in visits or private tours.
+Public visits are available during selected Nevada County Fairgrounds events,
+**only when an opening is announced on this website**. A fairgrounds event does
+not establish layout opening dates or hours. Volunteer work sessions are not
+public visiting hours. Do not advertise drop-in visits or private tours.
 
 Confirm an event before publishing it. State layout hours separately from host
 event dates and hours; use **TBA** if layout hours are not confirmed. Keep
@@ -78,8 +79,8 @@ location: "Nevada County Fairgrounds, Grass Valley"
 featured: true
 ---
 
-This published public event coincides with the Father's Day Bluegrass Festival.
-Layout hours are TBA and may differ from festival hours. Check the festival
+The layout will open during the Father's Day Bluegrass Festival.
+Layout hours are TBA; the festival schedule is not the layout schedule. Check the festival
 for host-event admission and parking details.
 ```
 
@@ -88,12 +89,26 @@ for host-event admission and parking details.
 | Field | Required | Description |
 | :---- | :------- | :---------- |
 | `title` | Yes | Event name (in quotes) |
-| `date` | Yes | Start date as `YYYY-MM-DD` |
-| `endDate` | No | End date for multi-day events |
+| `date` | Yes | Host event start date as `YYYY-MM-DD` |
+| `endDate` | No | Host event end date for multi-day events |
+| `layoutStartDate` | No | Confirmed first layout opening day; leave blank if unconfirmed |
+| `layoutEndDate` | No | Confirmed last day in a consecutive opening range; omit for a single-day opening |
 | `location` | Yes | Where the event takes place |
 | `featured` | No | Set to `true` to highlight on the Events page |
 
 The body text (below the `---`) is the event description shown on the page.
+
+The homepage automatically promotes the next two upcoming events in date order,
+using confirmed layout dates when available and host dates otherwise. The homepage
+and footer label which dates they show. The Events page keeps both ranges separate.
+The `featured` field adds a badge on the Events page; it does not control homepage
+placement. Keep event dates separate from the layout's opening dates and hours.
+
+Only fill in `layoutStartDate` and `layoutEndDate` after the layout days are
+confirmed. They must fall within the host event dates. For a single-day opening,
+set only `layoutStartDate`. Leave both fields empty when days are unconfirmed;
+do not enter "TBA" in a date field. Put hours in the event body and use **TBA**
+until those hours are confirmed.
 
 ### Editing an existing event
 
@@ -104,7 +119,8 @@ Open the file and change the fields you need. The most common update is changing
 Delete the file. The event disappears from the site automatically.
 
 > **Note:** Events move to the collapsed Past Events section on the next build
-> after their final day in California. A daily deployment refreshes the
+> after their final confirmed layout day in California, or the host event's final
+> day if no layout dates are confirmed. A daily deployment refreshes the
 > homepage, Events page, and footer, even when no content has changed. The
 > refresh updates date grouping; it does not confirm event details. Avoid
 > relative wording such as "our next open house" in event bodies.
@@ -201,8 +217,9 @@ category: Fairgrounds & Events
 | :---- | :---------- |
 | `title` | Used for the image alt text and lightbox title context |
 | `image` | Filename in `public/images/` |
-| `caption` | Short text shown below the photo in the lightbox |
+| `caption` | Short text shown below the photo in the grid and lightbox |
 | `category` | One of: `Historic`, `Layout`, `Volunteer Work`, `Fairgrounds & Events` |
+| `area` | Optional, confirmed model-layout area name. Omit or leave blank when unknown or unrelated. |
 
 ### Categories
 
@@ -212,6 +229,33 @@ Photos are filterable by category on the gallery page:
 - **Layout** — Model railroad scenes, trains, structures, and scenery details
 - **Volunteer Work** — Members building, maintaining, or improving the layout
 - **Fairgrounds & Events** — Building exterior, exhibit context, open houses, and fairgrounds scenes
+
+### Layout areas
+
+An area is a second filter, not a replacement for a photo's category. Add it in
+the optional **Layout Area** CMS field or the `area` frontmatter field. Use the
+same spelling for photographs of the same confirmed model-layout area.
+Do not infer an area from a filename, a historical map, or an uncertain caption.
+Leave unassigned photos unchanged until their area can be identified.
+
+The area selector appears only when at least one entry has a nonblank area.
+Category and area filters work together. **All areas** includes unassigned
+photos, and **No area assigned** finds those entries specifically. Resetting the
+filters restores the full gallery. The lightbox follows the filtered set.
+
+The gallery begins with a short sequence of layout, bridge, locomotive, visitor,
+volunteer, and historical images selected in `src/pages/gallery.astro`; all
+remaining photos stay available.
+
+### Historical locomotives versus models
+
+The **Historical Locomotive Roster** collection (`src/content/trains/`) describes
+the original railroad. Its `source` field means builder or previous railroad,
+not a bibliographic citation. Quote text containing locomotive numbers such as
+`#1` in frontmatter so YAML does not interpret them as comments.
+
+Do not mix a future inventory of actual models and rolling stock into this
+historical collection. That information needs its own verified records.
 
 ---
 
@@ -302,8 +346,9 @@ To add, remove, or reorder pages in the nav, edit the `navItems` array:
 ```typescript
 export const navItems = [
   { label: 'About', href: '/about' },
-  { label: 'Visit & Events', href: '/events', icon: 'solar:calendar-bold' },
-  { label: 'Get Involved', href: '/donate', cta: true },
+  { label: 'Events', href: '/events', icon: 'solar:calendar-bold' },
+  { label: 'Historic Map', href: '/map/', icon: 'solar:map-bold' },
+  { label: 'Support the Layout', href: '/donate', cta: true },
   // ... add or remove items here
 ];
 ```

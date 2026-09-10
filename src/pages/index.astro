@@ -4,18 +4,21 @@ import Button from '../components/Button.astro';
 import { Icon } from 'astro-icon/components';
 import { organization } from '../config/organization';
 import { getCollection } from 'astro:content';
-import { formatEventDate, isUpcomingEvent } from '../utils/events';
+import { formatEventDate, getEventDisplayDates, isUpcomingEvent } from '../utils/events';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const now = new Date();
-const nextEvent = (await getCollection('events'))
+const upcomingEvents = (await getCollection('events'))
   .filter(event => isUpcomingEvent(event.data, now))
-  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())[0];
+  .sort((a, b) => getEventDisplayDates(a.data).date.getTime() - getEventDisplayDates(b.data).date.getTime())
+  .slice(0, 2);
+const [nextEvent, followingEvent] = upcomingEvents;
+const nextDates = nextEvent && getEventDisplayDates(nextEvent.data);
+const followingDates = followingEvent && getEventDisplayDates(followingEvent.data);
 ---
 
-<BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad" description="A historical model railroad at the Nevada County Fairgrounds, preserving the Nevada County Narrow Gauge Railroad (1876 to 1942). Public visits only during published events." image="/images/engine8-hero.jpg" heroImage={`${base}/images/engine8-hero.jpg`}>
-  <!-- Hero Section - Full-bleed with Engine #8 -->
-  <section class="relative min-h-[90vh] flex items-end text-white overflow-hidden" aria-labelledby="hero-title">
+<BaseLayout title="Nevada County Narrow Gauge Historical Model Railroad" description="Discover upcoming events, miniature trains, and local railroad history at the Nevada County Fairgrounds. Find event details for the N.C.N.G. Historical Model Railroad." image="/images/engine8-hero.jpg" heroImage={`${base}/images/engine8-hero.jpg`}>
+  <section class="relative text-white overflow-hidden" aria-labelledby="hero-title">
     <div class="absolute inset-0 z-0">
       <img 
         src={`${base}/images/engine8-hero.jpg`} 
@@ -29,54 +32,56 @@ const nextEvent = (await getCollection('events'))
       />
       <div class="absolute inset-0 hero-vignette"></div>
     </div>
-    <div class="page-container relative z-10 pb-16 md:pb-24 pt-40">
+    <div class="page-container relative z-10 py-8 md:py-16">
       <div class="max-w-3xl">
-        <span class="hero-kicker inline-block text-xs uppercase font-semibold mb-4 border px-4 py-2 rounded-full">Est. 1986 · Nevada County Fairgrounds · Grass Valley, CA</span>
-        <h1 id="hero-title" class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white leading-[1.1]" style="font-family: 'Archivo Black', serif;">
-          Nevada County<br />Narrow Gauge
+        <h1 id="hero-title" class="text-xl md:text-2xl font-body font-bold text-white">
+          Nevada County Narrow Gauge
+          <span class="block text-base md:text-lg font-medium mt-1">Historical Model Railroad</span>
         </h1>
-        <p class="hero-label text-sm uppercase font-medium mb-6">Historical Model Railroad</p>
-        <p class="hero-copy text-lg md:text-xl mb-10 leading-relaxed max-w-xl">
-          Watch miniature trains travel through local towns and landscapes,
-          recreating the railroad that served Nevada County from {organization.prototype.serviceStart} to {organization.prototype.serviceEnd}.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <Button href={`${base}/events`} size="lg">Plan Your Visit</Button>
-          <Button href={`${base}/map/`} variant="outline-inverse" size="lg">
-            Explore the Railroad Map
-          </Button>
-          <Button href={`${base}/about`} variant="outline-inverse" size="lg">
-            About the Layout
-          </Button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-12 bg-cream border-b border-gray-200" aria-labelledby="visit-title">
-    <div class="page-container grid md:grid-cols-2 gap-8 md:gap-12">
-      <div>
-        <h2 id="visit-title" class="text-3xl font-bold mb-4">When You Can Visit</h2>
-        <p class="text-lg text-gray-900 font-semibold mb-3">{organization.visiting.publicAccess}</p>
-        <p class="text-gray-600 mb-5">{organization.visiting.eventTiming}</p>
-        <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="text-primary underline font-semibold">
-          Get Directions to the Fairgrounds
-        </a>
-      </div>
-      <div>
-        {nextEvent ? (
+        {nextEvent && nextDates ? (
           <>
-            <h3 class="text-xl font-bold mb-3">Next Published Event: {nextEvent.data.title}</h3>
-            <p class="text-gray-700 mb-3">Event dates: {formatEventDate(nextEvent.data.date, nextEvent.data.endDate)}</p>
-            <p class="text-gray-600 mb-5">Read the event details for layout hours. If no times are listed, hours are still to be announced.</p>
-            <Button href={`${base}/events#event-${nextEvent.id}`}>View Event Details</Button>
+            <div class="mt-8 md:mt-10">
+              <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                Next up: {nextEvent.data.title}
+              </h2>
+              <p class="text-xl md:text-2xl font-semibold text-white mb-1">
+                {formatEventDate(nextDates.date, nextDates.endDate, 'compact')}
+              </p>
+              <p class="hero-copy text-sm mb-5">{nextDates.label}</p>
+              <Button href={`${base}/events#event-${nextEvent.id}`} size="lg">Event Details</Button>
+              <p class="hero-copy text-sm mt-3">
+                {nextEvent.data.layoutStartDate
+                  ? "See event details for layout hours."
+                  : "See event details for the layout's opening dates and hours."}
+              </p>
+            </div>
+            <div class="mt-8 pt-6 border-t border-white/30">
+              {followingEvent && followingDates && (
+                <div class="mb-3">
+                  <h2 class="text-xl md:text-2xl font-body font-bold text-white">
+                    <a href={`${base}/events#event-${followingEvent.id}`} class="inline-flex items-center min-h-11 underline underline-offset-4">
+                      Then: {followingEvent.data.title}
+                    </a>
+                  </h2>
+                  <p class="hero-copy mt-1">
+                    {followingDates.label}: {formatEventDate(followingDates.date, followingDates.endDate, 'compact')}
+                  </p>
+                </div>
+              )}
+              <a href={`${base}/events`} class="inline-flex items-center min-h-11 font-semibold text-white underline underline-offset-4">
+                All Upcoming Events
+              </a>
+            </div>
           </>
         ) : (
-          <>
-            <h3 class="text-xl font-bold mb-3">No Upcoming Public Events Published</h3>
-            <p class="text-gray-600 mb-5">Please wait for a published event before planning a public visit.</p>
-            <Button href={`${base}/events`}>View Events</Button>
-          </>
+          <div class="mt-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Explore the Model Railroad</h2>
+            <p class="hero-copy text-lg max-w-xl mb-6">
+              Explore the trains, towns, and landscapes of our volunteer-built model railroad.
+            </p>
+            <Button href={`${base}/gallery`} size="lg">Explore the Layout Photos</Button>
+            <p class="hero-copy mt-6">Our next event will appear here when it's announced.</p>
+          </div>
         )}
       </div>
     </div>
@@ -91,6 +96,8 @@ const nextEvent = (await getCollection('events'))
           </h2>
           <p class="text-lg text-gray-600 mb-6 leading-relaxed">
             Volunteers have built and maintained the layout since {organization.founded}.
+            It recreates the railroad that served Nevada County from
+            {organization.prototype.serviceStart} to {organization.prototype.serviceEnd}.
             Follow trains through miniature Nevada City, Grass Valley, Chicago Park,
             and Colfax, including the Bear River Bridge.
           </p>
@@ -101,6 +108,7 @@ const nextEvent = (await getCollection('events'))
           <div class="flex flex-wrap gap-6">
             <a href={`${base}/gallery`} class="text-primary underline font-semibold">See Layout Photos</a>
             <a href={`${base}/about`} class="text-primary underline font-semibold">How the Layout Works</a>
+            <a href={`${base}/map/`} class="text-primary underline font-semibold">Explore the Historic Map</a>
           </div>
         </div>
         <div class="lg:col-span-2">
@@ -121,41 +129,34 @@ const nextEvent = (await getCollection('events'))
     </div>
   </section>
 
-  <!-- Visit CTA - Full width with building exterior photo -->
-  <section class="relative py-28 md:py-36 text-white overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img 
-        src={`${base}/images/building-exterior.jpg`} 
-        alt="N.C.N.G. Historical Model Railroad building at the Nevada County Fairgrounds with Railroad Crossing sign and Historical Exhibit Open sandwich board" 
-        class="w-full h-full object-cover"
-        loading="lazy"
-        decoding="async"
-        width={1200}
-        height={675}
-      />
-      <div class="absolute inset-0 bg-gray-900/60"></div>
-    </div>
-    <div class="page-container relative z-10">
-      <div class="max-w-2xl">
-        <h2 class="text-3xl md:text-5xl font-bold mb-6">Visit the Layout</h2>
-        <p class="text-xl text-gray-200 mb-4">
+  <section class="py-12 md:py-16 bg-cream">
+    <div class="page-container grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-4">The Railroad Building</h2>
+        <p class="text-gray-600 mb-6">
           {organization.visiting.publicAccess}
         </p>
-        <address class="text-gray-300 not-italic mb-8 flex items-start gap-3">
-          <Icon name="solar:map-point-bold" class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" />
+        <address class="text-gray-700 not-italic mb-6 flex items-start gap-3">
+          <Icon name="solar:map-point-bold" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
           <span>
             {organization.location.venue}<br />
             {organization.location.streetAddress}<br />
             {organization.location.city}, {organization.location.state}
           </span>
         </address>
-        <div class="flex flex-wrap gap-4">
-          <Button href={`${base}/events`} size="lg">Plan Your Visit</Button>
-          <Button href={organization.location.mapsUrl} external variant="outline-inverse" size="lg">
-            Get Directions
-          </Button>
-        </div>
+        <a href={organization.location.mapsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-11 text-primary underline font-semibold">
+          Directions to the Fairgrounds
+        </a>
       </div>
+      <img
+        src={`${base}/images/building-exterior-visit.jpg`}
+        alt="The model railroad building and railroad crossing sign at the Nevada County Fairgrounds"
+        class="rounded-xl w-full"
+        loading="lazy"
+        decoding="async"
+        width={800}
+        height={600}
+      />
     </div>
   </section>
 
